@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.szg_tech.cvdevaluator">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".core.CVDApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".activities.authentication.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.authentication.AuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:noHistory="true">
+        </activity>
+
+        <activity
+            android:name=".activities.main.MainActivity"
+            android:parentActivityName=".activities.authentication.AuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EvaluationTheme" />
+        <activity
+            android:name=".activities.evaluation.EvaluationActivity"
+            android:parentActivityName=".activities.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EvaluationTheme" />
+    </application>
+
+</manifest>

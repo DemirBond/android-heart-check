@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/cell_padding_left"
+    android:paddingEnd="@dimen/cell_padding_right"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="50dp">
+
+   <include layout="@layout/level_mark"/>
+
+    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="8dp"
+        tools:text="@tools:sample/first_names"
+        android:paddingTop="8dp"
+        app:type="subheading_left" />
+
+</LinearLayout>

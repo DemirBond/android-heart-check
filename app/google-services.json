@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "590316617475",
+    "firebase_url": "https://cvdevaluator.firebaseio.com",
+    "project_id": "cvdevaluator",
+    "storage_bucket": "cvdevaluator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590316617475:android:5f426579e7dcc991",
+        "android_client_info": {
+          "package_name": "com.szg_tech.cvdevaluator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590316617475-trmdlugsel492aahvu86o649uaip4vv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuW8ZHUfokQSALm-faVJ20T28amPzNwKM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
