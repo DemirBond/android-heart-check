@@ -1241,10 +1241,10 @@ public class ConfigurationParams {
 
     public static final String EVALUATION = "secevaluation";
     public static final String ABOUT = "secabout";
-    public static final String TERMS_OF_USE = "secterms_of_use";
+    public static final String TERMS_OF_USE = "secabout_secterms_of_use";
     public static final String TERMS_OF_USE_TEXT = "secterms_of_use_text";
-    public static final String PRIVACY_POLICY = "secprivacy_policy";
-    public static final String HELP_SUPPORT = "sechelp_support";
+    public static final String PRIVACY_POLICY = "secabout_secprivacy_policy";
+    public static final String HELP_SUPPORT = "secabout_sechelp_support";
     public static final String DEVELOPMENT = "secdevelopment";
     public static final String ENGINEERING = "secengineering";
     public static final String DESIGN = "secdesign";

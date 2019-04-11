@@ -8,6 +8,7 @@ interface EvaluationListPresenter extends Presenter {
     void onCreate();
 
     boolean isAboutScreen();
+
     boolean isEvaluationScreen();
 
     void onBottomButtonClick();

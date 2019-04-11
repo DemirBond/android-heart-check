@@ -69,23 +69,23 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     private Activity activity;
     private List<EvaluationItem> evaluationItemsList;
     private HashMap<String, Map<RadioButtonGroupEvaluationItem, RadioButtonCell>> radioGroupMap = new HashMap<>();
-    private ArrayList<SectionEvaluationItem> nextSectionEvaluationItems;
+    private ArrayList<SectionEvaluationItem> nextSectionEvaluationItems = new ArrayList<>();
     private SectionDependsOnManager sectionDependsOnManager = new SectionDependsOnManager();
     private String parentTitle;
     private ArrayList<EvaluationItem> expandedItems = new ArrayList<>();
     private HashMap<String, Integer> depthMap;
     private List<String> depthMapLeaf;
-    private HashMap<String,Object> oldValues;
+    private HashMap<String, Object> oldValues;
 
     private boolean onBind;
 
 
-    public ListRecyclerViewAdapter(Activity activity, List<EvaluationItem> evaluationItemsList, HashMap<String,Object> valuesDump) {
+    public ListRecyclerViewAdapter(Activity activity, List<EvaluationItem> evaluationItemsList, HashMap<String, Object> valuesDump) {
         this.activity = activity;
         this.evaluationItemsList = new ArrayList<>(evaluationItemsList);
         depthMap = new HashMap<>();
         depthMapLeaf = new ArrayList<>();
-        calculateDepth(evaluationItemsList,0);
+        calculateDepth(evaluationItemsList, 0);
         populateWithSeparators(evaluationItemsList);
 
         oldValues = valuesDump;
@@ -125,7 +125,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     }
 
     public void addNextSectionEvaluationItems(ArrayList<SectionEvaluationItem> nextSectionEvaluationItems) {
-        this.nextSectionEvaluationItems = nextSectionEvaluationItems;
+        if (nextSectionEvaluationItems != null) {
+            this.nextSectionEvaluationItems = nextSectionEvaluationItems;
+        }
     }
 
     @NonNull
@@ -186,24 +188,24 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         return new ListRecyclerViewAdapter.ViewHolder(stringEditTextCell);
     }
 
-    private void markParentAsChecked(EvaluationItem child, boolean isChecked){
+    private void markParentAsChecked(EvaluationItem child, boolean isChecked) {
         EvaluationItem parent = null;
-        for(EvaluationItem item : expandedItems){
+        for (EvaluationItem item : expandedItems) {
             List children = item.getEvaluationItemList();
-            if(children!=null && children.contains(child)){
+            if (children != null && children.contains(child)) {
                 parent = item;
                 break;
             }
         }
-        if( parent!=null){
-            if(parent instanceof SectionCheckboxEvaluationItem){
+        if (parent != null) {
+            if (parent instanceof SectionCheckboxEvaluationItem) {
                 ((SectionCheckboxEvaluationItem) parent).setChecked(isChecked);
-            } else if (parent instanceof RadioButtonGroupEvaluationItem){
+            } else if (parent instanceof RadioButtonGroupEvaluationItem) {
                 ((RadioButtonGroupEvaluationItem) parent).setChecked(isChecked);
                 Map<RadioButtonGroupEvaluationItem, RadioButtonCell> radioButtons = radioGroupMap.get(((RadioButtonGroupEvaluationItem) parent).getGroupName());
-                if(radioButtons!=null){
-                    for(RadioButtonGroupEvaluationItem radioButtonItem : radioButtons.keySet()){
-                        if(parent != radioButtonItem){
+                if (radioButtons != null) {
+                    for (RadioButtonGroupEvaluationItem radioButtonItem : radioButtons.keySet()) {
+                        if (parent != radioButtonItem) {
                             radioButtonItem.setChecked(false);
                         }
                     }
@@ -213,21 +215,20 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-    private void deselectRadioButtons(Map<RadioButtonGroupEvaluationItem, RadioButtonCell> radioButtons, RadioButtonCell radioButtonCell){
-        for(Map.Entry<RadioButtonGroupEvaluationItem, RadioButtonCell> entry : radioButtons.entrySet()){
+    private void deselectRadioButtons(Map<RadioButtonGroupEvaluationItem, RadioButtonCell> radioButtons, RadioButtonCell radioButtonCell) {
+        for (Map.Entry<RadioButtonGroupEvaluationItem, RadioButtonCell> entry : radioButtons.entrySet()) {
             RadioButtonGroupEvaluationItem item = entry.getKey();
             RadioButtonCell currentCell = entry.getValue();
-            if(radioButtonCell!=currentCell){
+            if (radioButtonCell != currentCell) {
                 currentCell.getRadioButton().setChecked(false);
                 currentCell.getRadioButton().invalidate();
                 item.setChecked(false);
                 List<EvaluationItem> children = item.getEvaluationItemList();
-                if(children!=null){
-                    for(EvaluationItem child : children){
-                        if(child instanceof SectionCheckboxEvaluationItem){
+                if (children != null) {
+                    for (EvaluationItem child : children) {
+                        if (child instanceof SectionCheckboxEvaluationItem) {
                             ((SectionCheckboxEvaluationItem) child).setChecked(false);
-                        }
-                        else if (child instanceof RadioButtonGroupEvaluationItem){
+                        } else if (child instanceof RadioButtonGroupEvaluationItem) {
                             ((RadioButtonGroupEvaluationItem) child).setChecked(false);
                         }
                     }
@@ -239,7 +240,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
 
     private void setScaleInAnimation(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.0f);
-        AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f,1.0f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f, 1.0f);
         alphaAnimation.setDuration(475);
         scaleAnimation.setDuration(375);
         view.startAnimation(scaleAnimation);
@@ -254,22 +255,22 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         if (holder != null) {
             EvaluationItem evaluationItem = evaluationItemsList.get(position);
             String name = evaluationItem.getName();
-            if (holder.view instanceof LinearLayout){
+            if (holder.view instanceof LinearLayout) {
                 String id = evaluationItem.getId();
-                if(id == null && position>0){
-                    id = evaluationItemsList.get(position-1).getId();
+                if (id == null && position > 0) {
+                    id = evaluationItemsList.get(position - 1).getId();
                 }
-                if(holder.view instanceof CellWithIndent){
-                    ((CellWithIndent) holder.view).setLevelMark(depthMap.get(id),depthMapLeaf.contains(id));
+                if (holder.view instanceof CellWithIndent) {
+                    ((CellWithIndent) holder.view).setLevelMark(depthMap.get(id), depthMapLeaf.contains(id));
                 }
             }
 
-            if(itemsToAnimateIn!=null && itemsToAnimateIn.contains(evaluationItem)){
+            if (itemsToAnimateIn != null && itemsToAnimateIn.contains(evaluationItem)) {
                 setScaleInAnimation(holder.itemView);
                 itemsToAnimateIn.remove(evaluationItem);
             }
 
-            if (evaluationItem.isMandatory()){
+            if (evaluationItem.isMandatory()) {
                 name += "*";
             }
             holder.view.setLabelText(name);
@@ -378,7 +379,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                     if (finalLaboratoriesEvaluationItem != null) {
                                         finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                                     }
-                                    if(finalDiagnosticEvaluationItem != null) {
+                                    if (finalDiagnosticEvaluationItem != null) {
                                         finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                                     }
                                     goToNextScreen(finalCurrentCVPosition, finalCurrentCVEvaluationItem);
@@ -386,7 +387,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                     if (finalLaboratoriesEvaluationItem != null) {
                                         finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                                     }
-                                    if(finalDiagnosticEvaluationItem != null) {
+                                    if (finalDiagnosticEvaluationItem != null) {
                                         finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                                     }
                                     goToNextScreen(finalMajorCVRiskPosition, finalMajorCVRiskEvaluationItem);
@@ -445,9 +446,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 String groupName = radioButtonItem.getGroupName();
 
                 Map<RadioButtonGroupEvaluationItem, RadioButtonCell> radioButtons = radioGroupMap.get(groupName);
-                if(radioButtons==null){
+                if (radioButtons == null) {
                     radioButtons = new HashMap<>();
-                    radioGroupMap.put(groupName,radioButtons);
+                    radioGroupMap.put(groupName, radioButtons);
                 }
                 radioButtons.put(radioButtonItem, radioButtonCell);
 
@@ -455,9 +456,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 radioButtonCell.setOnClickListener(v -> {
                     radioButtonItem.setChecked(true);
                     radioButtonCell.setChecked(true);
-                    deselectRadioButtons(finalRadioButtons,radioButtonCell);
-                    markParentAsChecked(evaluationItem,true);
-                    if(evaluationItem.getEvaluationItemList()!=null){
+                    deselectRadioButtons(finalRadioButtons, radioButtonCell);
+                    markParentAsChecked(evaluationItem, true);
+                    if (evaluationItem.getEvaluationItemList() != null) {
                         expandOrCollapseList(evaluationItem, position);
                     }
                 });
@@ -465,7 +466,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
 
                 if (evaluationItem.getEvaluationItemList() != null) {
                     radioButtonCell.showChevron(true);
-                    setupChevron(radioButtonCell,evaluationItem);
+                    setupChevron(radioButtonCell, evaluationItem);
 
                 } else {
                     radioButtonCell.showChevron(false);
@@ -475,7 +476,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 BooleanEvaluationItem booleanEvaluationItem = (BooleanEvaluationItem) evaluationItem;
                 checkBoxCell.setBackgroundHighlighted(booleanEvaluationItem.isBackgroundHighlighted());
                 checkBoxCell.getCheckBox().setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    if(!onBind) {
+                    if (!onBind) {
                         booleanEvaluationItem.setChecked(isChecked);
                         markParentAsChecked(booleanEvaluationItem, isChecked);
                     }
@@ -502,10 +503,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 }
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
 
                     @Override
                     public void afterTextChanged(Editable s) {
@@ -516,7 +519,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                     && value <= ((NumericalEvaluationItem) evaluationItem).getTo()) {
                                 ((NumericalEvaluationItem) evaluationItem).setNumber(Double.parseDouble(s.toString()));
                                 stringEditTextCell.setCorrect(true);
-                                if(!onBind) {
+                                if (!onBind) {
                                     markParentAsChecked(evaluationItem, true);
                                 }
                                 return;
@@ -570,10 +573,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 }
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
 
                     @Override
                     public void afterTextChanged(Editable s) {
@@ -658,10 +663,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 }
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
 
                     @Override
                     public void afterTextChanged(Editable s) {
@@ -707,10 +714,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 }
                 ((MinutesSecondsCell) holder.view).addOnMinutesChangeListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
 
                     @Override
                     public void afterTextChanged(Editable s) {
@@ -723,10 +732,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 });
                 ((MinutesSecondsCell) holder.view).addOnSecondsChangeListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count){}
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
 
                     @Override
                     public void afterTextChanged(Editable s) {
@@ -739,18 +750,18 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 });
             } else if (evaluationItem instanceof SectionCheckboxEvaluationItem) {
                 ((SectionCheckboxCell) holder.view).getCheckBox().setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    if(!onBind){
+                    if (!onBind) {
                         ((SectionCheckboxEvaluationItem) evaluationItem).setChecked(isChecked);
                     }
                 });
                 onBind = true;
                 ((SectionCheckboxCell) holder.view).setChecked(((SectionCheckboxEvaluationItem) evaluationItem).isChecked());
                 onBind = false;
-                setupChevron(holder.view,evaluationItem);
+                setupChevron(holder.view, evaluationItem);
                 ((SectionCheckboxCell) holder.view).setOnClickListener(v -> {
                     if (isScreenValid()) {
                         if (activity instanceof AppCompatActivity  /*&& ((SectionCheckboxCell) holder.view).isChecked() */) {
-                           expandOrCollapseList(evaluationItem, position);
+                            expandOrCollapseList(evaluationItem, position);
                         }
                     } else {
                         showSnackbarBottomButtonError(((SectionCheckboxCell) holder.view).getRootView());
@@ -775,12 +786,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-    private void setupChevron(CellItem cellItem, EvaluationItem item){
+    private void setupChevron(CellItem cellItem, EvaluationItem item) {
         float rotationAngle = 0.0f;
-        if(expandedItems.contains(item)){
+        if (expandedItems.contains(item)) {
             rotationAngle = 90.0f;
         }
-        ((ChevronCell)cellItem).getChevron().setRotation(rotationAngle);
+        ((ChevronCell) cellItem).getChevron().setRotation(rotationAngle);
     }
 
     private List<EvaluationItem> itemsToAnimateIn;
@@ -800,17 +811,17 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     oldValues.put(child.getId(), child.getValue());
                 }
             }
-        } catch(IndexOutOfBoundsException ex){
-            Log.e("Adapter","Index wrong!");
+        } catch (IndexOutOfBoundsException ex) {
+            Log.e("Adapter", "Index wrong!");
         }
         notifyDataSetChanged();
     }
 
-    private void collapseList(EvaluationItem parentItem){
+    private void collapseList(EvaluationItem parentItem) {
         itemsToAnimateOut = new ArrayList<>();
         expandedItems.remove(parentItem);
         List<EvaluationItem> children = parentItem.getEvaluationItemList();
-        if(children!=null && children.size()>0) {
+        if (children != null && children.size() > 0) {
             evaluationItemsList.removeAll(children);
             for (EvaluationItem child : children) {
                 oldValues.remove(child.getId());
@@ -820,35 +831,35 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-    private void populateWithSeparators(List<EvaluationItem> items){
-        if(items!=null && items.size()>0) {
+    private void populateWithSeparators(List<EvaluationItem> items) {
+        if (items != null && items.size() > 0) {
             EvaluationItem firstItem = items.get(0);
             int depth = depthMap.get(firstItem.getId());
-            if(depth>1){
-                if(!(firstItem instanceof EmptyCellEvaluationItem)){
-                    items.add(0,new EmptyCellEvaluationItem(depth));
+            if (depth > 1) {
+                if (!(firstItem instanceof EmptyCellEvaluationItem)) {
+                    items.add(0, new EmptyCellEvaluationItem(depth));
                 }
-                EvaluationItem lastItem = items.get(items.size()-1);
-                if(!(lastItem instanceof EmptyCellEvaluationItem)) {
+                EvaluationItem lastItem = items.get(items.size() - 1);
+                if (!(lastItem instanceof EmptyCellEvaluationItem)) {
                     items.add(new EmptyCellEvaluationItem(depth));
                 }
             }
-            for(EvaluationItem item : items){
+            for (EvaluationItem item : items) {
                 List<EvaluationItem> children = item.getEvaluationItemList();
                 populateWithSeparators(children);
             }
         }
     }
 
-    private void calculateDepth(List<EvaluationItem> items, int depth){
-        if(items!=null) {
+    private void calculateDepth(List<EvaluationItem> items, int depth) {
+        if (items != null) {
             for (EvaluationItem item : items) {
-               String id = item.getId();
-               depthMap.put(id,depth);
-               calculateDepth(item.getEvaluationItemList(),depth+1);
-               if(items.indexOf(item)==items.size()-1){
-                   depthMapLeaf.add(id);
-               }
+                String id = item.getId();
+                depthMap.put(id, depth);
+                calculateDepth(item.getEvaluationItemList(), depth + 1);
+                if (items.indexOf(item) == items.size() - 1) {
+                    depthMapLeaf.add(id);
+                }
             }
         }
     }
@@ -875,15 +886,14 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             }
             if (
                     !isEmptyAllowed
-                    && item.isMandatory()
-                    && (item instanceof NumericalEvaluationItem || item instanceof StringEvaluationItem)
-                    && item.getValue() == null
-            )
-            {
+                            && item.isMandatory()
+                            && (item instanceof NumericalEvaluationItem || item instanceof StringEvaluationItem)
+                            && item.getValue() == null
+            ) {
                 isFilled = false;
             }
             Object oldValue = oldValues.get(item.getId());
-            if (oldValue!=null && !Objects.equals(item.getValue(), oldValue)) {
+            if (oldValue != null && !Objects.equals(item.getValue(), oldValue)) {
                 isAllTheSame = false;
             }
             if (!isValid && !isAllTheSame) {
@@ -909,7 +919,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     }
                 }
             }
-            for(SectionEvaluationItem item : nextSectionEvaluationItems){
+            for (SectionEvaluationItem item : nextSectionEvaluationItems) {
                 nextSectionsArrayList.add(item.getId());
             }
             bundle.putStringArrayList(ConfigurationParams.NEXT_SECTION_EVALUATION_ITEMS, nextSectionsArrayList);
@@ -942,7 +952,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-    private void startMandatoryFragment(EvaluationItem sectionEvaluationItem){
+    private void startMandatoryFragment(EvaluationItem sectionEvaluationItem) {
         FragmentManager fragmentManager = ((AppCompatActivity) activity).getSupportFragmentManager();
         if (fragmentManager != null) {
             EvaluationListFragment evaluationListFragment = new EvaluationListFragment();
@@ -957,7 +967,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     nextSectionsArrayList.add(nextEvaluationItem.getId());
                 }
             }
-            for(SectionEvaluationItem item : nextSectionEvaluationItems){
+            for (SectionEvaluationItem item : nextSectionEvaluationItems) {
                 nextSectionsArrayList.add(item.getId());
             }
 
@@ -996,7 +1006,6 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     }
 
 
-
     private void setImeOptionsForLastEditText(StringEditTextCell stringEditTextCell, int position) {
         boolean isLastInput = true;
         for (int i = position + 1; i < getItemCount(); i++) {
@@ -1007,6 +1016,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
         if (isLastInput) {
             stringEditTextCell.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            stringEditTextCell.setOnEditorActionListener(new StringEvaluationItem.DoneOnEditorActionListener());
         }
     }
 
@@ -1028,12 +1038,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     }
 
     public void resetFileds() {
-        for(EvaluationItem item : evaluationItemsList){
-            if (item instanceof RadioButtonGroupEvaluationItem){
+        for (EvaluationItem item : evaluationItemsList) {
+            if (item instanceof RadioButtonGroupEvaluationItem) {
                 ((RadioButtonGroupEvaluationItem) item).setChecked(false);
-            } else if (item instanceof SectionCheckboxEvaluationItem){
+            } else if (item instanceof SectionCheckboxEvaluationItem) {
                 ((SectionCheckboxEvaluationItem) item).setChecked(false);
-            } else if (item instanceof BooleanEvaluationItem){
+            } else if (item instanceof BooleanEvaluationItem) {
                 ((BooleanEvaluationItem) item).setChecked(false);
             }
 //            Object oldValue = oldValues.get(item.getId());

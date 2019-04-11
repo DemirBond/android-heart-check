@@ -34,7 +34,9 @@ public class Evaluation extends SectionEvaluationItem {
         items.add(new Laboratories(context));
         items.add(new Diagnostics(context));
         items.add(new Therapies(context));
-        return items;
 
+        // TODO(khait@firestak.com): Add element for About screen
+        items.add(new About(context));
+        return items;
     }
 }

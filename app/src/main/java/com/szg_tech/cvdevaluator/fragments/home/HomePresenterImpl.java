@@ -1,11 +1,10 @@
 package com.szg_tech.cvdevaluator.fragments.home;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -26,8 +25,12 @@ import com.szg_tech.cvdevaluator.fragments.saved_evaluation_list.SavedEvaluation
 import com.szg_tech.cvdevaluator.rest.requests.GetSavedEvaluationsCall;
 import com.szg_tech.cvdevaluator.rest.responses.SavedEvaluationItem;
 import com.szg_tech.cvdevaluator.storage.EvaluationDAO;
+import com.szg_tech.cvdevaluator.utiles.listeners.OnLockClickListener;
 
 import java.util.List;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePresenter, GetSavedEvaluationsCall.OnSavedEvaluationsResult {
 
@@ -52,7 +55,9 @@ class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePrese
         if (activity instanceof AppCompatActivity) {
             ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
             if (actionBar != null) {
+                actionBar.setDisplayShowCustomEnabled(false);
                 actionBar.setTitle(R.string.heart_check);
+                actionBar.setDisplayShowTitleEnabled(true);
                 actionBar.setDisplayHomeAsUpEnabled(false);
                 int actionBarColor = ContextCompat.getColor(activity, R.color.colorPrimary);
                 actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
@@ -60,31 +65,37 @@ class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePrese
         }
     }
 
-    public void onResultSuccessful(List<SavedEvaluationItem> itemList){
-        if(progressDialog!=null){
+    public void onResultSuccessful(List<SavedEvaluationItem> itemList) {
+        if (mLockSavedEvaluationListener != null) {
+            mLockSavedEvaluationListener.unlock();
+        }
+        if (progressDialog != null) {
             progressDialog.dismiss();
         }
         SavedEvaluationFragment fragment = new SavedEvaluationFragment();
         fragment.createPresenter().setData(itemList);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        fragmentTransaction.replace(R.id.container,fragment);
+        fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.addToBackStack(getSupportFragmentManager().getClass().getSimpleName());
         fragmentTransaction.commit();
     }
 
-    public void onError(String error){
-        if(progressDialog!=null){
+    public void onError(String error) {
+        if (mLockSavedEvaluationListener != null) {
+            mLockSavedEvaluationListener.unlock();
+        }
+        if (progressDialog != null) {
             progressDialog.dismiss();
         }
-        showSnackbarBottomButtonError(getActivity(),error);
+        showSnackbarBottomButtonError(getActivity(), error);
     }
 
-    public void onNoInternet(){
-        if(progressDialog!=null){
+    public void onNoInternet() {
+        if (progressDialog != null) {
             progressDialog.dismiss();
         }
-        showSnackbarBottomButtonError(getActivity(),getActivity().getResources().getString(R.string.retrieving_saved_evaluations_error));
+        showSnackbarBottomButtonError(getActivity(), getActivity().getResources().getString(R.string.retrieving_saved_evaluations_error));
     }
 
     private void showSnackbarBottomButtonError(Activity activity, String message) {
@@ -96,15 +107,15 @@ class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePrese
     }
 
     DialogFragment progressDialog;
+    OnLockClickListener mLockSavedEvaluationListener;
 
-    private void openSavedEvaluationsFragment(){
-        progressDialog = ProgressModalManager.createAndShowRetrieveSavedEvaluationProgressDialog(getActivity());
+    private void openSavedEvaluationsFragment() {
+        progressDialog = ProgressModalManager.createAndShowRetrieveSavedEvaluationProgressDialog((AppCompatActivity) getActivity());
         new GetSavedEvaluationsCall().getEvaluations(this, getActivity());
     }
 
 
-
-    private void openNewEvaluationActivity(){
+    private void openNewEvaluationActivity() {
         EvaluationDAO.getInstance().clearEvaluation();
         getView().startActivity(EvaluationActivity.class);
     }
@@ -134,7 +145,14 @@ class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePrese
                 holder.title.setText(R.string.saved_evaluation_title);
                 holder.description.setText(R.string.saved_evaluation_desription);
                 holder.image.setImageResource(R.drawable.folder);
-                holder.view.setOnClickListener(v -> openSavedEvaluationsFragment());
+                holder.view.setOnClickListener(new OnLockClickListener(new Function2<View, OnLockClickListener, Unit>() {
+                    @Override
+                    public Unit invoke(View view, OnLockClickListener onLockClickListener) {
+                        mLockSavedEvaluationListener = onLockClickListener;
+                        openSavedEvaluationsFragment();
+                        return null;
+                    }
+                }));
             }
         }
 

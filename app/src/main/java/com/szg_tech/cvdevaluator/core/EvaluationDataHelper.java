@@ -25,25 +25,25 @@ public class EvaluationDataHelper {
         return valuesDump;
     }
 
-    public static Evaluation createHomeScreenData(Context context){
+    public static Evaluation createHomeScreenData(Context context) {
         Evaluation evaluation = new Evaluation(context);
-        HashMap<String, Object>  valueHashMap = EvaluationDAO.getInstance().loadValues();
+        HashMap<String, Object> valueHashMap = EvaluationDAO.getInstance().loadValues();
         if (!valueHashMap.isEmpty()) {
             recursiveFillSection(evaluation, valueHashMap);
         }
         return evaluation;
     }
 
-    public static EvaluationItem fetchEvaluationItemById(String id, Context context){
+    public static EvaluationItem fetchEvaluationItemById(String id, Context context) {
         Evaluation evaluation = new Evaluation(context);
         return fetchItemFromEvaluation(id, evaluation);
     }
 
-    public static EvaluationItem fetchItemFromEvaluation(String id,Evaluation evaluation ){
+    public static EvaluationItem fetchItemFromEvaluation(String id, Evaluation evaluation) {
         EvaluationItem item = recursiveFetch(evaluation, id);
         // fill section with data
-        if(item!=null){
-            HashMap<String, Object>  valueHashMap = EvaluationDAO.getInstance().loadValues();
+        if (item != null) {
+            HashMap<String, Object> valueHashMap = EvaluationDAO.getInstance().loadValues();
             if (!valueHashMap.isEmpty()) {
                 recursiveFillSection(item, valueHashMap);
             }
@@ -51,7 +51,7 @@ public class EvaluationDataHelper {
         return item;
     }
 
-    public static EvaluationItem recursiveFetch(EvaluationItem item, String id){
+    public static EvaluationItem recursiveFetch(EvaluationItem item, String id) {
         ArrayList<EvaluationItem> evaluationItems = item.getEvaluationItemList();
         if (evaluationItems != null) {
             for (EvaluationItem evaluationItem : evaluationItems) {
@@ -59,7 +59,7 @@ public class EvaluationDataHelper {
                     return evaluationItem;
                 } else {
                     EvaluationItem nestedResult = recursiveFetch(evaluationItem, id);
-                    if(nestedResult!=null){
+                    if (nestedResult != null) {
                         return nestedResult;
                     }
                 }
@@ -68,13 +68,13 @@ public class EvaluationDataHelper {
         return null;
     }
 
-    public static ArrayList<SectionEvaluationItem> getNextSectionItems(@Nullable List<String> ids, Context context){
+    public static ArrayList<SectionEvaluationItem> getNextSectionItems(@Nullable List<String> ids, Context context) {
         ArrayList<SectionEvaluationItem> items = new ArrayList<>();
-        if(ids!=null) {
+        if (ids != null) {
             Evaluation evaluation = new Evaluation(context);
             for (String id : ids) {
                 EvaluationItem item = fetchItemFromEvaluation(id, evaluation);
-                if(item instanceof SectionEvaluationItem){
+                if (item instanceof SectionEvaluationItem) {
                     SectionEvaluationItem sectionEvaluationItem = (SectionEvaluationItem) item;
                     items.add(sectionEvaluationItem);
                 } else if (id.equals(ConfigurationParams.COMPUTE_EVALUATION)) {

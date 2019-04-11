@@ -17,7 +17,6 @@ public class LoginResponse {
     @SerializedName("expires_in")
     public long expiresIn;
 
-
     @SerializedName("token_type")
     public String tokenType;
 

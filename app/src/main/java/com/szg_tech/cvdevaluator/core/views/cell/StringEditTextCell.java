@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.szg_tech.cvdevaluator.R;
 import com.szg_tech.cvdevaluator.core.views.CustomEditText;
@@ -107,5 +108,9 @@ public class StringEditTextCell extends CellWithIndent implements CellItem {
         } else {
             textView.setTextColor(ContextCompat.getColor(getContext(), R.color.snackbar_red));
         }
+    }
+
+    public void setOnEditorActionListener(TextView.OnEditorActionListener listener) {
+        editText.setOnEditorActionListener(listener);
     }
 }

@@ -1,12 +1,11 @@
 package com.szg_tech.cvdevaluator.fragments.evaluation_list;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.internal.SnackbarContentLayout;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.SnackbarContentLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -76,22 +76,23 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         actionBarSubtitle = arguments.getString(ConfigurationParams.SUBTITLE);
         boolean shouldShowAlert = arguments.getBoolean(ConfigurationParams.SHOULD_SHOW_ALERT);
 
-        String sectionId =  arguments.getString(ConfigurationParams.NEXT_SECTION_ID);
-        if(NEXT_SECTION_HOME_SCREEN.equals(sectionId)){
+        String sectionId = arguments.getString(ConfigurationParams.NEXT_SECTION_ID);
+        Log.e("status", sectionId);
+        if (NEXT_SECTION_HOME_SCREEN.equals(sectionId)) {
             nextSectionEvaluationItemArrayList = new ArrayList<SectionEvaluationItem>() {{
                 add(new SectionEvaluationItem(getActivity(), ConfigurationParams.COMPUTE_EVALUATION, getActivity().getResources().getString(R.string.compute_evaluation), new ArrayList<>()));
             }};
             evaluationItem = EvaluationDataHelper.createHomeScreenData(activity);
-        } else if(NEXT_SECTION_ABOUT.equals(sectionId)) {
+        } else if (NEXT_SECTION_ABOUT.equals(sectionId)) {
             evaluationItem = new About(activity);
-        } else if(NEXT_SECTION_HEART_SPECIALIST.equals(sectionId)) {
+        } else if (NEXT_SECTION_HEART_SPECIALIST.equals(sectionId)) {
             nextSectionEvaluationItemArrayList = new ArrayList<SectionEvaluationItem>() {{
                 add(new SectionEvaluationItem(getActivity(), ConfigurationParams.PAH_COMPUTE_EVALUATION,
                         activity.getResources().getString(R.string.compute_evaluation), new ArrayList<>()));
             }};
             evaluationItem = ((EvaluationActivity) activity).getHeartSpecialistManagement();
             EvaluationDataHelper.recursiveFillSection(evaluationItem, EvaluationDAO.getInstance().loadValues());
-        } else if (sectionId!=null){
+        } else if (sectionId != null) {
             evaluationItem = EvaluationDataHelper.fetchEvaluationItemById(sectionId, activity);
             ArrayList<String> sectionIds = arguments.getStringArrayList(ConfigurationParams.NEXT_SECTION_EVALUATION_ITEMS);
             nextSectionEvaluationItemArrayList = EvaluationDataHelper.getNextSectionItems(sectionIds, activity);
@@ -120,7 +121,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                             .addToBackStack(getSupportFragmentManager().getClass().getSimpleName() + ((EvaluationActivity) activity).getHeartSpecialistManagement().getName())
                             .commit();
                 }
-            }, v ->  {
+            }, v -> {
                 EvaluationDAO.getInstance().addToHashMap(ConfigurationParams.IS_PAH, false);
                 popBackStack();
             });
@@ -142,12 +143,11 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
     }
 
 
-
-
     // TODO Filip: Nasty hardcoded strings?!?
     @Override
     public boolean isAboutScreen() {
-        return Objects.equals(evaluationItem.getId(), "secabout");
+        // TODO(khait@firestak.com): Change equals to startsWith for element section in About screen
+        return evaluationItem.getId().startsWith("secabout");
     }
 
     @Override
@@ -241,7 +241,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                     listRecyclerViewAdapter.saveAllValues();
                     if (activity instanceof EvaluationActivity) {
                         int pahPosition = PAHpositionInBackStack();
-                        if(pahPosition > 0) {
+                        if (pahPosition > 0) {
                             popBackStack(pahPosition);
                         } else {
                             ((EvaluationActivity) activity).createHomeScreen(false);
@@ -270,7 +270,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         AlertModalManager.createAndShowCancelScreenInputDialog(activity, v -> {
             for (EvaluationItem item : evaluationItems) {
                 Object value = valuesDump.get(item.getId());
-                if(value!=null){
+                if (value != null) {
                     item.setValue(value);
                 }
             }
@@ -310,14 +310,14 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                 Bundle bundle = new Bundle();
                 ArrayList<SectionEvaluationItem> sublist = new ArrayList<>(nextSectionEvaluationItemArrayList.subList(1, nextSectionEvaluationItemArrayList.size()));
                 ArrayList<String> nextSectionEvaluationItemArrayListIds = new ArrayList<>();
-                for(SectionEvaluationItem item : sublist){
+                for (SectionEvaluationItem item : sublist) {
                     nextSectionEvaluationItemArrayListIds.add(item.getId());
                 }
                 bundle.putStringArrayList(ConfigurationParams.NEXT_SECTION_EVALUATION_ITEMS, nextSectionEvaluationItemArrayListIds);
                 if (
                         nextSectionEvaluationItemArrayList.size() >= 1 &&
-                        nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().size() == 1 &&
-                        nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().get(0) instanceof TabEvaluationItem
+                                nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().size() == 1 &&
+                                nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().get(0) instanceof TabEvaluationItem
                 ) {
                     TabFragment tabFragment = new TabFragment();
                     bundle.putString(ConfigurationParams.TAB_SECTION_LIST, (nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().get(0)).getId());
@@ -335,7 +335,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                     SectionEvaluationItem nextSectionEvaluationItem = nextSectionEvaluationItemArrayList.get(0);
                     if (ConfigurationParams.COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId()) || ConfigurationParams.PAH_COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId())) {
 
-                        if(EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
+                        if (EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
                             fragmentManager.beginTransaction()
                                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                                     .replace(R.id.container, new OutputFragment())

@@ -1,13 +1,9 @@
 package com.szg_tech.cvdevaluator.fragments.saved_evaluation_list;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,14 +19,10 @@ import com.szg_tech.cvdevaluator.activities.evaluation.EvaluationActivity;
 import com.szg_tech.cvdevaluator.core.AbstractPresenter;
 import com.szg_tech.cvdevaluator.core.views.modal.ProgressModalManager;
 import com.szg_tech.cvdevaluator.rest.api.RestClient;
-import com.szg_tech.cvdevaluator.rest.requests.GetSavedEvaluationsCall;
 import com.szg_tech.cvdevaluator.rest.responses.SavedEvaluationItem;
 import com.szg_tech.cvdevaluator.rest.responses.SavedEvaluationResponse;
-import com.szg_tech.cvdevaluator.rest.responses.SavedEvaluationSummaryResponse;
 import com.szg_tech.cvdevaluator.storage.EvaluationDAO;
 
-import java.lang.String;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -81,10 +73,10 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
                 actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
             }
         }
-        if(errorMessage!=null){
-            showSnackbarBottomButtonError(getActivity(),errorMessage);
-        } else if (itemList!=null && !itemList.isEmpty()) {
-            getView().getRecyclerView().setAdapter(new SavedEvaluationPresenterImpl.SavedEvaluationListRecyclerViewAdapter(getActivity(), itemList));
+        if (errorMessage != null) {
+            showSnackbarBottomButtonError(getActivity(), errorMessage);
+        } else if (itemList != null && !itemList.isEmpty()) {
+            getView().getRecyclerView().setAdapter(new SavedEvaluationPresenterImpl.SavedEvaluationListRecyclerViewAdapter((AppCompatActivity) getActivity(), itemList));
             getView().getNoDataView().setVisibility(View.GONE);
             getView().getRecyclerView().setVisibility(View.VISIBLE);
         } else {
@@ -100,16 +92,16 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
 
     @Override
     public void setError(String error) {
-      this.errorMessage = error;
+        this.errorMessage = error;
     }
 
 
     class SavedEvaluationListRecyclerViewAdapter extends RecyclerView.Adapter<SavedEvaluationListRecyclerViewAdapter.ViewHolder> {
 
         private List<SavedEvaluationItem> savedEvaluationItems;
-        private Activity activity;
+        private AppCompatActivity activity;
 
-        SavedEvaluationListRecyclerViewAdapter(Activity activity, List<SavedEvaluationItem> savedEvaluationItems) {
+        SavedEvaluationListRecyclerViewAdapter(AppCompatActivity activity, List<SavedEvaluationItem> savedEvaluationItems) {
             this.activity = activity;
             this.savedEvaluationItems = savedEvaluationItems;
         }
@@ -142,15 +134,15 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
 
             @Override
             public void onClick(View v) {
-                if(activity != null) {
+                if (activity != null) {
                     DialogFragment progressDialog = ProgressModalManager.createAndShowRetrieveEvaluationProgressDialog(activity);
                     RestClient.getInstance(activity).getApi().retrieveEvaluationByID(savedEvaluationItem.getId()).enqueue(new Callback<SavedEvaluationResponse>() {
                         @Override
                         public void onResponse(Call<SavedEvaluationResponse> call, Response<SavedEvaluationResponse> response) {
-                            if(progressDialog!=null){
+                            if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            if(response.isSuccessful()) {
+                            if (response.isSuccessful()) {
                                 SavedEvaluationResponse savedEvaluationResponse = response.body();
                                 Map<String, Object> evaluationValues = savedEvaluationResponse.parseEvaluationInputs();
                                 EvaluationDAO.getInstance().addAllToHashMap(evaluationValues);
@@ -160,9 +152,10 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
                                 showSnackbarBottomButtonError(getActivity(), getActivity().getResources().getString(R.string.compute_evaluation_progress_message));
                             }
                         }
+
                         @Override
                         public void onFailure(Call<SavedEvaluationResponse> call, Throwable t) {
-                            if(progressDialog!=null){
+                            if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
                             t.printStackTrace();

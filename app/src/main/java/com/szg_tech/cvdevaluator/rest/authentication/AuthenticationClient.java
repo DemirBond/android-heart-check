@@ -1,12 +1,11 @@
 package com.szg_tech.cvdevaluator.rest.authentication;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.szg_tech.cvdevaluator.rest.api.RestClient;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -17,27 +16,23 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class AuthenticationClient {
 
-
     private AuthenticationService authenticationService;
 
     public AuthenticationClient() {
-        Gson gson = new GsonBuilder()
-                .create();
-
-
         // Add the interceptor to OkHttpClient
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder
-                .connectTimeout(120, TimeUnit.SECONDS)
+        builder.connectTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS);
+                .readTimeout(120, TimeUnit.SECONDS)
+                .addInterceptor(logging);
         OkHttpClient client = builder.build();
-
 
         Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(RestClient.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
 

@@ -1,11 +1,10 @@
 package com.szg_tech.cvdevaluator.fragments.register;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -66,8 +65,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
     }
 
     private void tryRegister(String name, String email, String password, String confirmPassword) {
-
-        Activity activity = getActivity();
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
         AuthenticationClient authenticationClient = AuthenticationClientProvider.get();
 
         final DialogFragment progressDialog = ProgressModalManager.createAndShowRegisterProgressDialog(activity);
@@ -75,10 +73,10 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
                 .enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(progressDialog!=null){
+                        if (progressDialog != null) {
                             progressDialog.dismiss();
                         }
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             showSnackbarBottomButtonRegisterSucceed(activity);
                             getSupportFragmentManager().popBackStack();
                         } else {
@@ -90,7 +88,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
                     public void onFailure(Call<Void> call, Throwable t) {
 
                         //TODO There is a serious problem, handle with this
-                        if(progressDialog!=null){
+                        if (progressDialog != null) {
                             progressDialog.dismiss();
                         }
                         showSnackbarBottomButtonRegisterError(activity);
@@ -159,7 +157,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
             @Override
             public void onClick(View v) {
 
-                if(validate()) {
+                if (validate()) {
 
                     String name = holder.name.getText().toString();
                     String email = holder.email.getText().toString();
@@ -172,7 +170,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
             public boolean validate() {
                 boolean valid = true;
 
-                if(!PreferenceHelper.iStosAccepted(getActivity())){
+                if (!PreferenceHelper.iStosAccepted(getActivity())) {
                     showSnackbarBottomButtonTosNotAccepted(getActivity());
                     return false;
                 }

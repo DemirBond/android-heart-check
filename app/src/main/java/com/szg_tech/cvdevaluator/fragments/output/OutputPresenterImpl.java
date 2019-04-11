@@ -1,9 +1,8 @@
 package com.szg_tech.cvdevaluator.fragments.output;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +45,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
     @Override
     public void onCreate() {
         RecyclerView recyclerView = getView().getRecyclerView();
-        Activity activity = getActivity();
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(activity));
             recyclerView.setAdapter(new OutputRecyclerViewAdapter(activity, new ArrayList<>()));
@@ -72,9 +71,9 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         }
     }
 
-    public void computeAndShowEvaluations(Activity activity, RecyclerView recyclerView) {
+    public void computeAndShowEvaluations(AppCompatActivity activity, RecyclerView recyclerView) {
 
-        DialogFragment progressDialog = ProgressModalManager.createAndShowComputeEvaluationProgressDialog(getActivity());
+        DialogFragment progressDialog = ProgressModalManager.createAndShowComputeEvaluationProgressDialog((AppCompatActivity) getActivity());
         HashMap<String, Object> evaluationValueMap = EvaluationDAO.getInstance().loadValues();
 
         EvaluationRequest request = new EvaluationRequest(evaluationValueMap, false);
@@ -83,32 +82,32 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         RestClient.getInstance(activity).getApi().computeEvaluation(request.toMap()).enqueue(new Callback<EvaluationResponse>() {
             @Override
             public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) {
-                if(response.isSuccessful()) {
-                    if(response.body().isSuccessful()) {
+                if (response.isSuccessful()) {
+                    if (response.body().isSuccessful()) {
                         List<EvaluationItem> evaluationItems = createEvaluationList(response.body());
                         recyclerView.setAdapter(new OutputRecyclerViewAdapter(activity, evaluationItems));
                     } else {
                         showSnackbarBottomButtonGenericError(activity);
                     }
                 } else {
-                    if(response.code() == 401) {
+                    if (response.code() == 401) {
                         showSnackbarBottomButtonUnAuthorizedError(activity);
-                        if(activity instanceof EvaluationActivity) {
-                            ((EvaluationActivity)activity).onSessionExpired();
+                        if (activity instanceof EvaluationActivity) {
+                            ((EvaluationActivity) activity).onSessionExpired();
                         }
                     } else {
                         showSnackbarBottomButtonGenericError(activity);
                     }
                 }
-                if(progressDialog!=null){
-                    activity.getFragmentManager().beginTransaction().remove(progressDialog).commitAllowingStateLoss();
+                if (progressDialog != null) {
+                    activity.getSupportFragmentManager().beginTransaction().remove(progressDialog).commitAllowingStateLoss();
                 }
             }
 
             @Override
             public void onFailure(Call<EvaluationResponse> call, Throwable t) {
-                if(progressDialog!=null){
-                    activity.getFragmentManager().beginTransaction().remove(progressDialog).commitAllowingStateLoss();
+                if (progressDialog != null) {
+                    activity.getSupportFragmentManager().beginTransaction().remove(progressDialog).commitAllowingStateLoss();
                 }
                 t.printStackTrace();
                 showSnackbarBottomButtonGenericError(activity);
@@ -131,10 +130,12 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
                 EvaluationRequest request = new EvaluationRequest(evaluationValueMap, true);
                 RestClient.getInstance(activity).getApi().saveEvaluation(request.toMap()).enqueue(new Callback<EvaluationResponse>() {
                     @Override
-                    public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) { }
+                    public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) {
+                    }
 
                     @Override
-                    public void onFailure(Call<EvaluationResponse> call, Throwable t) {}
+                    public void onFailure(Call<EvaluationResponse> call, Throwable t) {
+                    }
                 });
                 EvaluationDAO.getInstance().clearEvaluation();
                 activity.finish();
@@ -148,8 +149,8 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
     @Override
     public void onResume() {
         Activity activity = getActivity();
-        if (activity!=null && activity instanceof AppCompatActivity) {
-            if(!activity.isDestroyed()){
+        if (activity != null && activity instanceof AppCompatActivity) {
+            if (!activity.isDestroyed()) {
                 ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
                 if (actionBar != null) {
                     actionBar.setTitle(R.string.output);
@@ -178,6 +179,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
 
     /**
      * TODO use special item displays e.g. HeartPartnerEvaluationItem
+     *
      * @param response
      * @return List of Evaluation Items to be displayed in ListView
      */

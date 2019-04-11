@@ -1,11 +1,11 @@
 package com.szg_tech.cvdevaluator.fragments.login;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +18,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.szg_tech.cvdevaluator.R;
-import com.szg_tech.cvdevaluator.rest.requests.LoginCall;
 import com.szg_tech.cvdevaluator.activities.authentication.AuthenticationActivity;
 import com.szg_tech.cvdevaluator.core.AbstractPresenter;
 import com.szg_tech.cvdevaluator.core.views.modal.ProgressModalManager;
 import com.szg_tech.cvdevaluator.fragments.register.RegisterFragment;
+import com.szg_tech.cvdevaluator.rest.requests.LoginCall;
 import com.szg_tech.cvdevaluator.storage.PreferenceHelper;
 import com.szg_tech.cvdevaluator.storage.entities.Credentials;
 
@@ -66,32 +66,32 @@ public class LoginPresenterImpl extends AbstractPresenter<LoginView> implements 
 
     private void checkCredentials() {
         Credentials credentials = PreferenceHelper.getCredentials(getActivity());
-        if(!credentials.isEmpty()) {
+        if (!credentials.isEmpty()) {
             tryLogin(credentials.getEmail(), credentials.getPassword());
         }
     }
 
     private void tryLogin(String email, String password) {
-
-        Activity activity = getActivity();
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
 
         final DialogFragment progressDialog = ProgressModalManager.createAndShowLoginProgressDialog(activity);
 
-        new LoginCall().tryLogin(email,password,getActivity(), new LoginCall.OnLogin() {
+        new LoginCall().tryLogin(email, password, getActivity(), new LoginCall.OnLogin() {
             @Override
             public void onSuccess() {
                 if (!activity.isDestroyed()) {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     ((AuthenticationActivity) activity).onLoginSucceed();
                 }
             }
+
             @Override
             public void onFailed() {
                 if (!activity.isDestroyed()) {
-                    if(progressDialog!=null){
-                        progressDialog.dismiss();
+                    if (progressDialog != null) {
+                        progressDialog.dismissAllowingStateLoss();
                     }
                 }
                 showSnackbarBottomButtonLoginError(activity);
@@ -105,8 +105,8 @@ public class LoginPresenterImpl extends AbstractPresenter<LoginView> implements 
                 Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_login_error, Snackbar.LENGTH_LONG);
                 snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
                 snackbar.show();
-            } catch (IllegalArgumentException ex){
-                Log.d("Login Presenter","No view for snackbar!");
+            } catch (IllegalArgumentException ex) {
+                Log.d("Login Presenter", "No view for snackbar!");
             }
 
         }
@@ -127,19 +127,20 @@ public class LoginPresenterImpl extends AbstractPresenter<LoginView> implements 
 
         @Override
         public void onBindViewHolder(LoginPresenterImpl.RecyclerViewAdapter.ViewHolder holder, int position) {
-                holder.loginButton.setOnClickListener(new LoginOnClickLister(holder));
-                holder.linkSignup.setOnClickListener(v -> {
-                    getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                            .replace(R.id.container, new RegisterFragment())
-                            .addToBackStack(RegisterFragment.class.getSimpleName())
-                            .commit();
-                });
+            holder.loginButton.setOnClickListener(new LoginOnClickLister(holder));
+            holder.linkSignup.setOnClickListener(v -> {
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                        .replace(R.id.container, new RegisterFragment())
+                        .addToBackStack(RegisterFragment.class.getSimpleName())
+                        .commit();
+            });
         }
 
         class LoginOnClickLister implements View.OnClickListener {
 
             final ViewHolder holder;
+
             public LoginOnClickLister(ViewHolder holder) {
                 this.holder = holder;
             }
@@ -149,7 +150,7 @@ public class LoginPresenterImpl extends AbstractPresenter<LoginView> implements 
                 System.out.println("I am in LoginFragment on click");
                 String email = holder.email.getText().toString();
                 String password = holder.password.getText().toString();
-                if(validate()) {
+                if (validate()) {
                     tryLogin(email, password);
                 }
             }

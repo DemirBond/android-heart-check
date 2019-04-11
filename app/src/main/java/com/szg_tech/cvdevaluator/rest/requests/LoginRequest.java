@@ -2,9 +2,6 @@ package com.szg_tech.cvdevaluator.rest.requests;
 
 import com.google.gson.annotations.SerializedName;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
 
 /**
  * Created by ahmetkucuk on 3/17/17.
