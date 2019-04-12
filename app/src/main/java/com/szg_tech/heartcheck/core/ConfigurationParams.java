@@ -29,7 +29,6 @@ public class ConfigurationParams {
     public static final String PREGNANCY = "chkpreg";
     public static final String RASAT = "txtO2sat";
 
-
     //
     // Evaluation -> Symptoms:
     //

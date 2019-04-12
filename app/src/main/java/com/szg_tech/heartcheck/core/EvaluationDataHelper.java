@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.szg_tech.heartcheck.R;
 import com.szg_tech.heartcheck.entities.EvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluationItem;
+import com.szg_tech.heartcheck.entities.evaluation_items.About;
 import com.szg_tech.heartcheck.entities.evaluation_items.Evaluation;
 import com.szg_tech.heartcheck.storage.EvaluationDAO;
 
@@ -35,8 +36,25 @@ public class EvaluationDataHelper {
     }
 
     public static EvaluationItem fetchEvaluationItemById(String id, Context context) {
+        if (id.startsWith("secabout")) {
+            return fetchEvaluationItemByIdForAbout(id, context);
+        }
         Evaluation evaluation = new Evaluation(context);
         return fetchItemFromEvaluation(id, evaluation);
+    }
+
+    public static EvaluationItem fetchEvaluationItemByIdForAbout(String id, Context context) {
+        // TODO(khait@firestak.com): Add element for About screen
+        About about = new About(context);
+        ArrayList<EvaluationItem> evaluationItems = about.getEvaluationItemList();
+        if (evaluationItems != null) {
+            for (EvaluationItem evaluationItem : evaluationItems) {
+                if (id.equals(evaluationItem.getId())) {
+                    return evaluationItem;
+                }
+            }
+        }
+        return null;
     }
 
     public static EvaluationItem fetchItemFromEvaluation(String id, Evaluation evaluation) {
