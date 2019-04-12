@@ -2,14 +2,22 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.fabric'
 apply plugin: 'realm-android'
+//apply plugin: 'io.fabric'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'heartcheck'
+            keyPassword 'firestak'
+            storeFile file('./keystore.jks')
+            storePassword 'firestak'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.szg_tech.cvdevaluator"
+        applicationId "com.szg_tech.heartcheck"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 21
@@ -18,8 +26,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
@@ -50,14 +61,12 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
-
     implementation 'android.arch.lifecycle:extensions:1.1.1'
-//    implementation 'com.android.support:support-annotations:28.0.0'
+    //    implementation 'com.android.support:support-annotations:28.0.0'
 
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-crash:16.2.1'
-
-//    kapt "io.realm:realm-annotations-processor:5.9.0"
+//    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {

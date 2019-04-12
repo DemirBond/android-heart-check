@@ -21,7 +21,7 @@
         android:paddingTop="@dimen/icon_cell_padding_top">
 
         <include layout="@layout/level_mark"/>
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/name"
             android:layout_width="120dp"
             android:layout_height="wrap_content"

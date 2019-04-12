@@ -20,7 +20,7 @@
         android:paddingTop="@dimen/icon_cell_padding_top">
 
         <include layout="@layout/level_mark"/>
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/title_text_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
             android:paddingEnd="16dp"
             android:paddingStart="16dp">
 
-            <com.szg_tech.cvdevaluator.core.views.CustomEditText
+            <com.szg_tech.heartcheck.core.views.CustomEditText
                 android:id="@+id/minutes_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -47,7 +47,7 @@
                 android:maxLength="2"
                 app:type="input_right" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/separator_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -57,7 +57,7 @@
                 android:text="@string/colon"
                 app:type="body_placeholder" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomEditText
+            <com.szg_tech.heartcheck.core.views.CustomEditText
                 android:id="@+id/seconds_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

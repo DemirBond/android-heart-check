@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.szg_tech.cvdevaluator.core.views.ButtonWithChevron
+    <com.szg_tech.heartcheck.core.views.ButtonWithChevron
         android:id="@+id/return_to_evaluation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:background="@color/section_bg_highlight"
         android:layout_weight="1" />
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/complete_evaluation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/icon_cell_height"

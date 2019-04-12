@@ -33,7 +33,7 @@
             android:button="@drawable/custom_checkbox"
             android:padding="@dimen/clickable_icon_padding" />
 
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

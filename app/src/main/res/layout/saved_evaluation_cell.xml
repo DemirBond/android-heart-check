@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/name"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
@@ -35,7 +35,7 @@
                 android:paddingTop="@dimen/saved_evaluation_cell_padding_bottom"
                 android:layout_width="match_parent" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/date"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

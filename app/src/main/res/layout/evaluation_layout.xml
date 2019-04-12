@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.szg_tech.cvdevaluator.core.views.ButtonWithChevron
+        <com.szg_tech.heartcheck.core.views.ButtonWithChevron
             android:id="@+id/bottom_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

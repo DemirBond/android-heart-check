@@ -50,7 +50,7 @@
                 android:src="@drawable/filled" />
         </RelativeLayout>
 
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/section_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

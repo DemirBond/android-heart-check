@@ -34,7 +34,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.szg_tech.cvdevaluator.core.views.CustomTextView
+                <com.szg_tech.heartcheck.core.views.CustomTextView
                     android:id="@+id/ico_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -49,7 +49,7 @@
 
             </LinearLayout>
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -60,7 +60,7 @@
                 android:layout_marginTop="11dp"
                 android:orientation="horizontal">
 
-                <com.szg_tech.cvdevaluator.core.views.CustomTextView
+                <com.szg_tech.heartcheck.core.views.CustomTextView
                     android:id="@+id/blue_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -70,7 +70,7 @@
                     android:paddingStart="15dp"
                     app:type="tag" />
 
-                <com.szg_tech.cvdevaluator.core.views.CustomTextView
+                <com.szg_tech.heartcheck.core.views.CustomTextView
                     android:id="@+id/green_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -102,7 +102,7 @@
             android:layout_height="@dimen/icon_height"
             android:src="@drawable/arrow_fwd" />
 
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="17dp"

@@ -38,7 +38,7 @@
                     android:layout_height="@dimen/icon_height"
                     android:src="@drawable/heart_partner" />
 
-                <com.szg_tech.cvdevaluator.core.views.CustomTextView
+                <com.szg_tech.heartcheck.core.views.CustomTextView
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="12dp"
@@ -53,27 +53,27 @@
                     android:src="@drawable/more_vertical" />
             </LinearLayout>
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/department_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 app:type="title_left" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:type="body_placeholder" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:text="@string/hours" />
 
-            <com.szg_tech.cvdevaluator.core.views.CustomTextView
+            <com.szg_tech.heartcheck.core.views.CustomTextView
                 android:id="@+id/hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -96,7 +96,7 @@
             android:layout_height="@dimen/icon_height"
             android:src="@drawable/arrow_fwd" />
 
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="17dp"
