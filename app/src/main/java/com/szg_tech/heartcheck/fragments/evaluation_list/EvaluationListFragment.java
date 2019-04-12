@@ -63,6 +63,8 @@ public class EvaluationListFragment extends ConfigurableFragment implements Eval
             if (presenter.isEvaluationScreen()) {
                 menu.findItem(R.id.home).setVisible(false);
                 menu.findItem(R.id.reset_field).setVisible(false);
+                menu.findItem(R.id.save_evaluation).setVisible(false);
+//                menu.findItem(R.id.exit_evaluation).setVisible(false);
             } else {
                 menu.findItem(R.id.save_evaluation).setVisible(false);
                 menu.findItem(R.id.exit_evaluation).setVisible(false);

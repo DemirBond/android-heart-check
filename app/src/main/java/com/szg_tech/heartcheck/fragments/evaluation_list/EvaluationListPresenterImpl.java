@@ -36,11 +36,18 @@ import com.szg_tech.heartcheck.entities.evaluation_item_elements.TabEvaluationIt
 import com.szg_tech.heartcheck.entities.evaluation_items.About;
 import com.szg_tech.heartcheck.fragments.output.OutputFragment;
 import com.szg_tech.heartcheck.fragments.tab_fragment.TabFragment;
+import com.szg_tech.heartcheck.rest.api.RestClient;
+import com.szg_tech.heartcheck.rest.requests.EvaluationRequest;
+import com.szg_tech.heartcheck.rest.responses.EvaluationResponse;
 import com.szg_tech.heartcheck.storage.EvaluationDAO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.szg_tech.heartcheck.core.ConfigurationParams.NEXT_SECTION_ABOUT;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.NEXT_SECTION_HEART_SPECIALIST;
@@ -255,8 +262,132 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                 //TODO Implement reset fields
                 resetValuesForEvaluationItem();
                 break;
+            case R.id.save_evaluation:
+//                Log.e("status", "onSave Click me");
+//                if (onSaveEvaluationChecking()) {
+//                    onSaveEvaluationButtonClick();
+//                }
+                break;
         }
         return true;
+    }
+
+    public boolean onSaveEvaluationChecking() {
+        Activity activity = getActivity();
+        if (listRecyclerViewAdapter.isScreenValid(false)) {
+            listRecyclerViewAdapter.saveAllValues();
+            if (EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
+                if (EvaluationDAO.getInstance().isEmpty()) {
+                    showSaveSnackbar();
+                }
+                EvaluationDAO.getInstance().saveValues();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            if (fragmentManager != null) {
+                Bundle bundle = new Bundle();
+                ArrayList<SectionEvaluationItem> sublist = new ArrayList<>(nextSectionEvaluationItemArrayList.subList(1, nextSectionEvaluationItemArrayList.size()));
+                ArrayList<String> nextSectionEvaluationItemArrayListIds = new ArrayList<>();
+                for (SectionEvaluationItem item : sublist) {
+                    nextSectionEvaluationItemArrayListIds.add(item.getId());
+                }
+                bundle.putStringArrayList(ConfigurationParams.NEXT_SECTION_EVALUATION_ITEMS, nextSectionEvaluationItemArrayListIds);
+                if (
+                        nextSectionEvaluationItemArrayList.size() >= 1 &&
+                                nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().size() == 1 &&
+                                nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().get(0) instanceof TabEvaluationItem
+                ) {
+                    TabFragment tabFragment = new TabFragment();
+                    bundle.putString(ConfigurationParams.TAB_SECTION_LIST, (nextSectionEvaluationItemArrayList.get(0).getEvaluationItemList().get(0)).getId());
+                    tabFragment.setArguments(bundle);
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                            .replace(R.id.container, tabFragment)
+                            .addToBackStack(fragmentManager.getClass().getSimpleName() + nextSectionEvaluationItemArrayList.get(0).getName())
+                            .commit();
+                    if (nextSectionEvaluationItemArrayList.get(0).getSectionElementState() != SectionEvaluationItem.SectionElementState.FILLED) {
+                        nextSectionEvaluationItemArrayList.get(0).setSectionElementState(SectionEvaluationItem.SectionElementState.VIEWED);
+                    }
+                } else if (nextSectionEvaluationItemArrayList.size() >= 1) {
+                    Fragment nextFragment = new EvaluationListFragment();
+                    SectionEvaluationItem nextSectionEvaluationItem = nextSectionEvaluationItemArrayList.get(0);
+                    if (ConfigurationParams.COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId()) || ConfigurationParams.PAH_COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId())) {
+                        if (EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
+                            return true;
+                        } else {
+                            showSnackbarBottomButtonMinimumNotEnteredError(getActivity());
+                        }
+                    } else {
+                        bundle.putSerializable(ConfigurationParams.NEXT_SECTION_ID, nextSectionEvaluationItem.getId());
+                        nextFragment.setArguments(bundle);
+                        if (nextSectionEvaluationItem.getSectionElementState() == SectionEvaluationItem.SectionElementState.OPENED) {
+                            nextSectionEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.VIEWED);
+                        }
+                        fragmentManager.beginTransaction()
+                                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                                .replace(R.id.container, nextFragment)
+                                .addToBackStack(fragmentManager.getClass().getSimpleName() + nextSectionEvaluationItem.getName())
+                                .commit();
+                    }
+                }
+            }
+        } else {
+            if (activity != null) {
+                showSnackbarBottomButtonError(activity);
+            }
+        }
+        return false;
+    }
+
+    public void onSaveEvaluationButtonClick() {
+        Activity activity = getActivity();
+        Log.e("status", "onSaveEvaluation");
+        if (activity != null) {
+            Log.e("status", "onSaveEvaluation showDialog");
+            AlertModalManager.createAndShowSaveNewEvaluationAlertDialog(getActivity(), v -> {
+                HashMap<String, Object> evaluationValueMap = EvaluationDAO.getInstance().loadValues();
+                evaluationValueMap.put(ConfigurationParams.EVALUATION_ID, -1);
+                EvaluationRequest request = new EvaluationRequest(evaluationValueMap, true);
+                RestClient.getInstance(activity).getApi().saveEvaluation(request.toMap()).enqueue(new Callback<EvaluationResponse>() {
+                    @Override
+                    public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) {
+                        if (response.isSuccessful()) {
+                            if (!response.body().isSuccessful()) {
+                                showSnackbarBottomButtonGenericError(activity);
+                            } else {
+                                showSnackbarBottomSaveSuccessful(activity);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<EvaluationResponse> call, Throwable t) {
+                        showSnackbarBottomButtonGenericError(activity);
+                    }
+                });
+//                EvaluationDAO.getInstance().clearEvaluation();
+//                activity.finish();
+            }, v -> {
+//                EvaluationDAO.getInstance().clearEvaluation();
+//                activity.finish();
+            });
+        }
+    }
+
+    private void showSnackbarBottomSaveSuccessful(Activity activity) {
+        if (activity != null) {
+            Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_save_evaluation_succeed, Snackbar.LENGTH_LONG);
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.green_text));
+            snackbar.show();
+        }
+    }
+
+    private void showSnackbarBottomButtonGenericError(Activity activity) {
+        if (activity != null) {
+            Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
+                    R.string.snackbar_bottom_button_unexpected_error_in_save_evaluation, Snackbar.LENGTH_LONG);
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
+            snackbar.show();
+        }
     }
 
 

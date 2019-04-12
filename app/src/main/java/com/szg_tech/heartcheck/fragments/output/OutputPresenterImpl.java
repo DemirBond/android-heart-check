@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -57,6 +58,15 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
                     R.string.snackbar_bottom_button_unexpected_error_in_compute_evaluation, Snackbar.LENGTH_LONG);
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
+            snackbar.show();
+        }
+    }
+
+    private void showSnackbarBottomButtonGenericSaveError(Activity activity) {
+        if (activity != null) {
+            Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
+                    R.string.snackbar_bottom_button_unexpected_error_in_save_evaluation, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
             snackbar.show();
         }
@@ -123,7 +133,9 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
     @Override
     public void onSaveEvaluationButtonClick() {
         Activity activity = getActivity();
+        Log.e("status", "onSaveEvaluation");
         if (activity != null) {
+            Log.e("status", "onSaveEvaluation showDialog");
             AlertModalManager.createAndShowSaveEvaluationAlertDialog(getActivity(), v -> {
                 HashMap<String, Object> evaluationValueMap = EvaluationDAO.getInstance().loadValues();
                 evaluationValueMap.put(ConfigurationParams.EVALUATION_ID, -1);
@@ -131,10 +143,16 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
                 RestClient.getInstance(activity).getApi().saveEvaluation(request.toMap()).enqueue(new Callback<EvaluationResponse>() {
                     @Override
                     public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) {
+                        if (response.isSuccessful()) {
+                            if (!response.body().isSuccessful()) {
+                                showSnackbarBottomButtonGenericSaveError(activity);
+                            }
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<EvaluationResponse> call, Throwable t) {
+                        showSnackbarBottomButtonGenericSaveError(activity);
                     }
                 });
                 EvaluationDAO.getInstance().clearEvaluation();
@@ -167,6 +185,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
                 break;
             case R.id.save_evaluation:
                 onSaveEvaluationButtonClick();
+                break;
         }
         return true;
     }

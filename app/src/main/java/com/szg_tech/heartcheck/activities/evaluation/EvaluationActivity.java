@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.szg_tech.heartcheck.R;
 import com.szg_tech.heartcheck.activities.authentication.AuthenticationActivity;
@@ -17,11 +19,13 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationA
     EvaluationActivityPresenter presenter = createPresenter();
     private Runnable onBackPressedListener;
     private HeartSpecialistManagement heartSpecialistManagement;
+    private View mainView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluation);
+        mainView = findViewById(R.id.activity_main);
         heartSpecialistManagement = new HeartSpecialistManagement(this);
         presenter.onCreate();
     }
@@ -84,5 +88,10 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationA
             getActivity().startActivity(a);
             getActivity().finish();
         }
+    }
+
+    @Override
+    public View getLayout() {
+        return mainView;
     }
 }
