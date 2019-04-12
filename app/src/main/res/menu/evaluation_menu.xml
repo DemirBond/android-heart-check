@@ -10,6 +10,7 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/home"
+        android:visible="false"
         app:showAsAction="always" />
 
     <item
