@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.crashlytics.android.Crashlytics
 import com.firestak.lib.utils.threadpool.Coroutines
 import com.szg_tech.heartcheck.R
 import com.szg_tech.heartcheck.activities.main.MainActivity
