@@ -35,13 +35,13 @@ assemble:
   after_script:
     # Zip and upload outputs to drive
     - zip -r artifacts-release.zip app/build/outputs
-    - curl -F "one=@artifacts-release.zip" --data "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
+    - curl -F "one=@artifacts-release.zip" -F "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
     # Zip and upload report to drive
     - zip -r report-release.zip app/build/reports
-    - curl -F "one=@report-release.zip" --data "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
+    - curl -F "one=@report-release.zip" -F "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
     - cd app/build/outputs/apk/release
-    - curl -F "one=@app-release.apk" --data "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
-    - curl -F "one=@output.json" --data "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
+    - curl -F "one=@app-release.apk" -F "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
+    - curl -F "one=@output.json" -F "parent=1jWZPNQ3msoUARy7kmhgb3G4_3pWzbUAr" http://45.32.123.0:8085/upload
   artifacts:
     paths:
     - app/build/outputs/
