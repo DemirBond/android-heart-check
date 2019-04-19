@@ -1,5 +1,6 @@
 package com.szg_tech.heartcheck.rest.api;
 
+import com.szg_tech.heartcheck.rest.responses.BaseResponse;
 import com.szg_tech.heartcheck.rest.responses.EvaluationResponse;
 import com.szg_tech.heartcheck.rest.responses.SavedEvaluationResponse;
 import com.szg_tech.heartcheck.rest.responses.SavedEvaluationSummaryResponse;
@@ -36,4 +37,7 @@ public interface ApiService {
 
     @GET("/api/evaluation/GetEvaluationByID")
     Call<SavedEvaluationResponse> retrieveEvaluationByID(@Query("ID") int id);
+
+    @GET("/evaluation/DeleteEvaluationById")
+    public Call<BaseResponse> deleteEvalutionById(@Query("ID") int id);
 }

@@ -19,6 +19,7 @@ public class EvaluationRequest {
     private int SBP;
     private int DBP;
     private boolean isPAH;
+    // For HeartFailure
     private boolean forHF = false;
     private String inputs;
     private boolean isSave;
