@@ -20,8 +20,8 @@ android {
         applicationId "com.szg_tech.heartcheck"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 21
-        versionName "1.21 (Twenty first revision)"
+        versionCode 22
+        versionName "1.22 (Twenty second revision)"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
