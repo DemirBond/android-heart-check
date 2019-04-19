@@ -12,7 +12,7 @@
 
    <include layout="@layout/level_mark"/>
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

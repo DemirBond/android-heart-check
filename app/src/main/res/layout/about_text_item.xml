@@ -7,7 +7,7 @@
     app:cardCornerRadius="0dp"
     app:cardElevation="1dp">
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

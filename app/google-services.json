@@ -1,39 +1,82 @@
 {
   "project_info": {
-    "project_number": "590316617475",
-    "firebase_url": "https://cvdevaluator.firebaseio.com",
-    "project_id": "cvdevaluator",
-    "storage_bucket": "cvdevaluator.appspot.com"
+    "project_number": "363492032275",
+    "firebase_url": "https://heart-check.firebaseio.com",
+    "project_id": "heart-check",
+    "storage_bucket": "heart-check.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:590316617475:android:5f426579e7dcc991",
+        "mobilesdk_app_id": "1:363492032275:android:2cbba32134956739",
         "android_client_info": {
-          "package_name": "com.szg_tech.cvdevaluator"
+          "package_name": "com.szg_tech.heartcheck"
         }
       },
       "oauth_client": [
         {
-          "client_id": "590316617475-trmdlugsel492aahvu86o649uaip4vv8.apps.googleusercontent.com",
+          "client_id": "363492032275-kvhkfgpdrm9dts1oi0tm5i79vvn7np16.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.szg_tech.heartcheck",
+            "certificate_hash": "efb0b03bd61bda9d050f5a120f4fe47a15634042"
+          }
+        },
+        {
+          "client_id": "363492032275-aiqv7ljv4b4c9cv7a1hde8qqi8e08pgd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCuW8ZHUfokQSALm-faVJ20T28amPzNwKM"
+          "current_key": "AIzaSyA6ARyci0Y6CCVnx5RrLXjLerXw1BKkMgI"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363492032275-aiqv7ljv4b4c9cv7a1hde8qqi8e08pgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363492032275:android:d36e8c23bb17ce9c",
+        "android_client_info": {
+          "package_name": "com.szg_tech.hearthfailure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363492032275-f4e1i0oa7s3pggb3gafc81sc7vavace0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.szg_tech.hearthfailure",
+            "certificate_hash": "efb0b03bd61bda9d050f5a120f4fe47a15634042"
+          }
         },
-        "ads_service": {
-          "status": 2
+        {
+          "client_id": "363492032275-aiqv7ljv4b4c9cv7a1hde8qqi8e08pgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6ARyci0Y6CCVnx5RrLXjLerXw1BKkMgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363492032275-aiqv7ljv4b4c9cv7a1hde8qqi8e08pgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

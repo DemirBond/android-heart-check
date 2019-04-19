@@ -8,14 +8,14 @@
     android:paddingBottom="@dimen/alert_modal_padding_bottom"
     android:paddingTop="@dimen/alert_modal_padding_top">
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:type="title_center" />
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/top_cta_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:minHeight="44dp"
         app:type="tag" />
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/middle_cta_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:padding="5dp"
         app:type="tag" />
 
-    <com.szg_tech.cvdevaluator.core.views.CustomTextView
+    <com.szg_tech.heartcheck.core.views.CustomTextView
         android:id="@+id/cancel_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

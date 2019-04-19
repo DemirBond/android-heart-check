@@ -58,6 +58,7 @@
     <string name="info">Info</string>
     <string name="refer_to_heart_failure_spec">Refer to Heart Failure Specialist for management?</string>
     <string name="ask_if_user_wants_to_saved_evaluation">Do you want to save this evaluation?</string>
+    <string name="ask_if_user_wants_to_saved_new_evaluation">Do you want to save this evaluation as a new one?</string>
     <string name="yes">YES</string>
     <string name="not_now">NOT NOW</string>
     <string name="dyspnea">Dyspnea</string>
@@ -538,7 +539,9 @@
     <string name="snackbar_bottom_button_register_error">Sorry! Register is not successful.</string>
     <string name="snackbar_bottom_button_register_error_tos">Terms of Service must be accepted. Please open terms and accept.</string>
     <string name="snackbar_bottom_button_register_succeed">Register is successful!</string>
+    <string name="snackbar_bottom_button_save_evaluation_succeed">Save evaluation is successful!</string>
     <string name="snackbar_bottom_button_unexpected_error_in_compute_evaluation">Sorry :(. We encountered an unexpected error while computing evaluations.</string>
+    <string name="snackbar_bottom_button_unexpected_error_in_save_evaluation">Sorry :(. We encountered an unexpected error while save evaluations.</string>
     <string name="snackbar_bottom_button_session_expire_error">Session expired. Please login to continue.</string>
     <string name="cancel_screen_alert_message">Screen, you\'re trying to leave, is not correctly completed.</string>
     <string name="cancel_screen_alert_cancel_all">Reset all changes and go back</string>

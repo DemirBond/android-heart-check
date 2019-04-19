@@ -21,14 +21,14 @@
         android:paddingTop="@dimen/icon_cell_padding_top">
 
         <include layout="@layout/level_mark"/>
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/name"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             app:type="body_placeholder" />
 
-        <com.szg_tech.cvdevaluator.core.views.CustomEditText
+        <com.szg_tech.heartcheck.core.views.CustomEditText
             android:id="@+id/edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

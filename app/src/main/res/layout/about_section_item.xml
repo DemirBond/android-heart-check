@@ -17,7 +17,7 @@
         android:paddingStart="@dimen/cell_padding_left"
         android:paddingTop="@dimen/placeholder_cell_padding_top">
 
-        <com.szg_tech.cvdevaluator.core.views.CustomTextView
+        <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
