@@ -70,7 +70,12 @@ public class EvaluationDataHelper {
     }
 
     public static EvaluationItem recursiveFetch(EvaluationItem item, String id) {
-        ArrayList<EvaluationItem> evaluationItems = item.getEvaluationItemList();
+        ArrayList<EvaluationItem> evaluationItems;
+        if (item instanceof Evaluation) {
+            evaluationItems = ((Evaluation) item).getAllEvaluation();
+        } else {
+            evaluationItems = item.getEvaluationItemList();
+        }
         if (evaluationItems != null) {
             for (EvaluationItem evaluationItem : evaluationItems) {
                 if (id.equals(evaluationItem.getId())) {

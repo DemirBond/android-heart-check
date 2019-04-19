@@ -37,4 +37,10 @@ public class Evaluation extends SectionEvaluationItem {
 
         return items;
     }
+
+    public ArrayList<EvaluationItem> getAllEvaluation() {
+        ArrayList<EvaluationItem> list = new ArrayList<>(evaluationItemList);
+        list.add(new HeartSpecialistManagement(tempContext));
+        return list;
+    }
 }
