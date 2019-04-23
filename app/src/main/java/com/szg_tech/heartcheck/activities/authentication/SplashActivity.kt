@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.crashlytics.android.Crashlytics
 import com.firestak.lib.utils.threadpool.Coroutines
+import com.szg_tech.heartcheck.BuildConfig
 import com.szg_tech.heartcheck.R
 import com.szg_tech.heartcheck.activities.main.MainActivity
 import com.szg_tech.heartcheck.rest.requests.LoginCall
@@ -26,8 +26,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
-
-//        Crashlytics.getInstance().crash()
+        txtVersion.text = BuildConfig.VERSION_NAME
 
         startAnimation()
 
@@ -50,7 +49,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goToAuthActivity() {
         if (flagAuth < 2) return
-        Log.e("status", "goto Auth")
         Coroutines.main {
             delay(500)
             startActivity(Intent(applicationContext, AuthenticationActivity::class.java))
@@ -60,7 +58,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goToMainActivity() {
         if (flagMain < 2) return
-        Log.e("status", "goto Main")
         Coroutines.main {
             delay(500)
             startActivity(Intent(applicationContext, MainActivity::class.java))
