@@ -67,7 +67,9 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
         if (activity instanceof AppCompatActivity) {
             ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
             if (actionBar != null) {
+                actionBar.setDisplayShowCustomEnabled(false);
                 actionBar.setTitle(R.string.saved_evaluation_title);
+                actionBar.setDisplayShowTitleEnabled(true);
                 actionBar.setDisplayHomeAsUpEnabled(false);
                 int actionBarColor = ContextCompat.getColor(activity, R.color.colorPrimary);
                 actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
