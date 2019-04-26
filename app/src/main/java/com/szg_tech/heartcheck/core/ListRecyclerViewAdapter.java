@@ -515,6 +515,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     public void afterTextChanged(Editable s) {
                         String text = s.toString();
                         if (!text.isEmpty()) {
+                            if (text.trim().equals(".")) text = "0";
                             double value = Double.parseDouble(text);
                             if (value >= ((NumericalEvaluationItem) evaluationItem).getFrom()
                                     && value <= ((NumericalEvaluationItem) evaluationItem).getTo()) {
@@ -585,6 +586,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     public void afterTextChanged(Editable s) {
                         String text = s.toString();
                         if (!text.isEmpty()) {
+                            if (text.trim().equals(".")) text = "0";
                             double value = Double.parseDouble(text);
                             if (value >= ((NumericalDependantEvaluationItem) evaluationItem).getFrom()
                                     && value <= ((NumericalDependantEvaluationItem) evaluationItem).getTo()) {
