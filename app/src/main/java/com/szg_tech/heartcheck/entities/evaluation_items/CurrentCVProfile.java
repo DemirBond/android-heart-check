@@ -36,7 +36,7 @@ class CurrentCVProfile extends SectionEvaluationItem {
             ArrayList<EvaluationItem> list = new ArrayList<>();
             list.add(new SectionCheckboxEvaluationItem(ACUTE_CORONARY_SYNDROME, getString(R.string.acute_coronary_syndrome), new ArrayList<EvaluationItem>() {
                 {
-                    add(new BooleanEvaluationItem(MORE_2_ANGINA_24HR, getString(R.string.more_2_angina_24hr)));
+                    add(new BooleanEvaluationItem(MORE_2_ANGINA_24HR, "chkangina")));
                     add(new BooleanEvaluationItem(ANGINA_MORE_20MIN, getString(R.string.angina_more_20min)));
                     add(new BooleanEvaluationItem(ASA_ACS, getString(R.string.asa_use_in_past_1_week)));
                     add(new BooleanEvaluationItem(POSITIVE_TROP_I_OR_T, getString(R.string.positive_trop_i_or_t)));

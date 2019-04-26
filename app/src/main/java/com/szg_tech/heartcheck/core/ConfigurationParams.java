@@ -960,6 +960,8 @@ public class ConfigurationParams {
     public static final String VASODILATOR = "chkvasodilator";
     public static final String HYDRALAZINE = "chkvasodilator";
     public static final String NITRATE = "chkvasodilator";
+    public static final String DIHYDROPYRIDINE = "chkdihydropyridine";
+    public static final String NONDIHYDROPYRIDINE = "chknondihydropyridine";
     public static final String CURRENT_VKA_THERAPY = "chkVKA";
     public static final String DIRECT_THROMBIN_INHIBITORS = "chkCAC";
     public static final String FACTOR_XA_INHIBITORS = "chkFactorX";
