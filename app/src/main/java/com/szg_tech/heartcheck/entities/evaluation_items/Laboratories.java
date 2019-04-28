@@ -49,7 +49,7 @@ class Laboratories extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(ALREADY_ON_STATIN, getString(R.string.already_on_statin)));
                 add(new BooleanEvaluationItem(STATIN_INTOLERANCE, getString(R.string.statin_intolerance)));
 
-                add(new NumericalEvaluationItem(CHOLESTEROL, "Cholesterol", getString(R.string.value), 40, 500, true));
+                add(new NumericalEvaluationItem(CHOLESTEROL, "Cholesterol", "", 40, 500, true));
                 add(new NumericalEvaluationItem(TRG, getString(R.string.trg), getString(R.string.value), 25, 25000, true));
                 add(new NumericalEvaluationItem(LDL_C, getString(R.string.ldl_c), getString(R.string.value), 0, 500, true));
                 add(new NumericalEvaluationItem(HDL_C, getString(R.string.hdl_c), getString(R.string.value), 1, 200, true));

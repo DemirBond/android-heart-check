@@ -63,7 +63,14 @@ class POMeds extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(SPIROLACTONE, "Spirolactone"));
                     }
                 }));
-                add(new BooleanEvaluationItem(CCB_OTHER_VASOLIDATORS, "CCB "));
+
+                add(new SectionCheckboxEvaluationItem(CCB_OTHER_VASOLIDATORS, "CCB", new ArrayList<EvaluationItem>() {
+                    {
+                        add(new BooleanEvaluationItem(DIHYDROPYRIDINE, "Dihydropyridine"));
+                        add(new BooleanEvaluationItem(NONDIHYDROPYRIDINE, "Nitrates"));
+
+                    }
+                }));
                 add(new SectionCheckboxEvaluationItem(VASODILATOR, "Other Vasodilators", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(HYDRALAZINE, "Hydralazine"));
