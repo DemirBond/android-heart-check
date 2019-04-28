@@ -3,6 +3,8 @@ package com.szg_tech.heartcheck.core.views.cell;
 import android.content.Context;
 import android.os.Build;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.AttributeSet;
 
 import com.szg_tech.heartcheck.R;
@@ -59,6 +61,8 @@ public class TextCell extends CellWithIndent implements CellItem {
         } else {
             textView.setText(Html.fromHtml(text));
         }
+        Linkify.addLinks(textView, Linkify.ALL);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 }

@@ -92,6 +92,7 @@
         <item name="android:textColor">@color/lighter_purple</item>
         <item name="android:letterSpacing">-0.0</item>
         <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:linksClickable">true</item>
     </style>
 
     <style name="Bodyplaceholder">

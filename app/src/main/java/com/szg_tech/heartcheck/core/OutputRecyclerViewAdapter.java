@@ -2,6 +2,7 @@ package com.szg_tech.heartcheck.core;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -81,6 +82,8 @@ public class OutputRecyclerViewAdapter extends RecyclerView.Adapter<OutputRecycl
                 heartPartnerCell.setDescription(((HeartPartnerEvaluationItem) evaluationItem).getDescription());
                 heartPartnerCell.setHours(((HeartPartnerEvaluationItem) evaluationItem).getHours());
             } else if (evaluationItem instanceof ICOCellEvaluationItem) {
+//                Log.e("status", ((ICOCellEvaluationItem) evaluationItem).getBlueButtonText());
+//                Log.e("status", ((ICOCellEvaluationItem) evaluationItem).getGreenButtonText());
                 ICOCardCell icoCardCell = (ICOCardCell) holder.view;
                 icoCardCell.setBlueTextViewText(((ICOCellEvaluationItem) evaluationItem).getBlueButtonText());
                 icoCardCell.setGreenTextView(((ICOCellEvaluationItem) evaluationItem).getGreenButtonText());
