@@ -191,11 +191,16 @@ class Diagnostics extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(PLEURAL, "Pleural thickening"));
                     }
                 }));
-                add(new SectionCheckboxEvaluationItem(RHC, getString(R.string.rhc), new ArrayList<EvaluationItem>()) {
+                add(new SectionCheckboxEvaluationItem(PFTS, "PFTs", new ArrayList<EvaluationItem>() {
                     {
-                        setShouldShowAlert(true);
+                        add(new NumericalEvaluationItem(FEV1_LT, "FEV1,lt/min", "Value", 0.5, 8, false));
+                        add(new NumericalEvaluationItem(FEV1_PERCENT, " % FEV1", "Value", 25, 120, true));
+                        add(new NumericalEvaluationItem(FVC, "% FVC", "Value", 0, 120, true));
+                        add(new NumericalEvaluationItem(DLCO, "% DLCO", "Value", 10, 100, true));
+                        add(new NumericalEvaluationItem(PO2, "PO2 mmhg", "Value", 10, 100, true));
                     }
-                });
+                }));
+
                 add(new NumericalEvaluationItem(CORONARY_CALCIUM_SCORE, getString(R.string.coronary_calcium_score), getString(R.string.value), 0, 100, true));
                 add(new NumericalEvaluationItem(TOTAL_CCS, getString(R.string.total), getString(R.string.value), 0, 10000, true));
             }

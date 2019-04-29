@@ -108,6 +108,10 @@ class CurrentCVProfile extends SectionEvaluationItem {
                         add(new NumericalEvaluationItem(LVEF, getString(R.string.lvef), getString(R.string.value), 10, 80, true));
                         add(new SectionEvaluationItem(tempContext, NYHA_CLASS, "Heart Failure Class / Stage", new ArrayList<EvaluationItem>() {
                             {
+                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1"));
+                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2"));
+                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3"));
+                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4"));
                                 add(new BooleanEvaluationItem(AT_HIGH_RISK, getString(R.string.at_high_risk)));
                                 add(new BooleanEvaluationItem(NO_SIGNS_OF_HF, getString(R.string.no_signs_of_hf)));
                                 add(new BooleanEvaluationItem(SYMPTOMS_OF_HF, getString(R.string.symptoms_of_hf)));
@@ -345,7 +349,11 @@ class CurrentCVProfile extends SectionEvaluationItem {
                         setBottomButtonReferenceSkipped(true);
                     }
                 });
-                add(new SectionCheckboxEvaluationItem(VALVULAR_HEART_DISEASE, getString(R.string.valvular_heart_disease), new ArrayList<EvaluationItem>(){}) {
+
+                add(new SectionEvaluationItem(tempContext, VALVULAR_HEART_DISEASE, getString(R.string.valvular), new ArrayList<EvaluationItem>() {
+                    {
+                    }
+                }, SectionEvaluationItem.SectionElementState.OPENED) {
                     {
                         setShouldShowAlert(true);
                     }

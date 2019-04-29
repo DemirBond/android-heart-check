@@ -78,18 +78,14 @@ class Symptoms extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(STRENUOUS_EXERTION, getString(R.string.strenuous_exertion)));
                 add(new BooleanEvaluationItem(MORE_THAN_DAILY_ROUTINE, getString(R.string.more_than_daily_routine)));
                 add(new BooleanEvaluationItem(DAILY_ROUTINE_MINIMAL_ACTIVITIES, getString(R.string.daily_routine_minimal_activities)));
-                add(new EmptyCellEvaluationItem());
-                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1"));
-                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2"));
-                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3"));
+
+
 
             }
             }));
-            add(new SectionCheckboxEvaluationItem(DYSPNEA_AT_REST, "Dyspnea at rest", new ArrayList<EvaluationItem>() {{
-                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4"));
-            }
-            }));
-            add(new BooleanEvaluationItem(WEIGHT_GAIN, "WEIGHT GAIN"));
+
+            add(new BooleanEvaluationItem(DYSPNEA_AT_REST, "Dyspnea at rest"));
+            add(new BooleanEvaluationItem(WEIGHT_GAIN, "Weight gain"));
         }
         }));
             items.add(new SectionCheckboxEvaluationItem(CHEST_PAIN, getString(R.string.chest_pain), new ArrayList<EvaluationItem>() {{

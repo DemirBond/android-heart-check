@@ -27,7 +27,7 @@ public class ConfigurationParams {
     public static final String WAIST_CIRC = "txtwaist";
     public static final String AA = "chkAsianCode";
     public static final String PREGNANCY = "chkpreg";
-    public static final String RASAT = "txtO2sat";
+    public static final String RASAT = "txtO2Sat";
 
     //
     // Evaluation -> Symptoms:
@@ -613,7 +613,7 @@ public class ConfigurationParams {
     public static final String SARCOIDOSIS_GIANT_CELL_CHAGAS = "chksarc";
 
     // Evaluation -> Cardiovascular -> Valvular Heart Disease:
-    public static final String VALVULAR_HEART_DISEASE = "chkvalvular";
+    public static final String VALVULAR_HEART_DISEASE = "secvalvular_heart_disease";
 
     // Evaluation -> Cardiovascular -> Pulmonary Hypertension:
     public static final String PULMONARY_HYPERTENSION = "secpulmonary_hypertension";
@@ -646,10 +646,10 @@ public class ConfigurationParams {
     //
     public static final String PULMONARY= "secPULMONARY";
 
-    public static final String PFTS= "secPULMONARY";
+    public static final String PFTS= "chkPFTS";
     public static final String FVC= "txtFVCP";
     public static final String PO2 = "txtPO2";
-    public static final String NONE= "chknone";
+    public static final String HYPERCAPNIA= "chkhypercapnia";
 
     // Evaluation -> Pulmonary -> Asthma / Reactive airway disease:
     public static final String ASTHMA= "chkasthma";
@@ -659,6 +659,7 @@ public class ConfigurationParams {
 
     // Evaluation -> Pulmonary -> Asthma / Reactive airway disease -> Interference with activity:
     public static final String INTERFERENCE= "chkinterference";
+    public static final String NONE= "chknone";
     public static final String MINOR= "chkminor";
     public static final String SOME= "chksome";
     public static final String SIGNIFICANT= "chksignificant";
@@ -863,7 +864,7 @@ public class ConfigurationParams {
     // Evaluation -> Diagnostics -> Echocardiography:
     public static final String ECHOCARDIOGRAPHY = "chkEcho";
     public static final String PERICARDIAL_EFFUSION = "chkpericardial";
-    public static final String HYPERCAPNIA= "chkhypercapnia";
+    //public static final String HYPERCAPNIA= "chkhypercapnia";
     public static final String RWMA = "chkRWMA";
     public static final String ENLARGED_LA_OR_LVH = "chkEnlargedLA";
     public static final String E_A_LESS_05_AND_DT_MORE_280MS = "chkLVeccenticity";
@@ -906,7 +907,8 @@ public class ConfigurationParams {
     public static final String PLEURAL= "chkpleuralthick";
 
     // Evaluation -> Diagnostics:
-    public static final String RHC = "chkHC";
+    public static final String RHC = "secright_heart_catheterization";
+
     public static final String CORONARY_CALCIUM_SCORE = "txtCCS";
     public static final String TOTAL_CCS = "txtTotalCCS";
 
@@ -956,7 +958,7 @@ public class ConfigurationParams {
     public static final String CHLORTHALIDONE_METOLAZONE = "chkchlorthalidone";
     public static final String SPIROLACTONE= "chkaldactone";
     // Evaluation -> Current Therapies -> PO Meds:
-    public static final String CCB_OTHER_VASOLIDATORS = "chkCCB";
+    public static final String CCB = "chkCCB";
     public static final String VASODILATOR = "chkvasodilator";
     public static final String HYDRALAZINE = "chkvasodilator";
     public static final String NITRATE = "chkvasodilator";
@@ -1089,6 +1091,7 @@ public class ConfigurationParams {
     public static final String VALVULAR = "secvalvular";
 
     // Evaluation -> Heart Specialist Management -> Valvular -> Valvular:
+
     public static final String LVEF_PAH = "txtLVEF";
     public static final String NEW_ONSET_ATRIAL_FIBRILATION = "chknewonsetAF";
 

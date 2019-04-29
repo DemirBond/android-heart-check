@@ -30,12 +30,8 @@ class Pulmonary extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
-                add(new NumericalEvaluationItem(FEV1_LT, "FEV1 lt/min", "Value", 0.5, 8, true));
-                add(new NumericalEvaluationItem(FEV1_PERCENT, " % FEV1", "Value", 25, 120, true));
-                add(new NumericalEvaluationItem(FVC, "% FVC", "Value", 0, 120, true));
-                add(new NumericalEvaluationItem(DLCO, "% DLCO", "Value", 10, 100, true));
-                add(new NumericalEvaluationItem(PO2, "PO2 mmhg", "Value", 10, 100, true));
-                add(new BooleanEvaluationItem(NONE, "Severe chronic hypercapnia"));
+
+                add(new BooleanEvaluationItem(HYPERCAPNIA, "Severe chronic hypercapnia"));
                 add(new SectionCheckboxEvaluationItem(ASTHMA, "Asthma / Reactive airway disease", new ArrayList<EvaluationItem>() {
                     {
 

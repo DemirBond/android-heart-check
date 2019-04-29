@@ -64,14 +64,14 @@ class POMeds extends SectionEvaluationItem {
                     }
                 }));
 
-                add(new SectionCheckboxEvaluationItem(CCB_OTHER_VASOLIDATORS, "CCB", new ArrayList<EvaluationItem>() {
+                add(new SectionCheckboxEvaluationItem(CCB, "CCB", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(DIHYDROPYRIDINE, "Dihydropyridine"));
                         add(new BooleanEvaluationItem(NONDIHYDROPYRIDINE, "Nitrates"));
 
                     }
                 }));
-                add(new SectionCheckboxEvaluationItem(VASODILATOR, "Other Vasodilators", new ArrayList<EvaluationItem>() {
+                add(new SectionCheckboxEvaluationItem(VASODILATOR, "Vasodilators", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(HYDRALAZINE, "Hydralazine"));
                         add(new BooleanEvaluationItem(NITRATE, "Nitrates"));
