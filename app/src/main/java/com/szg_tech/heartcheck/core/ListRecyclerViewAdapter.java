@@ -377,22 +377,23 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                 SectionEvaluationItem finalLaboratoriesEvaluationItem = laboratoriesEvaluationItem;
                                 SectionEvaluationItem finalDiagnosticEvaluationItem = diagnosticEvaluationItem;
                                 AlertModalManager.createAndShowThreeButtonDependsOnDialog(activity, v1 -> {
-                                    if (finalLaboratoriesEvaluationItem != null) {
-                                        finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
-                                    }
-                                    if (finalDiagnosticEvaluationItem != null) {
-                                        finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
-                                    }
-                                    goToNextScreen(finalCurrentCVPosition, finalCurrentCVEvaluationItem);
-                                }, v2 -> {
-                                    if (finalLaboratoriesEvaluationItem != null) {
-                                        finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
-                                    }
-                                    if (finalDiagnosticEvaluationItem != null) {
-                                        finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
-                                    }
-                                    goToNextScreen(finalMajorCVRiskPosition, finalMajorCVRiskEvaluationItem);
-                                });
+                                            if (finalLaboratoriesEvaluationItem != null) {
+                                                finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
+                                            }
+                                            if (finalDiagnosticEvaluationItem != null) {
+                                                finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
+                                            }
+                                            goToNextScreen(finalCurrentCVPosition, finalCurrentCVEvaluationItem);
+                                        }, v2 -> {
+                                            if (finalLaboratoriesEvaluationItem != null) {
+                                                finalLaboratoriesEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
+                                            }
+                                            if (finalDiagnosticEvaluationItem != null) {
+                                                finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
+                                            }
+                                            goToNextScreen(finalMajorCVRiskPosition, finalMajorCVRiskEvaluationItem);
+                                        }, v3 -> goToNextScreen(position, (SectionEvaluationItem) evaluationItem)
+                                );
                             }
                         } else if (finalMainEvaluationItem != null) {
                             goToMandatorySection(activity, finalMainEvaluationItem);
@@ -521,9 +522,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                     && value <= ((NumericalEvaluationItem) evaluationItem).getTo()) {
                                 ((NumericalEvaluationItem) evaluationItem).setNumber(Double.parseDouble(s.toString()));
                                 stringEditTextCell.setCorrect(true);
-                                if (!onBind) {
-                                    markParentAsChecked(evaluationItem, true);
-                                }
+//                                if (!onBind) {
+//                                    markParentAsChecked(evaluationItem, true);
+//                                }
                                 return;
                             }
                         } else if (!evaluationItem.isMandatory()) {
