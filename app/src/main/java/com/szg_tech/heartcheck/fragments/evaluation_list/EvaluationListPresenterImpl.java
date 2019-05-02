@@ -119,7 +119,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                 if (activity instanceof EvaluationActivity) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(ConfigurationParams.NEXT_SECTION_ID, NEXT_SECTION_HEART_SPECIALIST);
-                    EvaluationDAO.getInstance().addToHashMap(ConfigurationParams.IS_PAH, true);
+//                    EvaluationDAO.getInstance().addToHashMap(ConfigurationParams.IS_PAH, true);
                     EvaluationListFragment evaluationListFragment = new EvaluationListFragment();
                     evaluationListFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction()
@@ -129,7 +129,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                             .commit();
                 }
             }, v -> {
-                EvaluationDAO.getInstance().addToHashMap(ConfigurationParams.IS_PAH, false);
+//                EvaluationDAO.getInstance().addToHashMap(ConfigurationParams.IS_PAH, false);
                 popBackStack();
             });
         }
@@ -465,7 +465,8 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                     Fragment nextFragment = new EvaluationListFragment();
                     SectionEvaluationItem nextSectionEvaluationItem = nextSectionEvaluationItemArrayList.get(0);
                     if (ConfigurationParams.COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId()) || ConfigurationParams.PAH_COMPUTE_EVALUATION.equals(nextSectionEvaluationItem.getId())) {
-
+                        boolean isPAH = nextSectionEvaluationItem.getId().equals(ConfigurationParams.PAH_COMPUTE_EVALUATION);
+                        EvaluationDAO.getInstance().setISPAH(isPAH);
                         if (EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
                             fragmentManager.beginTransaction()
                                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)

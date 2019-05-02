@@ -85,7 +85,6 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
 
         DialogFragment progressDialog = ProgressModalManager.createAndShowComputeEvaluationProgressDialog((AppCompatActivity) getActivity());
         HashMap<String, Object> evaluationValueMap = EvaluationDAO.getInstance().loadValues();
-
         EvaluationRequest request = new EvaluationRequest(evaluationValueMap, false);
         System.out.println(request.toMap());
 

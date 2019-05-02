@@ -3,6 +3,7 @@ package com.szg_tech.heartcheck.rest.requests;
 import com.szg_tech.heartcheck.core.ConfigurationParams;
 import com.szg_tech.heartcheck.rest.requests.mappings.DateInputMapper;
 import com.szg_tech.heartcheck.rest.requests.mappings.RadioButtonMapper;
+import com.szg_tech.heartcheck.storage.EvaluationDAO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,7 +74,8 @@ public class EvaluationRequest {
         gender = (int) evaluationValueMap.get(ConfigurationParams.GENDER);
         SBP = getIntVal(evaluationValueMap.get(ConfigurationParams.SBP));
         DBP = getIntVal(evaluationValueMap.get(ConfigurationParams.DBP));
-        isPAH = getBoolVal(evaluationValueMap.get(ConfigurationParams.IS_PAH));
+//        isPAH = getBoolVal(evaluationValueMap.get(ConfigurationParams.IS_PAH));
+        isPAH = EvaluationDAO.getInstance().getISPAH();
 
         evaluationValueMap.remove(ConfigurationParams.NAME);
         evaluationValueMap.remove(ConfigurationParams.AGE);

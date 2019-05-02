@@ -1,5 +1,7 @@
 package com.szg_tech.heartcheck.storage;
 
+import android.util.Log;
+
 import com.szg_tech.heartcheck.core.ConfigurationParams;
 
 import java.util.HashMap;
@@ -10,11 +12,12 @@ import io.realm.RealmResults;
 public class EvaluationDAO extends AbstractDao<EvaluationObject> {
     private HashMap<String, Object> hashMap = new HashMap<>();
     private static EvaluationDAO instance;
+    private boolean IS_PAH = false;
 
     private EvaluationDAO() {
     }
 
-    public static EvaluationDAO getInstance() {
+    public synchronized static EvaluationDAO getInstance() {
         if (instance == null) {
             instance = new EvaluationDAO();
         }
@@ -40,7 +43,7 @@ public class EvaluationDAO extends AbstractDao<EvaluationObject> {
         init();
         EvaluationObject evaluationObject;
         try {
-            evaluationObject  = helper.realm.where(EvaluationObject.class).equalTo("key", id).findFirst();
+            evaluationObject = helper.realm.where(EvaluationObject.class).equalTo("key", id).findFirst();
         } finally {
             close();
         }
@@ -138,4 +141,13 @@ public class EvaluationDAO extends AbstractDao<EvaluationObject> {
         }
         this.hashMap.putAll(newMap);
     }
+
+    public void setISPAH(boolean value) {
+        IS_PAH = value;
+    }
+
+    public boolean getISPAH() {
+        return IS_PAH;
+    }
+
 }

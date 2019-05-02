@@ -83,13 +83,13 @@ public class AlertModalManager {
     }
 
     public static void createAndShowSaveEvaluationAlertDialog(Context context, View.OnClickListener onClickListener,
-                                                                             View.OnClickListener onCancelClickListener) {
+                                                              View.OnClickListener onCancelClickListener) {
         createAndShowModalAlertDialog(context, R.string.warning, R.string.ask_if_user_wants_to_saved_evaluation,
                 R.string.yes, R.string.not_now, onClickListener, onCancelClickListener, true);
     }
 
     public static void createAndShowSaveNewEvaluationAlertDialog(Context context, View.OnClickListener onClickListener,
-                                                              View.OnClickListener onCancelClickListener) {
+                                                                 View.OnClickListener onCancelClickListener) {
         createAndShowModalAlertDialog(context, R.string.warning, R.string.ask_if_user_wants_to_saved_new_evaluation,
                 R.string.yes, R.string.not_now, onClickListener, onCancelClickListener, true);
     }
@@ -123,7 +123,7 @@ public class AlertModalManager {
         alertDialog.show();
     }
 
-    public static void createAndShowThreeButtonDependsOnDialog(Context context, View.OnClickListener onTopButtonClick, View.OnClickListener onMiddleButtonClick) {
+    public static void createAndShowThreeButtonDependsOnDialog(Context context, View.OnClickListener onTopButtonClick, View.OnClickListener onMiddleButtonClick, View.OnClickListener onBottomButtonClick) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.three_button_alert_modal, null, false);
         AlertDialog alertDialog = new AlertDialog.Builder(context)
@@ -152,8 +152,14 @@ public class AlertModalManager {
         });
 
         TextView cancelButton = dialogView.findViewById(R.id.cancel_button);
+        cancelButton.setBackgroundResource(R.drawable.blue_button_selector);
         cancelButton.setText(R.string.none);
-        cancelButton.setOnClickListener(v -> alertDialog.dismiss());
+        cancelButton.setOnClickListener(v -> {
+            alertDialog.dismiss();
+            if (onBottomButtonClick != null) {
+                onBottomButtonClick.onClick(v);
+            }
+        });
         alertDialog.show();
     }
 
