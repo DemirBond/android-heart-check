@@ -200,7 +200,26 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
         if (parent != null) {
             if (parent instanceof SectionCheckboxEvaluationItem) {
-                ((SectionCheckboxEvaluationItem) parent).setChecked(isChecked);
+                if (isChecked) {
+                    ((SectionCheckboxEvaluationItem) parent).setChecked(true);
+                    markParentAsChecked(parent, true);
+                } else {
+                    List<EvaluationItem> children = parent.getEvaluationItemList();
+                    boolean flagAllUnCheck = true;
+                    for (EvaluationItem item : children) {
+                        if (item instanceof BooleanEvaluationItem && ((BooleanEvaluationItem) item).isChecked()) {
+                            flagAllUnCheck = false;
+                            break;
+                        } else if (item instanceof SectionCheckboxEvaluationItem && ((SectionCheckboxEvaluationItem) item).isChecked()) {
+                            flagAllUnCheck = false;
+                            break;
+                        }
+                    }
+                    if (flagAllUnCheck) {
+                        ((SectionCheckboxEvaluationItem) parent).setChecked(false);
+                        markParentAsChecked(parent, false);
+                    }
+                }
             } else if (parent instanceof RadioButtonGroupEvaluationItem) {
                 ((RadioButtonGroupEvaluationItem) parent).setChecked(isChecked);
                 Map<RadioButtonGroupEvaluationItem, RadioButtonCell> radioButtons = radioGroupMap.get(((RadioButtonGroupEvaluationItem) parent).getGroupName());
@@ -756,6 +775,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 ((SectionCheckboxCell) holder.view).getCheckBox().setOnCheckedChangeListener((buttonView, isChecked) -> {
                     if (!onBind) {
                         ((SectionCheckboxEvaluationItem) evaluationItem).setChecked(isChecked);
+                        markParentAsChecked(evaluationItem, isChecked);
                     }
                 });
                 onBind = true;
