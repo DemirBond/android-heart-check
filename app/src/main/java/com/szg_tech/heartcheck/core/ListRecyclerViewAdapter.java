@@ -189,6 +189,27 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         return new ListRecyclerViewAdapter.ViewHolder(stringEditTextCell);
     }
 
+    private void markChildAsChecked(EvaluationItem parent, boolean isChecked) {
+        if (parent != null && !isChecked) {
+            if (parent instanceof SectionCheckboxEvaluationItem
+                    || parent instanceof RadioButtonGroupEvaluationItem) {
+                List<EvaluationItem> children = parent.getEvaluationItemList();
+                for (EvaluationItem item : children) {
+                    if (item instanceof BooleanEvaluationItem && ((BooleanEvaluationItem) item).isChecked()) {
+                        ((BooleanEvaluationItem) item).setChecked(false);
+                    } else if (item instanceof SectionCheckboxEvaluationItem) {
+                        ((SectionCheckboxEvaluationItem) item).setChecked(false);
+                        markChildAsChecked(item, false);
+                    } else if (item instanceof RadioButtonGroupEvaluationItem) {
+                        ((RadioButtonGroupEvaluationItem) item).setChecked(false);
+                        markChildAsChecked(item, false);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     private void markParentAsChecked(EvaluationItem child, boolean isChecked) {
         EvaluationItem parent = null;
         for (EvaluationItem item : expandedItems) {
@@ -776,6 +797,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                     if (!onBind) {
                         ((SectionCheckboxEvaluationItem) evaluationItem).setChecked(isChecked);
                         markParentAsChecked(evaluationItem, isChecked);
+                        markChildAsChecked(evaluationItem, isChecked);
                     }
                 });
                 onBind = true;
@@ -1074,8 +1096,8 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             } else if (item instanceof BooleanEvaluationItem) {
                 ((BooleanEvaluationItem) item).setChecked(false);
             }
-//            Object oldValue = oldValues.get(item.getId());
-//            item.setValue(oldValue);
+            Object oldValue = oldValues.get(item.getId());
+            item.setValue(oldValue);
         }
         notifyDataSetChanged();
     }

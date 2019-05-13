@@ -445,6 +445,7 @@ public class ConfigurationParams {
     public static final String AT_HIGH_RISK = "chkA";
     public static final String NO_SIGNS_OF_HF = "chkB";
     public static final String SYMPTOMS_OF_HF = "chkC";
+    public static final String NYHA_CCVS_CLASS = "chkNYHA";
     public static final String NYHA_CCVS_CLASS_1 = "chkNYHA1";
     public static final String NYHA_CCVS_CLASS_2 = "chkNYHA2";
     public static final String NYHA_CCVS_CLASS_3 = "chkNYHA3";
