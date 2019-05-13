@@ -3,7 +3,6 @@ package com.szg_tech.heartcheck.entities.evaluation_items;
 import android.content.Context;
 
 import com.szg_tech.heartcheck.R;
-import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
 import com.szg_tech.heartcheck.entities.EvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.BoldEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
@@ -15,6 +14,8 @@ import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluati
 
 import java.util.ArrayList;
 
+import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
+
 class CurrentCVProfile extends SectionEvaluationItem {
 
     CurrentCVProfile(Context context) {
@@ -25,14 +26,15 @@ class CurrentCVProfile extends SectionEvaluationItem {
         this.dependsOn = BIO;
     }
 
-    public class CoronaryHeartDisease extends SectionEvaluationItem{
+    public class CoronaryHeartDisease extends SectionEvaluationItem {
         public CoronaryHeartDisease(Context context) {
             super(context, CORONARY_HEART_DISEASE, null);
             name = getString(R.string.coronary_heart_disease);
             this.evaluationItemList = createEvaluationItemElementsList();
             sectionElementState = SectionEvaluationItem.SectionElementState.OPENED;
         }
-        private ArrayList<EvaluationItem> createEvaluationItemElementsList(){
+
+        private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
             ArrayList<EvaluationItem> list = new ArrayList<>();
             list.add(new SectionCheckboxEvaluationItem(ACUTE_CORONARY_SYNDROME, getString(R.string.acute_coronary_syndrome), new ArrayList<EvaluationItem>() {
                 {
@@ -67,12 +69,12 @@ class CurrentCVProfile extends SectionEvaluationItem {
                     }));
                 }
             }));
-            list.add(new SectionCheckboxEvaluationItem(STABLE_ANG, getString(R.string.stable_ang), new ArrayList<EvaluationItem>() {
+            list.add(new SectionCheckboxEvaluationItem(NYHA_CCVS_CLASS, "NYHA Class", new ArrayList<EvaluationItem>() {
                 {
-                    add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_1, "NYHACCVS Class 1"));
-                    add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_2, "NYHACCVS Class 2"));
-                    add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_3, "NYHACCVS Class 3"));
-                    add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_4, "NYHACCVS Class 4"));
+                    add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1", "section_nyha_class", false));
+                    add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2", "section_nyha_class", false));
+                    add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3", "section_nyha_class", false));
+                    add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4", "section_nyha_class", false));
                 }
             }));
             list.add(new BooleanEvaluationItem(LM, getString(R.string.lm)));
@@ -98,7 +100,7 @@ class CurrentCVProfile extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList(final Context context) {
         return new ArrayList<EvaluationItem>() {
             {
-                add( new CoronaryHeartDisease(tempContext));
+                add(new CoronaryHeartDisease(tempContext));
                 add(new SectionEvaluationItem(tempContext, HEART_FAILURE, getString(R.string.heart_failure), new ArrayList<EvaluationItem>() {
                     {
                         add(new NumericalEvaluationItem(HF_DIAGNOSIS_DURATION_WEEK, "Duration / week", getString(R.string.value), 0, 999, true));
@@ -108,10 +110,14 @@ class CurrentCVProfile extends SectionEvaluationItem {
                         add(new NumericalEvaluationItem(LVEF, getString(R.string.lvef), getString(R.string.value), 10, 80, true));
                         add(new SectionEvaluationItem(tempContext, NYHA_CLASS, "Heart Failure Class / Stage", new ArrayList<EvaluationItem>() {
                             {
-                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1"));
-                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2"));
-                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3"));
-                                add(new BooleanEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4"));
+                                add(new SectionCheckboxEvaluationItem(NYHA_CCVS_CLASS, "NYHA Class", new ArrayList<EvaluationItem>() {
+                                    {
+                                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1", "section_nyha_class", false));
+                                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2", "section_nyha_class", false));
+                                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3", "section_nyha_class", false));
+                                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4", "section_nyha_class", false));
+                                    }
+                                }));
                                 add(new BooleanEvaluationItem(AT_HIGH_RISK, getString(R.string.at_high_risk)));
                                 add(new BooleanEvaluationItem(NO_SIGNS_OF_HF, getString(R.string.no_signs_of_hf)));
                                 add(new BooleanEvaluationItem(SYMPTOMS_OF_HF, getString(R.string.symptoms_of_hf)));
@@ -211,9 +217,9 @@ class CurrentCVProfile extends SectionEvaluationItem {
 
                     }
                 }, SectionEvaluationItem.SectionElementState.OPENED));
-                add(new SectionEvaluationItem(tempContext,  THROMBOEMBOLIC_VKA, getString(R.string.thromboembolic_vka), new ArrayList<EvaluationItem>() {
+                add(new SectionEvaluationItem(tempContext, THROMBOEMBOLIC_VKA, getString(R.string.thromboembolic_vka), new ArrayList<EvaluationItem>() {
                     {
-                        add(new SectionEvaluationItem( tempContext, THROMBOEMBOLIC_PREVENTION_VKA_THERAPY, "Thromboembolism / VKA ", new ArrayList<EvaluationItem>() {
+                        add(new SectionEvaluationItem(tempContext, THROMBOEMBOLIC_PREVENTION_VKA_THERAPY, "Thromboembolism / VKA ", new ArrayList<EvaluationItem>() {
                             {
 
                                 add(new SectionCheckboxEvaluationItem(PATIENT_BLEED_RISK, "Patient related bleeding risk", new ArrayList<EvaluationItem>() {
@@ -368,7 +374,7 @@ class CurrentCVProfile extends SectionEvaluationItem {
                 });
                 add(new SectionEvaluationItem(tempContext, VASCULAR_DISEASES, getString(R.string.vascular_diseases), new ArrayList<EvaluationItem>() {
                     {
-                        add(new SectionEvaluationItem(tempContext,  SYMPTOMATIC_CAROTID_DISEASE, getString(R.string.symptomatic_carotid_disease), new ArrayList<EvaluationItem>() {
+                        add(new SectionEvaluationItem(tempContext, SYMPTOMATIC_CAROTID_DISEASE, getString(R.string.symptomatic_carotid_disease), new ArrayList<EvaluationItem>() {
                             {
                                 add(new BooleanEvaluationItem(NONCARDIOEMBOLIC_VCA_TIA, "Noncardioembolic CVA associated with Carotid Plaque"));
                                 add(new BooleanEvaluationItem(NONCARDIOEMBOLIC_TIA, "Noncardioembolic TIA associated with Carotid Plaque"));

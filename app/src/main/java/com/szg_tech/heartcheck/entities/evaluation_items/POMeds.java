@@ -67,7 +67,7 @@ class POMeds extends SectionEvaluationItem {
                 add(new SectionCheckboxEvaluationItem(CCB, "CCB", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(DIHYDROPYRIDINE, "Dihydropyridine"));
-                        add(new BooleanEvaluationItem(NONDIHYDROPYRIDINE, "Nitrates"));
+                        add(new BooleanEvaluationItem(NONDIHYDROPYRIDINE, "Non-dihydropyridine"));
 
                     }
                 }));
