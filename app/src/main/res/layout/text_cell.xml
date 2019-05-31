@@ -13,16 +13,26 @@
         android:layout_height="wrap_content"
         android:background="@color/section_bg_highlight">
 
-        <include layout="@layout/level_mark"/>
+        <include layout="@layout/level_mark" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text=" •"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
         <com.szg_tech.heartcheck.core.views.CustomTextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="22dp"
-            android:paddingBottom="8dp"
-            android:paddingEnd="@dimen/cell_padding_right"
             android:paddingStart="@dimen/cell_padding_left"
             android:paddingTop="23dp"
+            android:paddingEnd="@dimen/cell_padding_right"
+            android:paddingBottom="8dp"
             app:type="body_placeholder" />
 
     </LinearLayout>
