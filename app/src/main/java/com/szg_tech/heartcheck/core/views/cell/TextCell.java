@@ -6,6 +6,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.szg_tech.heartcheck.R;
 import com.szg_tech.heartcheck.core.views.CustomTextView;
@@ -47,6 +48,14 @@ public class TextCell extends CellWithIndent implements CellItem {
 
     private void setUpView() {
 
+    }
+
+    public void setTextColor(int color) {
+        textView.setTextColor(color);
+    }
+
+    public void showDot() {
+        findViewById(R.id.txtDot).setVisibility(View.VISIBLE);
     }
 
     @Override

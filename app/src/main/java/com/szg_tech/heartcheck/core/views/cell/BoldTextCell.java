@@ -50,6 +50,10 @@ public class BoldTextCell extends CellWithIndent implements CellItem {
 
     }
 
+    public void setTextColor(int color) {
+        textView.setTextColor(color);
+    }
+
     @Override
     public void setHintText(String text) {
 
