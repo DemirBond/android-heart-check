@@ -49,6 +49,8 @@ import static com.szg_tech.heartcheck.core.ConfigurationParams.LOW;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.LOW_RISK_CATARACT_PLASTIC;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.LVEDD_MM;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.LVEDP_MMHG;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.LVEF_ECHO;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.LVEF_ONSET;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.LVEF_PAH;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.LVESD_MM;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.MAX_VO_MG_KG_MIN;
@@ -162,6 +164,7 @@ public class HeartSpecialistManagement extends SectionEvaluationItem {
 
                         //add(new NumericalEvaluationItem(LVEF_PAH, "LVEF", "value", 10, 80, true));
                         add(new BooleanEvaluationItem(NEW_ONSET_ATRIAL_FIBRILATION, "New onset AF"));
+                        add(new NumericalEvaluationItem(LVEF_ONSET, " LVEF" ,"value", 10, 80, true));
                         //add(new BooleanEvaluationItem(PREGNANCY, "Pregnancy"));
                         add(new SectionCheckboxEvaluationItem(AORTIC_STENOSIS, "Aortic Stenosis", new ArrayList<EvaluationItem>() {
                             {

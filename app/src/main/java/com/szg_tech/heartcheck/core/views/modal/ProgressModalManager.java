@@ -24,7 +24,9 @@ public class ProgressModalManager {
 
     private static DialogFragment createAndShowSimpleProgressDialog(AppCompatActivity activity, String text) {
         DialogFragment newFragment = ProgressDialogFragment.newInstance(text);
-        new Handler().postDelayed(() -> newFragment.show(activity.getSupportFragmentManager(), "dialog"), 100);
+        new Handler(activity.getMainLooper()).postDelayed(() -> {
+            newFragment.show(activity.getSupportFragmentManager(), "dialog");
+        }, 0);
         return newFragment;
     }
 

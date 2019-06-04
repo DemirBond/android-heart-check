@@ -882,6 +882,7 @@ public class ConfigurationParams {
     public static final String LV_LATERAL_ANNULUS_E_E = "txtMPL";
     public static final String LV_MEDIAL_ANNULUS_E_E = "txtMPM";
     public static final String LVEF_ECHO = "txtEF";
+    public static final String LVEF_ONSET = "txtLVEF";
     public static final String TRJ_VELOCITY = "txtTRJ";
     public static final String TAPSE = "txtTAPSE";
     // Evaluation -> Diagnostics -> Chest x-ray:
