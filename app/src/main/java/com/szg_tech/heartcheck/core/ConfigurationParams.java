@@ -19,6 +19,8 @@ public class ConfigurationParams {
     public static final String BMI = "txtBMI";
     public static final String WEIGHT = "weight";
     public static final String HEART_RATE = "txtHR";
+    public static final String RESP_RATE = "txtresprate";
+    public static final String TEMPARATURE = "txttemp";
     public static final String SBP = "txtsbp";
     public static final String DBP = "txtdbp";
     public static final String IS_PAH = "isPAH";
@@ -283,6 +285,8 @@ public class ConfigurationParams {
     public static final String TIA = "chktia";
     public static final String CLAUDICATION = "chkclaudication";
     public static final String ULCER = "chkulcer";
+    public static final String CARPAL = "chkcarpal";
+    public static final String NEUROPATHY = "chkneuropathy";
     public static final String UNILATERAL_LOWER_LIMB_PAIN = "chkunilateral";
     public static final String PREVIOUS_DVT_PE = "chkPVTE";
     public static final String RHEUMATIC_DISEASE = "chkrheum";
@@ -755,6 +759,9 @@ public class ConfigurationParams {
     public static final String BUN_MG_DL = "txtBUN";
     public static final String ALT = "txtALT";
     public static final String AST = "txtAST";
+    public static final String FLCA = "txtFLCA";
+    public static final String TSAT = "txtTSAT";
+    public static final String FERRITIN = "txtferritin";
     public static final String HEMOGLOBIN = "txthemoglobin";
     public static final String FASTING_PLASMA_GLUCOSE = "txtGlucose";
     public static final String GFR_ML_MIN = "txtGFR";

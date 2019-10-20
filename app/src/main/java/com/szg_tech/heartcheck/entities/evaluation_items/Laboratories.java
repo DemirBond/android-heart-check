@@ -36,14 +36,18 @@ class Laboratories extends SectionEvaluationItem {
                 add(new NumericalEvaluationItem(K_MEQ_L, getString(R.string.k_meq_l), getString(R.string.value), 2, 9, false));
                 add(new NumericalEvaluationItem(CREATININE_MG_DL, "Creatinine", getString(R.string.value), 0.4, 20, false));
                 add(new NumericalEvaluationItem(BUN_MG_DL, getString(R.string.bun_mg_dl), getString(R.string.value), 6, 200, true));
+                add(new NumericalEvaluationItem(GFR_ML_MIN, "GFR", "Value", 5, 120, true));
                 add(new NumericalEvaluationItem(FASTING_PLASMA_GLUCOSE, "Glucose mg/dl", getString(R.string.value), 35, 1000, true));
                 add(new NumericalEvaluationItem(HEMOGLOBIN , "Hemoglobin mg/dl", "Value", 3, 25, true));
+                add(new NumericalEvaluationItem(FLCA , "Serum Free Kappa/Lambda", "Value", 0.01, 100, true));
+                add(new NumericalEvaluationItem(FERRITIN , "Ferritin ug/L", "Value", 3, 25, true));
+                add(new NumericalEvaluationItem(TSAT , "Transferrin saturation, %", "Value", 3, 25, true));
                 add(new NumericalEvaluationItem(ALT , "ALT", "Value", 3, 250000, true));
                 add(new NumericalEvaluationItem(AST , "AST", "Value", 3, 250000, true));
                 add(new NumericalEvaluationItem(INR, "INR", "value", 0.5, 100, false));
-                add(new NumericalEvaluationItem(GFR_ML_MIN, "GFR", "Value", 5, 120, true) {
+                 {
 
-                });
+                };
                 add(new BooleanEvaluationItem(WORSENING_RENAL_FX, getString(R.string.worsening_renal_fx)));
                 add(new BoldEvaluationItem(LIPID_PROFILE, getString(R.string.lipid_profile)));
                 add(new BooleanEvaluationItem(ALREADY_ON_STATIN, getString(R.string.already_on_statin)));

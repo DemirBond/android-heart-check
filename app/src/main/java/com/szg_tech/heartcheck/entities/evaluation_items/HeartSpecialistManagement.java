@@ -6,6 +6,7 @@ import com.szg_tech.heartcheck.R;
 import com.szg_tech.heartcheck.entities.EvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.NumericalEvaluationItem;
+import com.szg_tech.heartcheck.entities.evaluation_item_elements.RadioButtonGroupEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionCheckboxEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluationItem;
 
@@ -59,6 +60,10 @@ import static com.szg_tech.heartcheck.core.ConfigurationParams.MITRAL_STENOSIS;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.MVA_CM_2;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.NEW_ONSET_ATRIAL_FIBRILATION;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.NO_V_WAVE;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.NYHA_CCVS_CLASS_1;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.NYHA_CCVS_CLASS_2;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.NYHA_CCVS_CLASS_3;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.NYHA_CCVS_CLASS_4;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.OTHER_CARDIAC;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.OTHER_SURGICAL_RISK;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.PADP_MMHG;
@@ -109,10 +114,14 @@ public class HeartSpecialistManagement extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
-                add(new SectionEvaluationItem(tempContext, BIO_PAH_MAIN, " Exercise capacity ", new ArrayList<EvaluationItem>() {
+                add(new SectionEvaluationItem(tempContext, BIO_PAH_MAIN, " Exercise/functional  capacity ", new ArrayList<EvaluationItem>() {
                     {
                         add(new NumericalEvaluationItem(SIX_MW_DISTANCE, "6MWT,mm", "value", 50, 600, true));
                         add(new NumericalEvaluationItem(MAX_VO_MG_KG_MIN, "VO2 kg/min", "value", 6, 40, true));
+                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_1, "NYHA Class 1", "section_nyha_class", false));
+                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_2, "NYHA Class 2", "section_nyha_class", false));
+                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_3, "NYHA Class 3", "section_nyha_class", false));
+                        add(new RadioButtonGroupEvaluationItem(NYHA_CCVS_CLASS_4, "NYHA Class 4", "section_nyha_class", false));
                     }
 
                 }, SectionElementState.OPENED));

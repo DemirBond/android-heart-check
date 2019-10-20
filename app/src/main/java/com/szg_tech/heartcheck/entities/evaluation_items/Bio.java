@@ -39,21 +39,26 @@ Bio extends SectionEvaluationItem {
                         add(new RadioButtonGroupEvaluationItem(FEMALE, getString(R.string.female), GENDER, false));
                     }
                 }));
-        items.add(new NumericalEvaluationItem(BMI, "BMI", "Enter BMI value", 10, 50, true));
-        items.add(new NumericalEvaluationItem(WEIGHT, "Weight kg", "Enter weight value", 40, 400, true));
-        items.add(new NumericalEvaluationItem(HEART_RATE, getString(R.string.heart_rate), getString(R.string.heart_rate_hint), 30, 300, true));
         NumericalEvaluationItem sbpItem = new NumericalEvaluationItem(SBP, getString(R.string.sbp), getString(R.string.sbp_hint), 60, 300, true);
         NumericalEvaluationItem dbpItem = new NumericalEvaluationItem(DBP, getString(R.string.dbp), getString(R.string.dbp_hint), 30, 160, true);
+
+
         sbpItem.setMandatory(true);
         dbpItem.setMandatory(true);
         items.add(sbpItem);
         items.add(dbpItem);
+        items.add(new NumericalEvaluationItem(HEART_RATE, getString(R.string.heart_rate), getString(R.string.heart_rate_hint), 30, 300, true));
+        items.add(new NumericalEvaluationItem(RESP_RATE, "Respiratory Rate", getString(R.string.heart_rate_hint), 10, 50, true));
+        items.add(new NumericalEvaluationItem(RASAT, "RA O2 sat", "Value", 50, 100, true));
+        items.add(new NumericalEvaluationItem(TEMPARATURE, "Temperature / C", getString(R.string.heart_rate_hint), 20, 300, true));
         items.add(new NumericalEvaluationItem(ORTHOSTATIC_SBP, "Orthostatic SBP", "Value", 0, 240, true));
         items.add(new BooleanEvaluationItem(ORTHOSTATIC_SYMPTOMPS, getString(R.string.orthostatic_symptomps)));
+        items.add(new NumericalEvaluationItem(BMI, "BMI", "Enter BMI value", 10, 50, true));
+        items.add(new NumericalEvaluationItem(WEIGHT, "Weight kg", "Enter weight value", 40, 400, true));
         items.add(new NumericalEvaluationItem(WAIST_CIRC, getString(R.string.waist_circ), getString(R.string.value), 20, 60, false));
-        items.add(new BooleanEvaluationItem(AA, getString(R.string.aa)));
+        //items.add(new BooleanEvaluationItem(AA, getString(R.string.aa)));
         items.add(new BooleanEvaluationItem(PREGNANCY, getString(R.string.pregnancy)));
-        items.add(new NumericalEvaluationItem(RASAT, "RA O2 sat", "Value", 50, 100, true));
+
         return items;
     }
 }
