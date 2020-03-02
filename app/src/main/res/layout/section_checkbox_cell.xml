@@ -41,6 +41,6 @@
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
             android:scaleType="fitXY"
-            android:src="@drawable/chevron_fwd" />
+            app:srcCompat="@drawable/chevron_fwd" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

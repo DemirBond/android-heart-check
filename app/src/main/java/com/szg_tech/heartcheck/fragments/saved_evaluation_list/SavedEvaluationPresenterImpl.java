@@ -53,7 +53,7 @@ public class SavedEvaluationPresenterImpl extends AbstractPresenter<SavedEvaluat
         }
     }
 
-    private void showSnackbarBottomButtonError(Activity activity, String message) {
+    private void showSnackbarBottomButtonError(AppCompatActivity activity, String message) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), message, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));

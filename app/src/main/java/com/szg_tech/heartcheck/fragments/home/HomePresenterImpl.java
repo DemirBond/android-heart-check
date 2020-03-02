@@ -98,7 +98,7 @@ class HomePresenterImpl extends AbstractPresenter<HomeView> implements HomePrese
         showSnackbarBottomButtonError(getActivity(), getActivity().getResources().getString(R.string.retrieving_saved_evaluations_error));
     }
 
-    private void showSnackbarBottomButtonError(Activity activity, String message) {
+    private void showSnackbarBottomButtonError(AppCompatActivity activity, String message) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), message, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));

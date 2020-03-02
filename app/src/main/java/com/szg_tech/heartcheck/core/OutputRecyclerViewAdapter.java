@@ -1,9 +1,7 @@
 package com.szg_tech.heartcheck.core;
 
-import android.app.Activity;
-import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,11 +20,11 @@ import com.szg_tech.heartcheck.entities.evaluation_item_elements.TextEvaluationI
 import java.util.List;
 
 public class OutputRecyclerViewAdapter extends RecyclerView.Adapter<OutputRecyclerViewAdapter.ViewHolder> {
-    private Activity activity;
+    private AppCompatActivity activity;
     private List<EvaluationItem> evaluationItemsList;
 
 
-    public OutputRecyclerViewAdapter(Activity activity, List<EvaluationItem> evaluationItemsList) {
+    public OutputRecyclerViewAdapter(AppCompatActivity activity, List<EvaluationItem> evaluationItemsList) {
         this.activity = activity;
         this.evaluationItemsList = evaluationItemsList;
     }

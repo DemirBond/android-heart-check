@@ -1,6 +1,5 @@
 package com.szg_tech.heartcheck.core;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -66,7 +65,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder> {
-    private Activity activity;
+    private AppCompatActivity activity;
     private List<EvaluationItem> evaluationItemsList;
     private HashMap<String, Map<RadioButtonGroupEvaluationItem, RadioButtonCell>> radioGroupMap = new HashMap<>();
     private ArrayList<SectionEvaluationItem> nextSectionEvaluationItems = new ArrayList<>();
@@ -80,7 +79,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
     private boolean onBind;
 
 
-    public ListRecyclerViewAdapter(Activity activity, List<EvaluationItem> evaluationItemsList, HashMap<String, Object> valuesDump) {
+    public ListRecyclerViewAdapter(AppCompatActivity activity, List<EvaluationItem> evaluationItemsList, HashMap<String, Object> valuesDump) {
         this.activity = activity;
         this.evaluationItemsList = new ArrayList<>(evaluationItemsList);
         depthMap = new HashMap<>();
@@ -1028,7 +1027,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-    private void goToMandatorySection(Activity activity, SectionEvaluationItem sectionEvaluationItem) {
+    private void goToMandatorySection(AppCompatActivity activity, SectionEvaluationItem sectionEvaluationItem) {
         if (sectionEvaluationItem.getSectionElementState() == SectionEvaluationItem.SectionElementState.LOCKED) {
             String dependsOn = sectionEvaluationItem.getDependsOn();
             SectionEvaluationItem finalMainEvaluationItem = null;

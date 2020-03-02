@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -77,20 +79,20 @@ public class TextSizeDialog extends DialogFragment {
             underlineCurrent(textDelta);
             spaceView.setOnClickListener(v -> dismiss());
             fontSize12.setOnClickListener(v -> {
-                        initBasicTextSize(activity, 12);
+                        initBasicTextSize((AppCompatActivity) activity, 12);
                         underlineCurrent(-4);
                     }
             );
             fontSize16.setOnClickListener(v -> {
-                initBasicTextSize(activity, 16);
+                initBasicTextSize((AppCompatActivity) activity, 16);
                 underlineCurrent(0);
             });
             fontSize20.setOnClickListener(v -> {
-                initBasicTextSize(activity, 20);
+                initBasicTextSize((AppCompatActivity) activity, 20);
                 underlineCurrent(4);
             });
             fontSize24.setOnClickListener(v -> {
-                initBasicTextSize(activity, 24);
+                initBasicTextSize((AppCompatActivity) activity, 24);
                 underlineCurrent(8);
             });
         }
@@ -139,9 +141,12 @@ public class TextSizeDialog extends DialogFragment {
         }
     }
 
-    private static void initBasicTextSize(Activity activity, int i) {
+    private static void initBasicTextSize(AppCompatActivity activity, int i) {
         Intent intent = new Intent(ConfigurationParams.ACTION_CHANGE_SIZE);
         intent.putExtra(ConfigurationParams.SIZE, i);
         activity.sendBroadcast(intent);
+    }
+
+    public void show(FragmentManager supportFragmentManager, String simpleName) {
     }
 }

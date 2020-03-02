@@ -54,7 +54,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         }
     }
 
-    private void showSnackbarBottomButtonGenericError(Activity activity) {
+    private void showSnackbarBottomButtonGenericError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
                     R.string.snackbar_bottom_button_unexpected_error_in_compute_evaluation, Snackbar.LENGTH_LONG);
@@ -63,7 +63,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         }
     }
 
-    private void showSnackbarBottomButtonGenericSaveError(Activity activity) {
+    private void showSnackbarBottomButtonGenericSaveError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
                     R.string.snackbar_bottom_button_unexpected_error_in_save_evaluation, Snackbar.LENGTH_LONG);
@@ -72,7 +72,7 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
         }
     }
 
-    private void showSnackbarBottomButtonUnAuthorizedError(Activity activity) {
+    private void showSnackbarBottomButtonUnAuthorizedError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
                     R.string.snackbar_bottom_button_session_expire_error, Snackbar.LENGTH_LONG);
@@ -144,14 +144,14 @@ class OutputPresenterImpl extends AbstractPresenter<OutputView> implements Outpu
                     public void onResponse(Call<EvaluationResponse> call, Response<EvaluationResponse> response) {
                         if (response.isSuccessful()) {
                             if (!response.body().isSuccessful()) {
-                                showSnackbarBottomButtonGenericSaveError(activity);
+                                showSnackbarBottomButtonGenericSaveError((AppCompatActivity) activity);
                             }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<EvaluationResponse> call, Throwable t) {
-                        showSnackbarBottomButtonGenericSaveError(activity);
+                        showSnackbarBottomButtonGenericSaveError((AppCompatActivity) activity);
                     }
                 });
                 EvaluationDAO.getInstance().clearEvaluation();

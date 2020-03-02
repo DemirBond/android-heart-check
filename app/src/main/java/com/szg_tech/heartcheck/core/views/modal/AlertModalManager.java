@@ -1,9 +1,9 @@
 package com.szg_tech.heartcheck.core.views.modal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -168,9 +168,9 @@ public class AlertModalManager {
                 R.string.cancel_screen_alert_cancel_all, R.string.cancel, onClickListener);
     }
 
-    public static void createAndShowChangeFontDialog(Activity activity) {
+    public static void createAndShowChangeFontDialog(AppCompatActivity activity) {
         TextSizeDialog textSizeDialog = new TextSizeDialog();
-        textSizeDialog.show(activity.getFragmentManager(), TextSizeDialog.class.getSimpleName());
+        textSizeDialog.show(activity.getSupportFragmentManager(), TextSizeDialog.class.getSimpleName());
     }
 
     public static void createAndShowNoInternetConnectionAlertDialog(Context context, View.OnClickListener onClickListener) {

@@ -1,6 +1,5 @@
 package com.szg_tech.heartcheck.core;
 
-import android.app.Activity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -16,8 +15,8 @@ public abstract class AbstractPresenter<T extends MVPView> implements Presenter 
         return view;
     }
 
-    protected Activity getActivity() {
-        return getView().getActivity();
+    protected AppCompatActivity getActivity() {
+        return (AppCompatActivity) getView().getActivity();
     }
 
     protected FragmentManager getSupportFragmentManager() {
@@ -65,7 +64,7 @@ public abstract class AbstractPresenter<T extends MVPView> implements Presenter 
     }
 
     protected void runOnUiThread(Runnable action) {
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         if (activity != null) {
             activity.runOnUiThread(action);
         }

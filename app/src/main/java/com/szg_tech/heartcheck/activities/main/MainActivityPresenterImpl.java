@@ -38,7 +38,7 @@ class MainActivityPresenterImpl extends AbstractPresenter<MainActivityView> impl
                 Bundle bundle = new Bundle();
                 if (activity != null) {
                     bundle.putSerializable(ConfigurationParams.NEXT_SECTION_ID, NEXT_SECTION_ABOUT);
-                    showActionBar(activity, true);
+                    showActionBar((AppCompatActivity) activity, true);
                 }
                 fragment.setArguments(bundle);
                 backStackName = EvaluationListFragment.class.getSimpleName();
@@ -66,7 +66,7 @@ class MainActivityPresenterImpl extends AbstractPresenter<MainActivityView> impl
         return false;
     }
 
-    private void showActionBar(Activity activity, boolean isShow) {
+    private void showActionBar(AppCompatActivity activity, boolean isShow) {
         if (activity instanceof AppCompatActivity) {
             ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
             if (actionBar != null) {

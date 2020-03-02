@@ -98,7 +98,7 @@ public class LoginPresenterImpl extends AbstractPresenter<LoginView> implements 
         });
     }
 
-    private void showSnackbarBottomButtonLoginError(Activity activity) {
+    private void showSnackbarBottomButtonLoginError(AppCompatActivity activity) {
         if (activity != null) {
             try {
                 Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_login_error, Snackbar.LENGTH_LONG);

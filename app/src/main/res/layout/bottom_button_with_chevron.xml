@@ -33,7 +33,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/chevron_fwd_blue" />
+            app:srcCompat="@drawable/chevron_fwd_blue" />
 
     </RelativeLayout>
 

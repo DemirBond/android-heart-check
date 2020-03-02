@@ -1,6 +1,7 @@
 package com.szg_tech.heartcheck.activities.authentication;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.szg_tech.heartcheck.core.AbstractPresenter;
 import com.szg_tech.heartcheck.core.NetworkConnectivityControl;
@@ -28,7 +29,7 @@ public class AuthenticationActivityPresenterImpl extends AbstractPresenter<Authe
     }
 
     private void checkInternet() {
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         if(activity != null) {
             new NetworkConnectivityControl(getActivity(), this).execute();
         }

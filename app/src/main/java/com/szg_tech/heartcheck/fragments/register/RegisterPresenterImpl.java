@@ -97,7 +97,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
                 });
     }
 
-    private void showSnackbarBottomButtonTosNotAccepted(Activity activity) {
+    private void showSnackbarBottomButtonTosNotAccepted(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_register_error_tos, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
@@ -105,7 +105,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
         }
     }
 
-    private void showSnackbarBottomButtonRegisterError(Activity activity) {
+    private void showSnackbarBottomButtonRegisterError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_register_error, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
@@ -113,7 +113,7 @@ public class RegisterPresenterImpl extends AbstractPresenter<RegisterView> imple
         }
     }
 
-    private void showSnackbarBottomButtonRegisterSucceed(Activity activity) {
+    private void showSnackbarBottomButtonRegisterSucceed(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_register_succeed, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.green_text));

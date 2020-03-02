@@ -73,12 +73,12 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
             recyclerView.setLayoutManager(new LinearLayoutManager(activity));
             Bundle arguments = getView().getArguments();
             if (arguments != null) {
-                onNewEvaluationList(recyclerView, activity, arguments);
+                onNewEvaluationList(recyclerView, (AppCompatActivity) activity, arguments);
             }
         }
     }
 
-    private void onNewEvaluationList(RecyclerView recyclerView, Activity activity, Bundle arguments) {
+    private void onNewEvaluationList(RecyclerView recyclerView, AppCompatActivity activity, Bundle arguments) {
 
         actionBarSubtitle = arguments.getString(ConfigurationParams.SUBTITLE);
         boolean shouldShowAlert = arguments.getBoolean(ConfigurationParams.SHOULD_SHOW_ALERT);
@@ -172,7 +172,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                         listRecyclerViewAdapter.saveAllValues();
                         popBackStack();
                     } else {
-                        showAlertToClearInputs(activity);
+                        showAlertToClearInputs((AppCompatActivity) activity);
                     }
                 });
             }
@@ -239,7 +239,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                     popBackStack();
                 } else {
                     if (activity != null) {
-                        showAlertToClearInputs(activity);
+                        showAlertToClearInputs((AppCompatActivity) activity);
                     }
                 }
                 break;
@@ -255,7 +255,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
                         }
                     }
                 } else {
-                    showSnackbarBottomButtonError(activity);
+                    showSnackbarBottomButtonError((AppCompatActivity) activity);
                 }
                 break;
             case R.id.reset_field:
@@ -273,7 +273,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
     }
 
     public boolean onSaveEvaluationChecking() {
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         if (listRecyclerViewAdapter.isScreenValid(false)) {
             listRecyclerViewAdapter.saveAllValues();
             if (EvaluationDAO.getInstance().isMinimumToSaveEntered()) {
@@ -339,7 +339,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
     }
 
     public void onSaveEvaluationButtonClick() {
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         Log.e("status", "onSaveEvaluation");
         if (activity != null) {
             Log.e("status", "onSaveEvaluation showDialog");
@@ -373,7 +373,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         }
     }
 
-    private void showSnackbarBottomSaveSuccessful(Activity activity) {
+    private void showSnackbarBottomSaveSuccessful(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_save_evaluation_succeed, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.green_text));
@@ -381,7 +381,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         }
     }
 
-    private void showSnackbarBottomButtonGenericError(Activity activity) {
+    private void showSnackbarBottomButtonGenericError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(),
                     R.string.snackbar_bottom_button_unexpected_error_in_save_evaluation, Snackbar.LENGTH_LONG);
@@ -397,7 +397,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         }
     }
 
-    private void showAlertToClearInputs(Activity activity) {
+    private void showAlertToClearInputs(AppCompatActivity activity) {
         AlertModalManager.createAndShowCancelScreenInputDialog(activity, v -> {
             for (EvaluationItem item : evaluationItems) {
                 Object value = valuesDump.get(item.getId());
@@ -409,7 +409,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         });
     }
 
-    private void showSnackbarBottomButtonError(Activity activity) {
+    private void showSnackbarBottomButtonError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_error, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
@@ -417,7 +417,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         }
     }
 
-    private void showSnackbarBottomButtonMinimumNotEnteredError(Activity activity) {
+    private void showSnackbarBottomButtonMinimumNotEnteredError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getRecyclerView(), R.string.snackbar_bottom_button_error_minimum_not_entered, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
@@ -492,7 +492,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
             }
         } else {
             if (activity != null) {
-                showSnackbarBottomButtonError(activity);
+                showSnackbarBottomButtonError((AppCompatActivity) activity);
             }
         }
     }
@@ -507,7 +507,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         snackBarTextView.setGravity(Gravity.CENTER);
         ((LinearLayout.LayoutParams) snackBarTextView.getLayoutParams()).gravity = Gravity.CENTER;
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         if (activity != null) {
             try {
                 float textSizeDimension = activity.getResources().getDimension(R.dimen.snackbar_textsize);

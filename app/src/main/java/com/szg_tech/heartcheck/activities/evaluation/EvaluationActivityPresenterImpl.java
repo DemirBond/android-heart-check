@@ -105,7 +105,7 @@ class EvaluationActivityPresenterImpl extends AbstractPresenter<EvaluationActivi
             case R.id.change_font:
                 Activity activity = getActivity();
                 if (activity != null) {
-                    AlertModalManager.createAndShowChangeFontDialog(activity);
+                    AlertModalManager.createAndShowChangeFontDialog((AppCompatActivity) activity);
                 }
                 break;
             case R.id.save_evaluation:
@@ -121,7 +121,7 @@ class EvaluationActivityPresenterImpl extends AbstractPresenter<EvaluationActivi
     }
 
     public void onSaveEvaluationButtonClick() {
-        Activity activity = getActivity();
+        AppCompatActivity activity = getActivity();
         Log.e("status", "onSaveEvaluation");
         if (activity != null) {
             Log.e("status", "onSaveEvaluation showDialog");
@@ -153,7 +153,7 @@ class EvaluationActivityPresenterImpl extends AbstractPresenter<EvaluationActivi
         }
     }
 
-    private void showSnackbarBottomButtonGenericError(Activity activity) {
+    private void showSnackbarBottomButtonGenericError(AppCompatActivity activity) {
         if (activity != null) {
             Snackbar snackbar = Snackbar.make(getView().getLayout(),
                     R.string.snackbar_bottom_button_unexpected_error_in_save_evaluation, Snackbar.LENGTH_LONG);
