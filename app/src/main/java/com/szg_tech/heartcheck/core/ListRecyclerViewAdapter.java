@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 
 import com.szg_tech.heartcheck.R;
 import com.szg_tech.heartcheck.core.views.CustomEditText;
+import com.szg_tech.heartcheck.core.views.CustomTextView;
 import com.szg_tech.heartcheck.core.views.cell.BoldTextCell;
 import com.szg_tech.heartcheck.core.views.cell.CellItem;
 import com.szg_tech.heartcheck.core.views.cell.CellWithIndent;
@@ -36,6 +37,7 @@ import com.szg_tech.heartcheck.core.views.cell.SectionCheckboxCell;
 import com.szg_tech.heartcheck.core.views.cell.SectionDependsOnManager;
 import com.szg_tech.heartcheck.core.views.cell.SectionPlaceholderCell;
 import com.szg_tech.heartcheck.core.views.cell.StringEditTextCell;
+import com.szg_tech.heartcheck.core.views.cell.StringEditTextDependantCell;
 import com.szg_tech.heartcheck.core.views.cell.TextCell;
 import com.szg_tech.heartcheck.core.views.modal.AlertModalManager;
 import com.szg_tech.heartcheck.entities.EvaluationItem;
@@ -63,6 +65,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import static com.szg_tech.heartcheck.core.ConfigurationParams.DBP;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.DBP_OPTIONAL;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.NA_MEQ_L;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.SBP;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.SBP_OPTIONAL_LOWER;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.SBP_OPTIONAL_UPPER;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.SERUM_OSMOLALITY;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.URINE_NA_MEQ_L;
+import static com.szg_tech.heartcheck.core.ConfigurationParams.URINE_OSMOLALITY;
 
 public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder> {
     private AppCompatActivity activity;
@@ -141,13 +153,20 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 return new ListRecyclerViewAdapter.ViewHolder(checkBoxCell);
             case STRING:
             case NUMERICAL:
-            case NUMERICAL_DEPENDANT:
                 StringEditTextCell stringEditTextCell = new StringEditTextCell(activity);
                 stringEditTextCell.setLayoutParams(layoutParams);
                 if (type == TypeElementEnum.NUMERICAL || type == TypeElementEnum.NUMERICAL_DEPENDANT) {
                     stringEditTextCell.setNumeric();
                 }
                 return new ListRecyclerViewAdapter.ViewHolder(stringEditTextCell);
+
+            case NUMERICAL_DEPENDANT:
+                StringEditTextDependantCell stringEditTextDependantCell = new StringEditTextDependantCell(activity);
+                stringEditTextDependantCell.setLayoutParams(layoutParams);
+                if (type == TypeElementEnum.NUMERICAL || type == TypeElementEnum.NUMERICAL_DEPENDANT) {
+                    stringEditTextDependantCell.setNumeric();
+                }
+                return new ListRecyclerViewAdapter.ViewHolder(stringEditTextDependantCell);
             case SECTION:
                 SectionCell sectionCell = new SectionCell(activity);
                 sectionCell.setLayoutParams(layoutParams);
@@ -315,6 +334,13 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             }
             holder.view.setLabelText(name);
             holder.view.setHintText(evaluationItem.getHint());
+
+            int cellMinHeight = holder.itemView
+                    .getContext()
+                    .getResources()
+                    .getDimensionPixelSize(R.dimen.icon_cell_height
+                    );
+
             if (evaluationItem instanceof SectionEvaluationItem) {
                 if (!((SectionEvaluationItem) evaluationItem).isHasStateIcon()) {
                     ((SectionCell) holder.view).setStateIconLayoutVisibility(false);
@@ -592,20 +618,89 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                 snackbar.show();
                             }
                         }
+                        NumericalEvaluationItem numericalEvaluationItem = ((NumericalEvaluationItem) evaluationItem);
+                        if (numericalEvaluationItem.getId().equals(SBP)) {
+                            updateNumericalOptionalCell(SBP_OPTIONAL_LOWER);
+                            updateNumericalOptionalCell(SBP_OPTIONAL_UPPER);
+                        }
+                        if (numericalEvaluationItem.getId().equals(DBP)) {
+                            updateNumericalOptionalCell(DBP_OPTIONAL);
+                        }
+
+                        if (numericalEvaluationItem.getId().equals(NA_MEQ_L)) {
+                            updateNumericalOptionalCell(URINE_NA_MEQ_L);
+                            updateNumericalOptionalCell(SERUM_OSMOLALITY);
+                            updateNumericalOptionalCell(URINE_OSMOLALITY);
+                        }
                     } else if (evaluationItem.isMandatory() && editText.getText().toString().isEmpty()) {
                         stringEditTextCell.setCorrect(false);
                     }
                 });
+
             } else if (evaluationItem instanceof NumericalDependantEvaluationItem) {
-                StringEditTextCell stringEditTextCell = (StringEditTextCell) holder.view;
-                setImeOptionsForLastEditText(stringEditTextCell, position);
-                if (evaluationItem.getValue() != null) {
-                    stringEditTextCell.setCorrect(evaluationItem.isValid());
+                StringEditTextDependantCell stringEditTextDependantCell = (StringEditTextDependantCell) holder.view;
+                setImeOptionsForLastEditText(stringEditTextDependantCell, position);
+
+                NumericalDependantEvaluationItem dependantItem =
+                        ((NumericalDependantEvaluationItem) evaluationItem);
+
+                LinearLayout primaryContainer = stringEditTextDependantCell.getPrimaryContainerView();
+                CustomTextView optionalHint = stringEditTextDependantCell.getOptionalHintTextView();
+                stringEditTextDependantCell.getEditText().setHint(
+                        stringEditTextDependantCell.getContext().getString(R.string.value));
+
+
+                if (isNaMEQLOptionalCell(dependantItem.getId()) && isMeetCriteriaToShowOptionalValue(
+                        dependantItem.getId(),
+                        dependantItem.getDependsOn(),
+                        dependantItem.getEnableTo(),
+                        dependantItem.getEnableFrom())
+                ) {
+                    primaryContainer.setVisibility(View.VISIBLE);
+                    primaryContainer.setMinimumHeight(cellMinHeight);
+                    if (dependantItem.getId().equals(URINE_NA_MEQ_L)) {
+                        optionalHint.setVisibility(View.VISIBLE);
+                        optionalHint.setText(getFormattedString(
+                                holder.itemView,
+                                dependantItem.getDependsOn(),
+                                dependantItem.getHint(),
+                                dependantItem.getEnableTo(),
+                                dependantItem.getEnableFrom()));
+                    }else {
+                        optionalHint.setVisibility(View.GONE);
                 }
-                CustomEditText editText = stringEditTextCell.getEditText();
+                }else {
+                    if (isSPBandDBPOptionalCell(dependantItem.getId()) &&
+                            isMeetCriteriaToShowOptionalValue(
+                                    dependantItem.getId(),
+                                    dependantItem.getDependsOn(),
+                                    dependantItem.getEnableTo(),
+                                    dependantItem.getEnableFrom())
+                    ) {
+                        primaryContainer.setVisibility(View.VISIBLE);
+                        primaryContainer.setMinimumHeight(cellMinHeight);
+                        optionalHint.setVisibility(View.VISIBLE);
+                        optionalHint.setText(getFormattedString(
+                                holder.itemView,
+                                dependantItem.getDependsOn(),
+                                dependantItem.getHint(),
+                                dependantItem.getTo(),
+                                dependantItem.getFrom()));
+                    } else {
+                        optionalHint.setVisibility(View.GONE);
+                        primaryContainer.setVisibility(View.GONE);
+                        primaryContainer.setMinimumHeight(0);
+                        ((NumericalDependantEvaluationItem)evaluationItem).setNumber(null);
+                    }
+                }
+
+                if (evaluationItem.getValue() != null) {
+                    stringEditTextDependantCell.setCorrect(evaluationItem.isValid());
+                }
+                CustomEditText editText = stringEditTextDependantCell.getEditText();
                 editText.clearTextWatchers();
                 if (((NumericalDependantEvaluationItem) evaluationItem).isWhole()) {
-                    stringEditTextCell.setNumeric(true);
+                    stringEditTextDependantCell.setNumeric(true);
                 }
                 Double number = ((NumericalDependantEvaluationItem) evaluationItem).getNumber();
                 if (number != null) {
@@ -628,67 +723,58 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                         if (!text.isEmpty()) {
                             if (text.trim().equals(".")) text = "0";
                             double value = Double.parseDouble(text);
-                            if (value >= ((NumericalDependantEvaluationItem) evaluationItem).getFrom()
-                                    && value <= ((NumericalDependantEvaluationItem) evaluationItem).getTo()) {
+
+                            if (isSPBandDBPOptionalCell(dependantItem.getId())) {
                                 ((NumericalDependantEvaluationItem) evaluationItem).setNumber(Double.parseDouble(s.toString()));
-                                stringEditTextCell.setCorrect(true);
+                                stringEditTextDependantCell.setCorrect(true);
                                 markParentAsChecked(evaluationItem, true);
                                 return;
+                            } else {
+                                if (value >= ((NumericalDependantEvaluationItem) evaluationItem).getFrom()
+                                        && value <= ((NumericalDependantEvaluationItem) evaluationItem).getTo()) {
+                                    ((NumericalDependantEvaluationItem) evaluationItem).setNumber(Double.parseDouble(s.toString()));
+
+                                    stringEditTextDependantCell.setCorrect(true);
+                                    markParentAsChecked(evaluationItem, true);
+                                    return;
+                                }
                             }
+
                         } else if (!evaluationItem.isMandatory()) {
                             ((NumericalDependantEvaluationItem) evaluationItem).setNumber(null);
-                            stringEditTextCell.setCorrect(true);
+                            stringEditTextDependantCell.setCorrect(true);
                             return;
                         }
                         ((NumericalDependantEvaluationItem) evaluationItem).setNumber(null);
-                        stringEditTextCell.setCorrect(false);
+                        if (!isSPBandDBPOptionalCell(dependantItem.getId())) {
+                            stringEditTextDependantCell.setCorrect(false);
+                        }
                     }
                 });
                 editText.setOnFocusChangeListener((v, hasFocus) -> {
-                    if (!hasFocus) {
-                        if (!stringEditTextCell.isCorrect()) {
-                            String snackbarText = null;
-                            if (evaluationItem.isMandatory() && editText.getText().toString().isEmpty()) {
-                                snackbarText = String.format(activity.getString(R.string.snackbar_empty_message), evaluationItem.getName());
-                            } else if (!editText.getText().toString().isEmpty()) {
-                                snackbarText = String.format(activity.getString(R.string.snackbar_range_message), evaluationItem.getName(),
-                                        String.valueOf(((NumericalDependantEvaluationItem) evaluationItem).getFrom()), String.valueOf(((NumericalDependantEvaluationItem) evaluationItem).getTo()));
+                    if (!isSPBandDBPOptionalCell(dependantItem.getId())) {
+                        if (!hasFocus) {
+                            if (!stringEditTextDependantCell.isCorrect()) {
+                                String snackbarText = null;
+                                if (evaluationItem.isMandatory() && editText.getText().toString().isEmpty()) {
+                                    snackbarText = String.format(activity.getString(R.string.snackbar_empty_message), evaluationItem.getName());
+                                } else if (!editText.getText().toString().isEmpty()) {
+                                    snackbarText = String.format(activity.getString(R.string.snackbar_range_message), evaluationItem.getName(),
+                                            String.valueOf(((NumericalDependantEvaluationItem) evaluationItem).getFrom()), String.valueOf(((NumericalDependantEvaluationItem) evaluationItem).getTo()));
+                                }
+                                if (snackbarText != null) {
+                                    Snackbar snackbar = Snackbar.make(editText, snackbarText,
+                                            Snackbar.LENGTH_SHORT);
+                                    snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
+                                    snackbar.show();
+                                }
                             }
-                            if (snackbarText != null) {
-                                Snackbar snackbar = Snackbar.make(editText, snackbarText,
-                                        Snackbar.LENGTH_SHORT);
-                                snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.snackbar_red));
-                                snackbar.show();
-                            }
+                        } else if (evaluationItem.isMandatory() && editText.getText().toString().isEmpty()) {
+                            stringEditTextDependantCell.setCorrect(false);
                         }
-                    } else if (evaluationItem.isMandatory() && editText.getText().toString().isEmpty()) {
-                        stringEditTextCell.setCorrect(false);
                     }
                 });
-                String dependentItem = ((NumericalDependantEvaluationItem) evaluationItem).getDependsOn();
-                for (EvaluationItem tempEvaluationItem : evaluationItemsList) {
-                    if (tempEvaluationItem.getId().equals(dependentItem)) {
-                        if (tempEvaluationItem instanceof NumericalEvaluationItem) {
-                            ((NumericalEvaluationItem) tempEvaluationItem).addOnValueChangeListener(value -> {
-                                if (value != null && value >= ((NumericalDependantEvaluationItem) evaluationItem).getEnableFrom()
-                                        && value <= ((NumericalDependantEvaluationItem) evaluationItem).getEnableTo()) {
-                                    stringEditTextCell.setEnabled(true);
-                                } else {
-                                    stringEditTextCell.setEnabled(false);
-                                }
-                            });
-                            Double value = ((NumericalEvaluationItem) tempEvaluationItem).getNumber();
-                            if (value != null && value >= ((NumericalDependantEvaluationItem) evaluationItem).getEnableFrom()
-                                    && value <= ((NumericalDependantEvaluationItem) evaluationItem).getEnableTo()) {
-                                stringEditTextCell.setEnabled(true);
-                            } else {
-                                stringEditTextCell.setEnabled(false);
-                            }
-                        }
 
-                        break;
-                    }
-                }
             } else if (evaluationItem instanceof StringEvaluationItem) {
                 StringEditTextCell stringEditTextCell = (StringEditTextCell) holder.view;
                 stringEditTextCell.setEditable(((StringEvaluationItem) evaluationItem).isEditable());
@@ -1050,8 +1136,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
         }
     }
 
-
-    private void setImeOptionsForLastEditText(StringEditTextCell stringEditTextCell, int position) {
+    private void setImeOptionsForLastEditText(Object cell, int position) {
         boolean isLastInput = true;
         for (int i = position + 1; i < getItemCount(); i++) {
             if (getItemViewType(position) == TypeElementEnum.STRING.ordinal()
@@ -1061,11 +1146,22 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                 break;
             }
         }
-        if (isLastInput) {
-            stringEditTextCell.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            stringEditTextCell.setOnEditorActionListener(new StringEvaluationItem.DoneOnEditorActionListener());
-        } else {
-            stringEditTextCell.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        if(cell instanceof StringEditTextCell){
+            if (isLastInput) {
+                ((StringEditTextCell)cell).setImeOptions(EditorInfo.IME_ACTION_DONE);
+                ((StringEditTextCell)cell).setOnEditorActionListener(
+                        new StringEvaluationItem.DoneOnEditorActionListener());
+            } else {
+                ((StringEditTextCell)cell).setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            }
+        }else if (cell instanceof StringEditTextDependantCell) {
+            if (isLastInput) {
+                ((StringEditTextDependantCell)cell).setImeOptions(EditorInfo.IME_ACTION_DONE);
+                ((StringEditTextDependantCell)cell).setOnEditorActionListener(
+                        new StringEvaluationItem.DoneOnEditorActionListener());
+            } else {
+                ((StringEditTextDependantCell)cell).setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            }
         }
     }
 
@@ -1108,5 +1204,102 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
             super(itemView);
             view = (CellItem) itemView;
         }
+    }
+
+    private int getPositionById(String id) {
+        int position = 0;
+        for (EvaluationItem item : evaluationItemsList) {
+            if (item.getId().equals(id)) {
+                return position;
+            }
+            position++;
+        }
+        return -1;
+    }
+
+    private void updateNumericalOptionalCell(String id) {
+        int position = getPositionById(id);
+        if (position > 0) {
+            notifyItemChanged(position);
+        }
+    }
+
+    private boolean isMeetCriteriaToShowOptionalValue(String dependantId, String id, double to, double from) {
+        if (id.isEmpty()) {
+            return false;
+        }
+
+        for (EvaluationItem item : evaluationItemsList) {
+            if (item instanceof NumericalEvaluationItem) {
+                if (item.getId().equals(id)) {
+                    if (item.getValue() != null) {
+                        double value = (double) item.getValue();
+                        switch (id) {
+                            case SBP:
+                                if(dependantId.equals(SBP_OPTIONAL_LOWER)){
+                                    return value < from;
+                                }else if(dependantId.equals(SBP_OPTIONAL_UPPER)){
+                                    return  value > to;
+                                }
+                            case DBP:
+                                return value > to;
+                            case NA_MEQ_L:
+                                return value < to;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private String getFormattedString(View view, String id, String hint, double to, double from){
+        if (id.isEmpty()) {
+            return "";
+        }
+        for (EvaluationItem item : evaluationItemsList) {
+            if (item instanceof NumericalEvaluationItem) {
+                if (item.getId().equals(id)) {
+                    if (item.getValue() != null) {
+                        double value = (double) item.getValue();
+                        switch (id) {
+                            case SBP:
+                                if (value > to) {
+                                    return String.format(hint,
+                                            view.getContext().getString(R.string.greater),
+                                            to);
+                                } else if (value < from) {
+                                    return String.format(hint,
+                                            view.getContext().getString(R.string.less),
+                                            from);
+                                }
+                            case DBP:
+                                if (value > to) {
+                                    return String.format(hint,
+                                            view.getContext().getString(R.string.greater),
+                                            to);
+                                }
+                            case NA_MEQ_L:
+                                if (value < to) {
+                                    return String.format(hint,
+                                            view.getContext().getString(R.string.less),
+                                            to);
+                                }
+                        }
+                    }
+                }
+            }
+        }
+        return "";
+    }
+
+    private boolean isSPBandDBPOptionalCell(String id) {
+        return id.equals(SBP_OPTIONAL_LOWER)  || id.equals(SBP_OPTIONAL_UPPER) ||
+                id.equals(DBP_OPTIONAL);
+    }
+
+    private boolean isNaMEQLOptionalCell(String id) {
+        return id.equals(URINE_NA_MEQ_L) || id.equals(SERUM_OSMOLALITY) ||
+                id.equals(URINE_OSMOLALITY);
     }
 }

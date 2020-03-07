@@ -900,4 +900,9 @@
     <string name="no_saved_evaluations">There are no saved evaluations.</string>
     <string name="terms_of_service">Terms of Service</string>
     <string name="accept">Accept</string>
+
+    <string name="expanded_optional_hint">Value is %s than %.0f Please give additional details.</string>
+    <string name="less">less</string>
+    <string name="greater">greater</string>
+    <string name="expanded_optional_headline">How many times</string>
 </resources>

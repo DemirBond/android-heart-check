@@ -22,7 +22,10 @@ public class ConfigurationParams {
     public static final String RESP_RATE = "txtresprate";
     public static final String TEMPARATURE = "txttemp";
     public static final String SBP = "txtsbp";
+    public static final String SBP_OPTIONAL_LOWER = "txtDurationSBP";
+    public static final String SBP_OPTIONAL_UPPER = "txtNumberSBP";
     public static final String DBP = "txtdbp";
+    public static final String DBP_OPTIONAL = "txtNumberDBP";
     public static final String IS_PAH = "isPAH";
     public static final String ORTHOSTATIC_SBP = "txtOrthostaticSBP";
     public static final String ORTHOSTATIC_SYMPTOMPS = "chkSymptomatic";

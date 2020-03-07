@@ -27,11 +27,18 @@ class Laboratories extends SectionEvaluationItem {
             {
                 add(new BoldEvaluationItem(CHEM_BASIC, getString(R.string.chem_basic)));
                 add(new NumericalEvaluationItem(NA_MEQ_L, getString(R.string.na_meq_l), getString(R.string.value), 99, 170, true));
-                add(new NumericalDependantEvaluationItem(URINE_NA_MEQ_L, getString(R.string.urine_na_meq_l), getString(R.string.value), 1, 200, true,
+
+                add(new NumericalDependantEvaluationItem(URINE_NA_MEQ_L, getString(R.string.urine_na_meq_l),
+                        tempContext.getString(R.string.expanded_optional_hint),
+                        1, 200, true,
                         NA_MEQ_L, 99, 130));
-                add(new NumericalDependantEvaluationItem(SERUM_OSMOLALITY, getString(R.string.serum_osmolality), getString(R.string.value), 200, 400, true,
+                add(new NumericalDependantEvaluationItem(SERUM_OSMOLALITY, getString(R.string.serum_osmolality),
+                        tempContext.getString(R.string.expanded_optional_hint),
+                        200, 400, true,
                         NA_MEQ_L, 99, 130));
-                add(new NumericalDependantEvaluationItem(URINE_OSMOLALITY, getString(R.string.urine_osmolality), getString(R.string.value), 200, 1000, true,
+                add(new NumericalDependantEvaluationItem(URINE_OSMOLALITY, getString(R.string.urine_osmolality),
+                        tempContext.getString(R.string.expanded_optional_hint),
+                        200, 1000, true,
                         NA_MEQ_L, 99, 130));
                 add(new NumericalEvaluationItem(K_MEQ_L, getString(R.string.k_meq_l), getString(R.string.value), 2, 9, false));
                 add(new NumericalEvaluationItem(CREATININE_MG_DL, "Creatinine", getString(R.string.value), 0.4, 20, false));
