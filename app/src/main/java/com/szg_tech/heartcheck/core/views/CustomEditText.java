@@ -22,7 +22,7 @@ import com.szg_tech.heartcheck.storage.PreferenceHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomEditText extends android.support.v7.widget.AppCompatEditText {
+public class CustomEditText extends androidx.appcompat.widget.AppCompatEditText {
     private static final String ROBOTO_BOLD_FILE_PATH = "fonts/Roboto-Bold.ttf";
     private static final String ROBOTO_MEDIUM_FILE_PATH = "fonts/Roboto-Medium.ttf";
     private String fontPath;

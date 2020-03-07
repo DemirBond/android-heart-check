@@ -1,6 +1,6 @@
 package com.szg_tech.heartcheck.storage;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

@@ -1,7 +1,7 @@
 package com.szg_tech.heartcheck.activities.authentication;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.szg_tech.heartcheck.core.AbstractPresenter;
 import com.szg_tech.heartcheck.core.NetworkConnectivityControl;

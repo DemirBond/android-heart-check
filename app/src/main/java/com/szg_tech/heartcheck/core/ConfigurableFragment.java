@@ -2,7 +2,7 @@ package com.szg_tech.heartcheck.core;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 public class ConfigurableFragment extends Fragment implements MVPView {
     @Override

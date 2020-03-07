@@ -1,8 +1,8 @@
 package com.szg_tech.heartcheck.core;
 
 import android.app.Application;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.ProcessLifecycleOwner;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import io.realm.Realm;
 
