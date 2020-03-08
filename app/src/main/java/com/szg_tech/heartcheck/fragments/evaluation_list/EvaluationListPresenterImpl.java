@@ -107,7 +107,7 @@ class EvaluationListPresenterImpl extends AbstractPresenter<EvaluationListView> 
 
         evaluationItems = evaluationItem.getEvaluationItemList();
         valuesDump = EvaluationDataHelper.createValuesDump(evaluationItems);
-        listRecyclerViewAdapter = new ListRecyclerViewAdapter(activity, evaluationItems, valuesDump);
+        listRecyclerViewAdapter = new ListRecyclerViewAdapter(activity, evaluationItems, valuesDump, recyclerView);
         recyclerView.setAdapter(listRecyclerViewAdapter);
         String actionBarTitle = evaluationItem.getName();
         if (!activity.getResources().getString(R.string.evaluation).equals(actionBarTitle)) {
