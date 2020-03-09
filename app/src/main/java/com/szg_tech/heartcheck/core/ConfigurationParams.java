@@ -743,7 +743,11 @@ public class ConfigurationParams {
     public static final String CHEST_BACK_PAIN_DYSPNEA = "chkHTNCP";
 
     // Evaluation -> Major CV Risk Factors:
+    public static final String SOCIAL_HISTORY = "secsocial_history";
     public static final String TOBACCO_USE = "chkSmoke";
+    public static final String ALCOHOL = "chkalcohol";
+    public static final String HEAVY_ALCOHOL = "chkheavyalcohol";
+    public static final String SEC_FAMILY_HISTORY = "secfamily_history";
     public static final String FAMILY_HISTORY = "chkFamily";
 
 

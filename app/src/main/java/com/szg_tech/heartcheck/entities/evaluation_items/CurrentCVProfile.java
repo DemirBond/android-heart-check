@@ -101,6 +101,29 @@ class CurrentCVProfile extends SectionEvaluationItem {
         return new ArrayList<EvaluationItem>() {
             {
                 add(new CoronaryHeartDisease(tempContext));
+                add(new SectionEvaluationItem(tempContext, SYSTEMIC_ARTERIAL_HYPERTENSION, "Hypertension", new ArrayList<EvaluationItem>() {
+                    {
+                        add(new NumericalEvaluationItem(AMB_SBP, "Ambulatory SBP", "Value", 80, 190, true));
+                        add(new NumericalEvaluationItem(AMB_DBP, "Ambulatory DBP", "Value", 30, 150, true));
+
+                        add(new BooleanEvaluationItem(SBP_TREATED, "SBP treated"));
+                        add(new BooleanEvaluationItem(AFRICAN_AMERICAN, "African American"));
+                        add(new BoldEvaluationItem(SECONDARY_HYPERTENSION, "Secondary hypertension") {
+                            {
+                                setBackgroundHighlighted(true);
+                            }
+                        });
+                        add(new BooleanEvaluationItem(PRIMARY_HYPERALDESTERONISM, "Primary hyperaldesteronism"));
+                        add(new BooleanEvaluationItem(RENOVASCULAR_ATHEROSCLEROTIC, "Atherosclerotic renovascular"));
+                        add(new BooleanEvaluationItem(PHEOCROMOCYTOMA, "Pheocromocytoma"));
+                        add(new BooleanEvaluationItem(OSA, "OSA"));
+
+                    }
+                }, SectionEvaluationItem.SectionElementState.OPENED) {
+                    {
+                        setBottomButtonReferenceSkipped(true);
+                    }
+                });
                 add(new SectionEvaluationItem(tempContext, HEART_FAILURE, getString(R.string.heart_failure), new ArrayList<EvaluationItem>() {
                     {
                         add(new NumericalEvaluationItem(HF_DIAGNOSIS_DURATION_WEEK, "Duration / week", getString(R.string.value), 0, 999, true));

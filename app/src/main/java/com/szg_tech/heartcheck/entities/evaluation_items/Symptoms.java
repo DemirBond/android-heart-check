@@ -89,17 +89,18 @@ class Symptoms extends SectionEvaluationItem {
         }
         }));
             items.add(new SectionCheckboxEvaluationItem(CHEST_PAIN, getString(R.string.chest_pain), new ArrayList<EvaluationItem>() {{
-                        add(new SectionCheckboxEvaluationItem(EMERGENCY_ROOM_CP, getString(R.string.emergency_room), new ArrayList<EvaluationItem>() {{
-                                add(new BooleanEvaluationItem(TWO_TYPICAL_OR_PROBABLE_ANGINA, "More than 2 typical or probable angina episodes"));
-                                add(new BooleanEvaluationItem(TYPICAL_OR_PROBABLE_ANGINA_MORE_20_MIN, "Typical or probable angina lasting more than 20min"));
-                                add(new BooleanEvaluationItem(ASA_USE_IN_PAST_1_WEEK, "ASA use in the past 1 week"));
-                                add(new SectionCheckboxEvaluationItem(POSITIVE_TROPONIN, getString(R.string.positive_troponin), new ArrayList<EvaluationItem>() {{
-                                        add(new BooleanEvaluationItem(TROPONIN_X_MORE_3_ABOVE_NORMAL, "Troponin 3 times above normal"));
-                                        add(new BooleanEvaluationItem(TROPONIN_1_3_ABOVE_NORMAL, "Troponin 1 to 3 times above normal"));
-                                    }
-                                }));
+                        add(new SectionCheckboxEvaluationItem(EMERGENCY_ROOM_CP, "Escalating / ER visit ", new ArrayList<EvaluationItem>() {{
+                                add(new BooleanEvaluationItem(TWO_TYPICAL_OR_PROBABLE_ANGINA, "Highly suspicious"));
+                                add(new BooleanEvaluationItem(TYPICAL_OR_PROBABLE_ANGINA_MORE_20_MIN, "Moderately suspicious"));
+                                add(new BooleanEvaluationItem(ASA_USE_IN_PAST_1_WEEK, "Slightly suspicious"));
+
                             }
                         }));
+                add(new SectionCheckboxEvaluationItem(POSITIVE_TROPONIN, "Positive troponin", new ArrayList<EvaluationItem>() {{
+                    add(new BooleanEvaluationItem(TROPONIN_X_MORE_3_ABOVE_NORMAL, "Troponin 3 times above normal"));
+                    add(new BooleanEvaluationItem(TROPONIN_1_3_ABOVE_NORMAL, "Troponin 1 to 3 times above normal"));
+                }
+                }));
                         add(new SectionCheckboxEvaluationItem(TYPICAL_ANGINA_NEW, "Typical angina", new ArrayList<EvaluationItem>() {{
                                 add(new BooleanEvaluationItem(ESCALATING_IN_FREQUENCY, "Escalating in frequency, duration oer severity"));
                             }
@@ -439,14 +440,18 @@ class Symptoms extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(URINARY, "Change in urinary habit"));
                     }
                 }));
-            items.add(new SectionCheckboxEvaluationItem(SHOCK, "Shock", new ArrayList<EvaluationItem>() {{
-                        add(new BooleanEvaluationItem(HYPOVOLEMIA, "Hypovolemia"));
-                        add(new BooleanEvaluationItem(INFECTIOUS, "Infectious"));
-                        add(new BooleanEvaluationItem(SPINALCORD, "Spinal cord"));
-                        add(new BooleanEvaluationItem(ALLERGIC, "Allergic"));
-                        add(new BooleanEvaluationItem(PHARMACOLOGIC, "Pharmacologic"));
-                    }
-                }));
+            items.add(new SectionCheckboxEvaluationItem(EPISTAXIS, "Epistaxis", new ArrayList<EvaluationItem>() {{
+
+        }
+        }));
+        items.add(new SectionCheckboxEvaluationItem(HEADACHED_BLURRED_VISION_OR_AMS, "Headache, blurred vision", new ArrayList<EvaluationItem>() {{
+
+        }
+        }));
+        items.add(new SectionCheckboxEvaluationItem(CHEST_BACK_PAIN_DYSPNEA, "Back pain", new ArrayList<EvaluationItem>() {{
+
+        }
+        }));
         return items;
     }
 }
