@@ -66,11 +66,7 @@ class EvaluationActivityPresenterImpl extends AbstractPresenter<EvaluationActivi
                 if (manager.getBackStackEntryCount() > 0
                         && !manager.getBackStackEntryAt(manager.getBackStackEntryCount() - 1)
                         .getName().equals(EvaluationActivityPresenterImpl.class.getSimpleName())) {
-                    manager.popBackStackImmediate(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                    manager.beginTransaction()
-//                            .replace(R.id.container, evaluationListFragment)
-//                            .addToBackStack(EvaluationActivityPresenterImpl.class.getSimpleName())
-//                            .commit();
+                    popBackStack(manager.getBackStackEntryCount());
                 }
             }
         }
