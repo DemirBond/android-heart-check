@@ -381,7 +381,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                         EvaluationItem item = evaluationItemsList.get(i);
                         if ((item.getId().equals(ConfigurationParams.CURRENT_PAST_CV_PROFILE) &&
                                 ((SectionEvaluationItem) item).getSectionElementState() == SectionEvaluationItem.SectionElementState.VIEWED)
-                                || (item.getId().equals(ConfigurationParams.MAJOR_CV_RISK) &&
+                                || (item.getId().equals(ConfigurationParams.REVIEW_OF_SYSTEMS) &&
                                 ((SectionEvaluationItem) item).getSectionElementState() == SectionEvaluationItem.SectionElementState.VIEWED)) {
                             ((SectionEvaluationItem) evaluationItem).setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                             ((SectionCell) holder.view).setOpened();
@@ -398,8 +398,8 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                             int bioPosition = 0;
                             SectionEvaluationItem currentCVEvaluationItem = null;
                             int currentCVPosition = 0;
-                            SectionEvaluationItem majorCVRiskEvaluationItem = null;
-                            int majorCVRiskPosition = 0;
+                            SectionEvaluationItem ROSEvaluationItem = null;
+                            int ROSPosition = 0;
 
                             SectionEvaluationItem laboratoriesEvaluationItem = null;
                             SectionEvaluationItem diagnosticEvaluationItem = null;
@@ -415,9 +415,9 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                         currentCVEvaluationItem = (SectionEvaluationItem) item;
                                         currentCVPosition = i;
                                         break;
-                                    case ConfigurationParams.MAJOR_CV_RISK:
-                                        majorCVRiskEvaluationItem = (SectionEvaluationItem) item;
-                                        majorCVRiskPosition = i;
+                                    case ConfigurationParams.REVIEW_OF_SYSTEMS:
+                                        ROSEvaluationItem = (SectionEvaluationItem) item;
+                                        ROSPosition = i;
                                         break;
                                     case ConfigurationParams.LABORATORIES:
                                         laboratoriesEvaluationItem = (SectionEvaluationItem) item;
@@ -433,12 +433,12 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                 AlertModalManager.createAndShowDependsOnSectionAlertDialog(activity, bioEvaluationItem.getName(), v1 -> goToNextScreen(finalBioPosition, finalBioEvaluationItem));
                             } else if ((currentCVEvaluationItem != null
                                     && currentCVEvaluationItem.getSectionElementState() == SectionEvaluationItem.SectionElementState.OPENED)
-                                    && (majorCVRiskEvaluationItem != null
-                                    && majorCVRiskEvaluationItem.getSectionElementState() == SectionEvaluationItem.SectionElementState.OPENED)) {
+                                    && (ROSEvaluationItem != null
+                                    && ROSEvaluationItem.getSectionElementState() == SectionEvaluationItem.SectionElementState.OPENED)) {
                                 SectionEvaluationItem finalCurrentCVEvaluationItem = currentCVEvaluationItem;
-                                SectionEvaluationItem finalMajorCVRiskEvaluationItem = majorCVRiskEvaluationItem;
+                                SectionEvaluationItem finalROSEvaluationItem = ROSEvaluationItem;
                                 int finalCurrentCVPosition = currentCVPosition;
-                                int finalMajorCVRiskPosition = majorCVRiskPosition;
+                                int finalMajorCVRiskPosition = ROSPosition;
                                 SectionEvaluationItem finalLaboratoriesEvaluationItem = laboratoriesEvaluationItem;
                                 SectionEvaluationItem finalDiagnosticEvaluationItem = diagnosticEvaluationItem;
                                 AlertModalManager.createAndShowThreeButtonDependsOnDialog(activity, v1 -> {
@@ -456,7 +456,7 @@ public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerVi
                                             if (finalDiagnosticEvaluationItem != null) {
                                                 finalDiagnosticEvaluationItem.setSectionElementState(SectionEvaluationItem.SectionElementState.OPENED);
                                             }
-                                            goToNextScreen(finalMajorCVRiskPosition, finalMajorCVRiskEvaluationItem);
+                                            goToNextScreen(finalMajorCVRiskPosition, finalROSEvaluationItem);
                                         }, v3 -> goToNextScreen(position, (SectionEvaluationItem) evaluationItem)
                                 );
                             }

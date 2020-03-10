@@ -7,7 +7,9 @@ import com.szg_tech.heartcheck.R;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
 
 import com.szg_tech.heartcheck.entities.EvaluationItem;
+import com.szg_tech.heartcheck.entities.evaluation_item_elements.BoldEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
+import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionCheckboxEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluationItem;
 
 import java.util.ArrayList;
@@ -46,6 +48,23 @@ class ReviewOfSystems extends SectionEvaluationItem {
             add(new BooleanEvaluationItem(CARPAL, "Carpal tunnel"));
             add(new BooleanEvaluationItem(RHEUMATIC_DISEASE, "Rheumatic disease"));
             add(new BooleanEvaluationItem(NEUROPATHY, "Peripheral Neuropathy"));
+            add(new BoldEvaluationItem(SOCIAL_HISTORY, "Social History") {
+                {
+                    setBackgroundHighlighted(true);
+                }
+            });
+            add(new BooleanEvaluationItem(TOBACCO_USE, "Tobacco use"));
+            add(new SectionCheckboxEvaluationItem(ALCOHOL, "Alcohol use", new ArrayList<EvaluationItem>() {{
+                add(new BooleanEvaluationItem(HEAVY_ALCOHOL, "More than 2 drinks daily"));
+            }
+            }));
+            add(new BoldEvaluationItem(SEC_FAMILY_HISTORY, "Social History") {
+                {
+                    setBackgroundHighlighted(true);
+                }
+            });
+            add(new BooleanEvaluationItem(FAMILY_HISTORY, "Family History"));
         }};
+
     }
 }
