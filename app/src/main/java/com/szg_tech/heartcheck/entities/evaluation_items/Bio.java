@@ -114,9 +114,9 @@ Bio extends SectionEvaluationItem {
         items.add(dbpOptionalItem);
 
         items.add(new NumericalEvaluationItem(HEART_RATE, getString(R.string.heart_rate), getString(R.string.heart_rate_hint), 30, 300, true));
-        items.add(new NumericalEvaluationItem(RESP_RATE, "Respiratory Rate", getString(R.string.heart_rate_hint), 10, 50, true));
+        items.add(new NumericalEvaluationItem(RESP_RATE, "Respiratory Rate", "Enter respiratory rate", 10, 50, true));
         items.add(new NumericalEvaluationItem(RASAT, "RA O2 sat", "Value", 50, 100, true));
-        items.add(new NumericalEvaluationItem(TEMPARATURE, "Temperature / C", getString(R.string.heart_rate_hint), 20, 300, true));
+        items.add(new NumericalEvaluationItem(TEMPARATURE, "Temperature / C", "",20, 300, false));
         items.add(new NumericalEvaluationItem(ORTHOSTATIC_SBP, "Orthostatic SBP", "Value", 0, 240, true));
         items.add(new BooleanEvaluationItem(ORTHOSTATIC_SYMPTOMPS, getString(R.string.orthostatic_symptomps)));
         items.add(new NumericalEvaluationItem(BMI, "BMI", "Enter BMI value", 10, 50, true));

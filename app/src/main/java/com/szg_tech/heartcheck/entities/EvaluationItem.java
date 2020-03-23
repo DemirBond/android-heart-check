@@ -22,6 +22,10 @@ public abstract class EvaluationItem implements Serializable {
         isMandatory = false;
     }
 
+    public EvaluationItem() {
+
+    }
+
     public String getType(){
         return type;
     }

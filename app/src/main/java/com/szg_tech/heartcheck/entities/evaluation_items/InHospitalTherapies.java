@@ -63,9 +63,12 @@ class InHospitalTherapies extends SectionEvaluationItem {
                 add(new SectionCheckboxEvaluationItem(MECHANICAL_VENTIALLATION_OR_NIPPV, getString(R.string.mechanical_ventiallation_or_nippv), new ArrayList<EvaluationItem>() {
                     {
                         add(new NumericalEvaluationItem(RESPIRATORY_INTERVENTIONS_Q_HR, getString(R.string.respiratory_interventions_q_hr), getString(R.string.value), 1, 6, true));
+                        add(new NumericalEvaluationItem(O2_SUPPLEMENT,"FiO2","Value", 6, 100, true));
+                        add(new NumericalEvaluationItem(CPAP,"CPAP cm H20","Value", 1, 100, true));
+                        add(new NumericalEvaluationItem(PEEP,"PEEP cm H20","Value", 1, 100, true));
                     }
                 }));
-                add(new NumericalEvaluationItem(O2_SUPPLEMENT, getString(R.string.o2_supplement), getString(R.string.value), 23, 100, true));
+
                 add(new BooleanEvaluationItem(FOUR_VASOPRESSORS, getString(R.string.four_vasopressors)));
                 add(new BooleanEvaluationItem(ULTRAFILTRATION, getString(R.string.ultrafiltration)));
                 add(new BooleanEvaluationItem(IABP, getString(R.string.iabp)));
@@ -74,3 +77,4 @@ class InHospitalTherapies extends SectionEvaluationItem {
         };
     }
 }
+

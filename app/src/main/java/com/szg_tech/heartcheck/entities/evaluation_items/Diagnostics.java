@@ -59,7 +59,6 @@ class Diagnostics extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(INFREQUENT_VENTRICULAR_PACING_OR_ECTOPY, "Infrequent ventricular ectopy"));
 
 
-
                         add(new BooleanEvaluationItem(FIRST_DEGREE_AV_BLOCK, getString(R.string.first_degree_av_block)));
                         add(new SectionCheckboxEvaluationItem(SECOND_DEGREE_AV_BLOCK, getString(R.string.second_degree_av_block), new ArrayList<EvaluationItem>() {
                             {
@@ -77,7 +76,7 @@ class Diagnostics extends SectionEvaluationItem {
                                 setBackgroundHighlighted(true);
                             }
                         });
-                        add(new NumericalEvaluationItem(DUKE_TREADMILL_SCORE, "DTS "," Value" ,-25, 25, true));
+                        add(new NumericalEvaluationItem(DUKE_TREADMILL_SCORE, "DTS ", " Value", -25, 25, true));
 
 
                         add(new NumericalEvaluationItem(EX_TIME_MIN, getString(R.string.ex_time_min), getString(R.string.value), 1, 21, true));
@@ -134,19 +133,19 @@ class Diagnostics extends SectionEvaluationItem {
                 add(new SectionCheckboxEvaluationItem(ECHOCARDIOGRAPHY, getString(R.string.echocardiography), new ArrayList<EvaluationItem>() {
                     {
 
-                        add(new NumericalEvaluationItem(LVEF_ECHO, " LVEF" ,"value", 10, 80, true));
+                        add(new NumericalEvaluationItem(LVEF_ECHO, " LVEF", "value", 10, 80, true));
                         add(new BooleanEvaluationItem(RWMA, getString(R.string.rwma)));
-                        add(new NumericalEvaluationItem(LV_LATEREAL_ANNULUS_E_E, "E/Average E'","value", 1, 30, true));
-                        add(new NumericalEvaluationItem(LV_LATERAL_ANNULUS_E_E, " LV lateral annulus E'" ,"value", 1, 80, true));
-                        add(new NumericalEvaluationItem(LV_MEDIAL_ANNULUS_E_E, " LV medial annulus E'" ,"value", 1, 80, true));
+                        add(new NumericalEvaluationItem(LV_LATEREAL_ANNULUS_E_E, "E/Average E'", "value", 1, 30, true));
+                        add(new NumericalEvaluationItem(LV_LATERAL_ANNULUS_E_E, " LV lateral annulus E'", "value", 1, 80, true));
+                        add(new NumericalEvaluationItem(LV_MEDIAL_ANNULUS_E_E, " LV medial annulus E'", "value", 1, 80, true));
                         add(new BooleanEvaluationItem(ENLARGED_LA_OR_LVH, "Enlarged LA"));
                         add(new BooleanEvaluationItem(E_A_LESS_05_AND_DT_MORE_280MS, "E more than 50cm/s "));
                         add(new BooleanEvaluationItem(GRADE_MORE_2_DIASTOLIC_DYSFUNCTION, "E/A more than 2"));
                         add(new BooleanEvaluationItem(GRADE_MORE_1_DIASTOLIC_DYSFUNCTION, "E/A less than 0.8"));
                         add(new BooleanEvaluationItem(GRADE_MORE_12_DIASTOLIC_DYSFUNCTION, "E/A 0.8 to 2"));
 
-                        add(new NumericalEvaluationItem(TRJ_VELOCITY, "TRJ Velocity m/sec","value", 1, 6, false));
-                        add(new NumericalEvaluationItem(TAPSE, "TAPSE","value", 1, 6, false));
+                        add(new NumericalEvaluationItem(TRJ_VELOCITY, "TRJ Velocity m/sec", "value", 1, 6, false));
+                        add(new NumericalEvaluationItem(TAPSE, "TAPSE", "value", 1, 6, false));
                         add(new BooleanEvaluationItem(ENLARGED_RA, getString(R.string.enlarged_ra)));
                         add(new BooleanEvaluationItem(ENLARGED_RV, getString(R.string.enlarged_rv)));
                         add(new SectionCheckboxEvaluationItem(CHECK_IF_RVOT_PW_DONE, "RVOT DOPPLER ", new ArrayList<EvaluationItem>() {
@@ -157,9 +156,6 @@ class Diagnostics extends SectionEvaluationItem {
                         }));
 
 
-
-
-
                         add(new BooleanEvaluationItem(PERICARDIAL_EFFUSION, "Pericardial Effusion"));
                         add(new BooleanEvaluationItem(RESPIRATORY_IVS_SHIFT, "Respratory IVS Shift"));
                         add(new BooleanEvaluationItem(MITRAL_E_VARIATION, "Mitral E Variation"));
@@ -167,16 +163,16 @@ class Diagnostics extends SectionEvaluationItem {
                     }
                 }));
                 add(new SectionCheckboxEvaluationItem(CHEST_X_RAY, "Chest x-ray", new ArrayList<EvaluationItem>() {
-                {
-                    add(new BooleanEvaluationItem(RIGHT_PLEURAL_EFFUSION, "Right pleural effusion"));
-                    add(new BooleanEvaluationItem(LEFT_PLEURAL_EFFUSION, "Left pleural effusion"));
-                    add(new BooleanEvaluationItem(PULMONARY_EDEMA_CHEST, "Pulmonary edema"));
-                    add(new BooleanEvaluationItem(ENLARGED_CARDIAC_SOLHOUETTE, "Enlarged cardiac silhoutte"));
-                    add(new BooleanEvaluationItem(WIDENED_MEDIASTENEUM, "Widened mediasteneum"));
-                    add(new BooleanEvaluationItem(PNEUMOTHORAX, "Pneumothorax"));
-                    add(new BooleanEvaluationItem(INFILTRATE, "Infiltrate(s)"));
-                    add(new BooleanEvaluationItem(CONSOLIDATION, "Consolidation"));
-                }
+                    {
+                        add(new BooleanEvaluationItem(RIGHT_PLEURAL_EFFUSION, "Right pleural effusion"));
+                        add(new BooleanEvaluationItem(LEFT_PLEURAL_EFFUSION, "Left pleural effusion"));
+                        add(new BooleanEvaluationItem(PULMONARY_EDEMA_CHEST, "Pulmonary edema"));
+                        add(new BooleanEvaluationItem(ENLARGED_CARDIAC_SOLHOUETTE, "Enlarged cardiac silhoutte"));
+                        add(new BooleanEvaluationItem(WIDENED_MEDIASTENEUM, "Widened mediasteneum"));
+                        add(new BooleanEvaluationItem(PNEUMOTHORAX, "Pneumothorax"));
+                        add(new BooleanEvaluationItem(INFILTRATE, "Infiltrate(s)"));
+                        add(new BooleanEvaluationItem(CONSOLIDATION, "Consolidation"));
+                    }
                 }));
                 add(new SectionCheckboxEvaluationItem(HRCT, "High resolution CT", new ArrayList<EvaluationItem>() {
                     {
@@ -193,17 +189,23 @@ class Diagnostics extends SectionEvaluationItem {
                 }));
                 add(new SectionCheckboxEvaluationItem(PFTS, "PFTs", new ArrayList<EvaluationItem>() {
                     {
+                        //add(new NumericalEvaluationItem(FIO2, "FiO2", "Value", 20, 100, true));
+                        add(new NumericalEvaluationItem(PO2, "PO2 mmhg", "Value", 10, 100, true));
                         add(new NumericalEvaluationItem(FEV1_LT, "FEV1,lt/min", "Value", 0.5, 8, false));
                         add(new NumericalEvaluationItem(FEV1_PERCENT, " % FEV1", "Value", 25, 120, true));
                         add(new NumericalEvaluationItem(FVC, "% FVC", "Value", 0, 120, true));
                         add(new NumericalEvaluationItem(DLCO, "% DLCO", "Value", 10, 100, true));
-                        add(new NumericalEvaluationItem(PO2, "PO2 mmhg", "Value", 10, 100, true));
+
                     }
                 }));
-
-                add(new NumericalEvaluationItem(CORONARY_CALCIUM_SCORE, getString(R.string.coronary_calcium_score), getString(R.string.value), 0, 100, true));
-                add(new NumericalEvaluationItem(TOTAL_CCS, getString(R.string.total), getString(R.string.value), 0, 10000, true));
+                add(new SectionCheckboxEvaluationItem(CCS, "Coronary Calcium Score", new ArrayList<EvaluationItem>() {
+                    {
+                        add(new NumericalEvaluationItem(CORONARY_CALCIUM_SCORE, getString(R.string.coronary_calcium_score), getString(R.string.value), 0, 100, true));
+                        add(new NumericalEvaluationItem(TOTAL_CCS, getString(R.string.total), getString(R.string.value), 0, 10000, true));
+                    }
+                }));
             }
+
         };
-    }
+        }
 }

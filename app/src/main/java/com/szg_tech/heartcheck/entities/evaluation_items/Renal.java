@@ -1,15 +1,15 @@
 package com.szg_tech.heartcheck.entities.evaluation_items;
 
-import android.content.Context;
+        import android.content.Context;
 
-import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
-import com.szg_tech.heartcheck.entities.EvaluationItem;
-import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
-import com.szg_tech.heartcheck.entities.evaluation_item_elements.NumericalEvaluationItem;
-import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionCheckboxEvaluationItem;
-import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluationItem;
+        import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
+        import com.szg_tech.heartcheck.entities.EvaluationItem;
+        import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
+        import com.szg_tech.heartcheck.entities.evaluation_item_elements.NumericalEvaluationItem;
+        import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionCheckboxEvaluationItem;
+        import com.szg_tech.heartcheck.entities.evaluation_item_elements.SectionEvaluationItem;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 /**
  * Created by davischan on 8/23/17.

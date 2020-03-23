@@ -317,10 +317,10 @@ class Symptoms extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(TRAUMATIC_INJURY, getString(R.string.traumatic_injury)));
                     }
                 }));
-            items.add(new SectionCheckboxEvaluationItem(WEAKNESS, "Weakness", new ArrayList<EvaluationItem>() {{
-                        add(new BooleanEvaluationItem(MALAISE, "Malaise / Fatigue"));
-                    }
-                }));
+            items.add(new SectionCheckboxEvaluationItem(WEAKNESS, "Weakness/ Malaise", new ArrayList<EvaluationItem>() {{
+
+             }
+            }));
             items.add(new SectionCheckboxEvaluationItem(SYMPALPITATIONS, "Palpitations", new ArrayList<EvaluationItem>() {{
                         add(new BoldEvaluationItem(PAL_FREQUENCY, "Frequency") {{
                                 setBackgroundHighlighted(true);
@@ -440,18 +440,19 @@ class Symptoms extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(URINARY, "Change in urinary habit"));
                     }
                 }));
-            items.add(new SectionCheckboxEvaluationItem(EPISTAXIS, "Epistaxis", new ArrayList<EvaluationItem>() {{
+        items.add(new SectionCheckboxEvaluationItem(HEADACHED_BLURRED_VISION_OR_AMS, "Headache", new ArrayList<EvaluationItem>() {{
 
         }
         }));
-        items.add(new SectionCheckboxEvaluationItem(HEADACHED_BLURRED_VISION_OR_AMS, "Headache, blurred vision", new ArrayList<EvaluationItem>() {{
+        items.add(new SectionCheckboxEvaluationItem(EPISTAXIS, "Epistaxis", new ArrayList<EvaluationItem>() {{
 
         }
         }));
-        items.add(new SectionCheckboxEvaluationItem(CHEST_BACK_PAIN_DYSPNEA, "Back pain", new ArrayList<EvaluationItem>() {{
+        items.add(new SectionCheckboxEvaluationItem(BACKPAIN, "Backpain", new ArrayList<EvaluationItem>() {{
 
         }
         }));
+
         return items;
     }
 }

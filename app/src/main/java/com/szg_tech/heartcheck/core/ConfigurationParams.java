@@ -168,8 +168,8 @@ public class ConfigurationParams {
     //public static final String DIFFUSE = "chkdiffusedema";
 
     // Evaluation -> Symptoms -> Weakness:
-    public static final String WEAKNESS = "sectionweakness";
-    public static final String MALAISE = "chkmalaise";
+    public static final String WEAKNESS = "chkmalaise";
+
 
     // Evaluation -> Symptoms -> Palpitations:
     public static final String SYMPALPITATIONS = "sectionpalpitaions";
@@ -293,7 +293,10 @@ public class ConfigurationParams {
     public static final String UNILATERAL_LOWER_LIMB_PAIN = "chkunilateral";
     public static final String PREVIOUS_DVT_PE = "chkPVTE";
     public static final String RHEUMATIC_DISEASE = "chkrheum";
-
+    public static final String IMMUNCOMPROMISED = "chkimmuncom";
+    public static final String TRAVEL = "chktravel";
+    public static final String EXPOSURE = "chkexposure";
+    public static final String IMMUNOSUPPRESSIVE = "chkimmunosuppressive";
 
     //
     // Evaluation -> Physical Exam:
@@ -657,6 +660,7 @@ public class ConfigurationParams {
     public static final String PFTS= "chkPFTS";
     public static final String FVC= "txtFVCP";
     public static final String PO2 = "txtPO2";
+    public static final String FIO2 = "txtFiO2";
     public static final String HYPERCAPNIA= "chkhypercapnia";
 
     // Evaluation -> Pulmonary -> Asthma / Reactive airway disease:
@@ -740,7 +744,7 @@ public class ConfigurationParams {
     public static final String ACUTELY_SYMPTOMATIC = "secacutely_symptomatic";
     public static final String HEADACHED_BLURRED_VISION_OR_AMS = "chkhead";
     public static final String EPISTAXIS = "chkepis";
-    public static final String CHEST_BACK_PAIN_DYSPNEA = "chkHTNCP";
+    public static final String BACK_PAIN = "chkHTNCP";
 
     // Evaluation -> Major CV Risk Factors:
     public static final String SOCIAL_HISTORY = "secsocial_history";
@@ -749,8 +753,9 @@ public class ConfigurationParams {
     public static final String HEAVY_ALCOHOL = "chkheavyalcohol";
     public static final String SEC_FAMILY_HISTORY = "secfamily_history";
     public static final String FAMILY_HISTORY = "chkFamily";
-
-
+    public static final String FAMILY_LDL = "chkFamilyLDL";
+    public static final String FAMILY_XAN = "chkFamilyxan";
+    public static final String SEC_COVID = "secCOVID";
     //
     // Evaluation -> Laboratories:
     //
@@ -924,7 +929,7 @@ public class ConfigurationParams {
 
     // Evaluation -> Diagnostics:
     public static final String RHC = "secright_heart_catheterization";
-
+    public static final String CCS= "chkCorCCS";
     public static final String CORONARY_CALCIUM_SCORE = "txtCCS";
     public static final String TOTAL_CCS = "txtTotalCCS";
 
@@ -1028,6 +1033,8 @@ public class ConfigurationParams {
 
     // Evaluation -> Current Therapies -> In Hospital/IV Therapies:
     public static final String O2_SUPPLEMENT = "txtOsupp";
+    public static final String CPAP = "txtCPAP";
+    public static final String PEEP = "txtPEEP";
     public static final String FOUR_VASOPRESSORS = "chkVAD";
     public static final String ULTRAFILTRATION = "chkult";
     public static final String IABP = "chkIABP";
@@ -1257,7 +1264,7 @@ public class ConfigurationParams {
 
     public static final String SYNCHEST_PAIN = "chkSynProCP";
 
-    public static final String BACKPAIN = "sectionbackpain";
+    public static final String BACKPAIN = "chkHTNCP";
 
     public static final String EVALUATION = "secevaluation";
     public static final String ABOUT = "secabout";

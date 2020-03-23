@@ -14,6 +14,10 @@ public class SectionCheckboxEvaluationItem extends EvaluationItem {
         this.evaluationItemList = evaluationItemList;
     }
 
+    public SectionCheckboxEvaluationItem(String weakness, String weakness1) {
+        super();
+    }
+
     public ArrayList<EvaluationItem> getEvaluationItemList() {
         return evaluationItemList;
     }

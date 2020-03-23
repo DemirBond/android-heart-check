@@ -46,8 +46,10 @@ class ReviewOfSystems extends SectionEvaluationItem {
             add(new BooleanEvaluationItem(UNILATERAL_LOWER_LIMB_PAIN, "Unilateral lower limb pain"));
             add(new BooleanEvaluationItem(PREVIOUS_DVT_PE, "Previous DVT"));
             add(new BooleanEvaluationItem(CARPAL, "Carpal tunnel"));
-            add(new BooleanEvaluationItem(RHEUMATIC_DISEASE, "Rheumatic disease"));
             add(new BooleanEvaluationItem(NEUROPATHY, "Peripheral Neuropathy"));
+            add(new BooleanEvaluationItem(RHEUMATIC_DISEASE, "Rheumatic disease"));
+            add(new BooleanEvaluationItem(IMMUNCOMPROMISED, "Other immunocompromised state"));
+
             add(new BoldEvaluationItem(SOCIAL_HISTORY, "Social History") {
                 {
                     setBackgroundHighlighted(true);
@@ -58,12 +60,26 @@ class ReviewOfSystems extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(HEAVY_ALCOHOL, "More than 2 drinks daily"));
             }
             }));
-            add(new BoldEvaluationItem(SEC_FAMILY_HISTORY, "Social History") {
+            add(new BoldEvaluationItem(SEC_FAMILY_HISTORY, "Family History") {
                 {
                     setBackgroundHighlighted(true);
                 }
             });
-            add(new BooleanEvaluationItem(FAMILY_HISTORY, "Family History"));
+            add(new SectionCheckboxEvaluationItem(FAMILY_HISTORY, "Family History", new ArrayList<EvaluationItem>() {{
+                add(new BooleanEvaluationItem(FAMILY_HISTORY, "First-degree relative with known premature (men aged <55 years; women <60 years) coronary or vascular disease"));
+                add(new BooleanEvaluationItem(FAMILY_LDL, "First-degree relative with known LDL-C above the 95th percentile"));
+                add(new BooleanEvaluationItem(FAMILY_XAN, "First-degree relative with tendinous xanthomata and/or arcus cornealis, or children aged <18 years with LDL-C above the 95th percentile"));
+            }
+            }));
+
+
+            add(new BoldEvaluationItem(SEC_COVID, "COVID-19 EXPOSURE") {
+                {
+                    setBackgroundHighlighted(true);
+                }
+            });
+            add(new BooleanEvaluationItem(TRAVEL, "Close contact within 14 days of symptom onset"));
+            add(new BooleanEvaluationItem(EXPOSURE, "Travel from affected geographic areas within 14 days of symptom onset"));
         }};
 
     }

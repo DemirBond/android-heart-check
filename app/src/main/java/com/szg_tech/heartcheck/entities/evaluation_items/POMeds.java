@@ -81,6 +81,9 @@ class POMeds extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(CURRENT_VKA_THERAPY, getString(R.string.current_vka_therapy)));
                 add(new BooleanEvaluationItem(DIRECT_THROMBIN_INHIBITORS, getString(R.string.direct_thrombin_inhibitors)));
                 add(new BooleanEvaluationItem(FACTOR_XA_INHIBITORS, getString(R.string.factor_xa_inhibitors)));
+                add(new BooleanEvaluationItem(IMMUNOSUPPRESSIVE, "Immunosuppressives"));
+
+
             }
         };
     }
