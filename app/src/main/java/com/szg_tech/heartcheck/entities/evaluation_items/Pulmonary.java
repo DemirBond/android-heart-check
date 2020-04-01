@@ -32,7 +32,7 @@ class Pulmonary extends SectionEvaluationItem {
             {
 
                 add(new BooleanEvaluationItem(HYPERCAPNIA, "Severe chronic hypercapnia"));
-                add(new SectionCheckboxEvaluationItem(ASTHMA, "Asthma / Reactive airway disease", new ArrayList<EvaluationItem>() {
+                add(new SectionCheckboxEvaluationItem(ASTHMA, "Reactive airway disease", new ArrayList<EvaluationItem>() {
                     {
 
                         add(new NumericalEvaluationItem(SYMPTOMS_WEEK, " Symptoms / week ", "Value", 0, 112, true));

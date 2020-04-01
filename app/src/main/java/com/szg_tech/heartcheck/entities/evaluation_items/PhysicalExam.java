@@ -25,6 +25,7 @@ class PhysicalExam extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
+                add(new NumericalEvaluationItem(DIFFERENCE_IN_SBP, " SBP difference between arms, if available ", "Value", 0, 50, true));
                 add(new BooleanEvaluationItem(NECK_VEINS, "Neck veins not assessable"));
                 add(new BooleanEvaluationItem(JUGULAR_VENOUS_DISTENTION, "Jugular venous distention"));
                 add(new BooleanEvaluationItem(CAROTID_BRUIT, "Carotid bruit"));
@@ -133,7 +134,7 @@ class PhysicalExam extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(ABSENTR, "Abnormal right LE pulse"));
                 add(new BooleanEvaluationItem(ABSENTL, "Abnormal left LE pulse"));
                 add(new BooleanEvaluationItem(ABBRUIT, "Abdominal bruit"));
-                add(new NumericalEvaluationItem(DIFFERENCE_IN_SBP, getString(R.string.difference_in_sbp), getString(R.string.value), 0, 50, true));
+
             }
         };
     }

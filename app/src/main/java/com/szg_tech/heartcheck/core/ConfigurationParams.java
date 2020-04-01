@@ -216,6 +216,8 @@ public class ConfigurationParams {
     public static final String ABCOLIC = "chkAbcolic";
     public static final String ABACHING = "chkAbaching";
     public static final String PAIN_LOCATION = "secpain_location";
+    public static final String DIFFUSE= "chkdiffuse";
+    public static final String LOCALIZED = "chklocalized";
     public static final String PERIUMBILICAL = "chkperiumbilical";
     public static final String EPIGASTRIC= "chkepigastric";
     public static final String SUPRAPUBIC = "chksuprapubic";
@@ -745,7 +747,7 @@ public class ConfigurationParams {
     public static final String HEADACHED_BLURRED_VISION_OR_AMS = "chkhead";
     public static final String EPISTAXIS = "chkepis";
     public static final String BACK_PAIN = "chkHTNCP";
-
+    public static final String BLURRED_VISION = "chkblurred";
     // Evaluation -> Major CV Risk Factors:
     public static final String SOCIAL_HISTORY = "secsocial_history";
     public static final String TOBACCO_USE = "chkSmoke";
@@ -771,13 +773,14 @@ public class ConfigurationParams {
     public static final String BUN_MG_DL = "txtBUN";
     public static final String ALT = "txtALT";
     public static final String AST = "txtAST";
-    public static final String FLCA = "txtFLCA";
+    public static final String PLATELET = "txtplatelet";
     public static final String TSAT = "txtTSAT";
     public static final String FERRITIN = "txtferritin";
     public static final String HEMOGLOBIN = "txthemoglobin";
     public static final String FASTING_PLASMA_GLUCOSE = "txtGlucose";
     public static final String GFR_ML_MIN = "txtGFR";
-    public static final String WORSENING_RENAL_FX = "ChkWG";
+    public static final String WORSENING_RENAL_FX = "chkWG";
+    public static final String HEM = "sechematology";
     public static final String LIPID_PROFILE = "seclipid_profile";
     public static final String ALREADY_ON_STATIN = "chkalready";
     public static final String STATIN_INTOLERANCE = "chkstatint";

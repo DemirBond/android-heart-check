@@ -25,7 +25,7 @@ class POMeds extends SectionEvaluationItem {
                 add(new SectionCheckboxEvaluationItem(B_BLOCKER, getString(R.string.b_blocker), new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(CARVEDILOL_3125BID, getString(R.string.carvedilol_3125bid)));
-                        add(new BooleanEvaluationItem(CARVEDILOL_625BID, "chkCarvedilol625"));
+                        add(new BooleanEvaluationItem(CARVEDILOL_625BID, "Carvedilol625"));
                         add(new BooleanEvaluationItem(CARVEDILOL_125BID, getString(R.string.carvedilol_125bid)));
                         add(new BooleanEvaluationItem(CARVEDILOL_25BID, getString(R.string.carvedilol_25bid)));
                         add(new BooleanEvaluationItem(METOPROLOLER_25_QD, getString(R.string.metoprololer_25_qd)));
@@ -38,9 +38,9 @@ class POMeds extends SectionEvaluationItem {
 
                 add(new SectionCheckboxEvaluationItem(ACEL_ARB, "Ace I/ ARB", new ArrayList<EvaluationItem>() {
                     {
-                        add(new BooleanEvaluationItem(LISINOPRIL_5QD, "Lisinopril 5 qd"));
-                        add(new BooleanEvaluationItem(LISINOPRIL_10QD, "Lisinopril 10-20 qd"));
-                        add(new BooleanEvaluationItem(LISINOPRIL_20QD, "Lisinopril 30-40 qd"));
+                        add(new BooleanEvaluationItem(LISINOPRIL_5QD, "Lisinopril 5 qd or its equivalent"));
+                        add(new BooleanEvaluationItem(LISINOPRIL_10QD, "Lisinopril 10-20 qd or its equivalent"));
+                        add(new BooleanEvaluationItem(LISINOPRIL_20QD, "Lisinopril 30-40 qd or its equivalent"));
                         add(new BooleanEvaluationItem(LOSARTAN_25QD,  "Losartan 25 qd"));
                         add(new BooleanEvaluationItem(LOSARTAN_50QD,  "Losartan 50 qd"));
                         add(new BooleanEvaluationItem(LOSARTAN_100QD, "Losartan 100 qd"));

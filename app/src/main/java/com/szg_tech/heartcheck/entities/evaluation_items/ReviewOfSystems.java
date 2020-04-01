@@ -17,7 +17,7 @@ import java.util.ArrayList;
 class ReviewOfSystems extends SectionEvaluationItem {
     ReviewOfSystems(Context context) {
         super(context, REVIEW_OF_SYSTEMS, null);
-        name = context.getString(R.string.review_of_systems);
+        name = "Other History";
         this.evaluationItemList = createEvaluationItemElementsList();
         sectionElementState = SectionElementState.LOCKED;
         dependsOn = BIO;
@@ -48,6 +48,7 @@ class ReviewOfSystems extends SectionEvaluationItem {
             add(new BooleanEvaluationItem(CARPAL, "Carpal tunnel"));
             add(new BooleanEvaluationItem(NEUROPATHY, "Peripheral Neuropathy"));
             add(new BooleanEvaluationItem(RHEUMATIC_DISEASE, "Rheumatic disease"));
+            add(new BooleanEvaluationItem(ACTIVE_CANCER, "Active cancer"));
             add(new BooleanEvaluationItem(IMMUNCOMPROMISED, "Other immunocompromised state"));
 
             add(new BoldEvaluationItem(SOCIAL_HISTORY, "Social History") {

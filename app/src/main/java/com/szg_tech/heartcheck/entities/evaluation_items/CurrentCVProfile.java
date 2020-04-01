@@ -117,7 +117,15 @@ class CurrentCVProfile extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(RENOVASCULAR_ATHEROSCLEROTIC, "Atherosclerotic renovascular"));
                         add(new BooleanEvaluationItem(PHEOCROMOCYTOMA, "Pheocromocytoma"));
                         add(new BooleanEvaluationItem(OSA, "OSA"));
-
+                        add(new BoldEvaluationItem(ACUTELY_SYMPTOMATIC, "Acutely Symptomatic") {
+                            {
+                                setBackgroundHighlighted(true);
+                            }
+                        });
+                        add(new BooleanEvaluationItem(BACK_PAIN, "Chest or back pain"));
+                        add(new BooleanEvaluationItem(HEADACHED_BLURRED_VISION_OR_AMS, "Headache"));
+                        add(new BooleanEvaluationItem(BLURRED_VISION, "Blurred vision"));
+                            add(new BooleanEvaluationItem(EPISTAXIS, "Epistaxis"));
                     }
                 }, SectionEvaluationItem.SectionElementState.OPENED) {
                     {
@@ -280,7 +288,7 @@ class CurrentCVProfile extends SectionEvaluationItem {
 
 
                                                 add(new BooleanEvaluationItem(PAINFUL_DEEP_VENOUS_PALPATION_AND_EDEMA, getString(R.string.painful_deep_venous_palpation_and_edema)));
-                                                add(new BooleanEvaluationItem(ACTIVE_CANCER, getString(R.string.active_cancer)));
+
 
                                                 add(new BooleanEvaluationItem(RESPIRATORY_FAILURE, getString(R.string.respiratory_failure)));
                                                 add(new BooleanEvaluationItem(ALREADY_KNOWN_THROMBOPHILIC_CONDITION, getString(R.string.already_known_thrombophilic_condition)));

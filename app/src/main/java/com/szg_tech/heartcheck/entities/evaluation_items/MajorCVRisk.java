@@ -25,8 +25,7 @@ class MajorCVRisk extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
-                add(new SectionCheckboxEvaluationItem(DIABETES, getString(R.string.diabetes), new ArrayList<EvaluationItem>() {
-                    {
+
                         add(new SectionCheckboxEvaluationItem(TYPE_2_DM, getString(R.string.type_2_dm), new ArrayList<EvaluationItem>() {
                             {
                                 add(new BooleanEvaluationItem(DMNP, "Diabetic Nephropathy"));
@@ -78,11 +77,9 @@ class MajorCVRisk extends SectionEvaluationItem {
                         }));
                         add(new BooleanEvaluationItem(GESTATIONAL_DM, getString(R.string.gestational_dm)));
                         add(new BooleanEvaluationItem(RETINOPATHY, getString(R.string.retinopathy)));
-                    }
-                }));
 
-                add(new BooleanEvaluationItem(TOBACCO_USE, getString(R.string.tobacco_use)));
-                add(new BooleanEvaluationItem(FAMILY_HISTORY, getString(R.string.family_history)));
+
+
 
             }
         };

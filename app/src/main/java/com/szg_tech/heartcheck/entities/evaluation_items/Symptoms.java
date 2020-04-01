@@ -96,11 +96,7 @@ class Symptoms extends SectionEvaluationItem {
 
                             }
                         }));
-                add(new SectionCheckboxEvaluationItem(POSITIVE_TROPONIN, "Positive troponin", new ArrayList<EvaluationItem>() {{
-                    add(new BooleanEvaluationItem(TROPONIN_X_MORE_3_ABOVE_NORMAL, "Troponin 3 times above normal"));
-                    add(new BooleanEvaluationItem(TROPONIN_1_3_ABOVE_NORMAL, "Troponin 1 to 3 times above normal"));
-                }
-                }));
+
                         add(new SectionCheckboxEvaluationItem(TYPICAL_ANGINA_NEW, "Typical angina", new ArrayList<EvaluationItem>() {{
                                 add(new BooleanEvaluationItem(ESCALATING_IN_FREQUENCY, "Escalating in frequency, duration oer severity"));
                             }
@@ -395,10 +391,13 @@ class Symptoms extends SectionEvaluationItem {
                                 setBackgroundHighlighted(true);
                             }
                         });
-                        add(new BooleanEvaluationItem(PERIUMBILICAL, "Periumbilical"));
+                       add(new BooleanEvaluationItem(DIFFUSE, "Diffuse Abdominal Pain"));
+                       add(new BooleanEvaluationItem(LOCALIZED, "Localized Abdominal Pain"));
+                       add(new BooleanEvaluationItem(PERIUMBILICAL, "Periumbilical"));
                         add(new BooleanEvaluationItem(EPIGASTRIC, "Epigastric"));
+                        add(new BooleanEvaluationItem(PERIUMBILICAL, "Periumbilical"));
                         add(new BooleanEvaluationItem(SUPRAPUBIC, "Suprapubic"));
-                        add(new BooleanEvaluationItem(ABSPASM, " Referred "));
+                        add(new BooleanEvaluationItem(ABSPASM, " Referred Shoulder Pain "));
                         add(new BoldEvaluationItem(ASSOCIATED_FINDINGS, "Associated findings") {{
                                 setBackgroundHighlighted(true);
                             }
@@ -440,18 +439,9 @@ class Symptoms extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(URINARY, "Change in urinary habit"));
                     }
                 }));
-        items.add(new SectionCheckboxEvaluationItem(HEADACHED_BLURRED_VISION_OR_AMS, "Headache", new ArrayList<EvaluationItem>() {{
 
-        }
-        }));
-        items.add(new SectionCheckboxEvaluationItem(EPISTAXIS, "Epistaxis", new ArrayList<EvaluationItem>() {{
 
-        }
-        }));
-        items.add(new SectionCheckboxEvaluationItem(BACKPAIN, "Backpain", new ArrayList<EvaluationItem>() {{
 
-        }
-        }));
 
         return items;
     }
