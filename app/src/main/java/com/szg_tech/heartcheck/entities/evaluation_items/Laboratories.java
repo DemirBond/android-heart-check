@@ -25,7 +25,7 @@ class Laboratories extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
-                add(new BoldEvaluationItem(CHEM_BASIC, getString(R.string.chem_basic)));
+                add(new BoldEvaluationItem(CHEM_BASIC, "Composite Chemistry"));
                 add(new NumericalEvaluationItem(NA_MEQ_L, getString(R.string.na_meq_l), getString(R.string.value), 99, 170, true));
 
                 add(new NumericalDependantEvaluationItem(URINE_NA_MEQ_L, getString(R.string.urine_na_meq_l),
@@ -56,7 +56,7 @@ class Laboratories extends SectionEvaluationItem {
                 add(new NumericalEvaluationItem(INR, "INR", "value", 0.5, 100, false));
                 add(new NumericalEvaluationItem(HEMOGLOBIN , "Hemoglobin mg/dl", "Value", 3, 25, true));
                 add(new NumericalEvaluationItem(PLATELET , "Platelet K / uL", "Value", 0.01, 100, true));
-                add(new NumericalEvaluationItem(FERRITIN , "Ferritin ug/L", "Value", 3, 25, true));
+                //add(new NumericalEvaluationItem(FERRITIN , "Ferritin ug/L", "Value", 3, 25, true));
                 add(new NumericalEvaluationItem(TSAT , "Transferrin saturation, %", "Value", 3, 25, true));
                 add(new BoldEvaluationItem(LIPID_PROFILE, "Lipid Profile"));
 
