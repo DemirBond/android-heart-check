@@ -70,6 +70,7 @@ class Laboratories extends SectionEvaluationItem {
                 add(new NumericalEvaluationItem(APO_B, getString(R.string.apo_b), getString(R.string.value), 0, 400, true));
                 add(new NumericalEvaluationItem(LDL_P, getString(R.string.ldl_p), getString(R.string.value), 100, 5000, true));
                 add(new NumericalEvaluationItem(LPA_MG_DL, getString(R.string.lpa_mg_dl), getString(R.string.value), 1, 500, true));
+                add(new BooleanEvaluationItem(MUTATION, "LDL-R/ APOB/ PCSK-9 Mutation"));
                 add(new NumericalEvaluationItem(ASCVD_RISK, getString(R.string.ascvd_risk), getString(R.string.value), 0.1, 30, false));
 
                 add(new BoldEvaluationItem(OTHERS, getString(R.string.others)));

@@ -784,6 +784,7 @@ public class ConfigurationParams {
     public static final String LIPID_PROFILE = "seclipid_profile";
     public static final String ALREADY_ON_STATIN = "chkalready";
     public static final String STATIN_INTOLERANCE = "chkstatint";
+    public static final String MUTATION = "chkmutation";
     public static final String CHOLESTEROL = "txtCholesterol";
     public static final String TRG = "txtTRG";
     public static final String LDL_C = "txtLDL";
