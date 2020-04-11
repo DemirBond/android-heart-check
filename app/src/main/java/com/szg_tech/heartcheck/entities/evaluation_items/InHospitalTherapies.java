@@ -23,8 +23,12 @@ class InHospitalTherapies extends SectionEvaluationItem {
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
-                add(new SectionCheckboxEvaluationItem(FOUR_ANTIARRYTHMIC, getString(R.string.four_antiarrythmic), new ArrayList<EvaluationItem>() {
+                add(new SectionCheckboxEvaluationItem(FOUR_VASOPRESSORS, "IV Vasopressors", new ArrayList<EvaluationItem>() {
                     {
+
+                        add(new BooleanEvaluationItem(FOUR_DOPA, "Dopamine"));
+                        add(new BooleanEvaluationItem(FOUR_EPINEPHRINE, "Epinephrine"));
+                        add(new BooleanEvaluationItem(FOUR_NOREPINEPHRINE, "Norepinephrine"));
                         add(new BooleanEvaluationItem(CONTINOUS_IVAA, getString(R.string.Continuous)));
                         add(new BooleanEvaluationItem(BOLUS_IVAA, getString(R.string.bolus)));
                         add(new BooleanEvaluationItem(TITRATION_IVAA, getString(R.string.titration)));
@@ -32,25 +36,30 @@ class InHospitalTherapies extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(TRANSITION_TO_PO_ANTIARRYTHMIC, getString(R.string.transition_to_po_antiarrythmic)));
                     }
                 }));
-                add(new BooleanEvaluationItem(URGENT_CV, getString(R.string.urgent_cv)));
-                add(new BooleanEvaluationItem(DEFIBRILLATION_ACLS, getString(R.string.defibrillation_acls)));
-                add(new SectionCheckboxEvaluationItem(FOUR_ANTIHYPERTENSIVE, getString(R.string.four_antihypertensive), new ArrayList<EvaluationItem>() {
+
+
+                add(new SectionCheckboxEvaluationItem(FOUR_ANTIHYPERTENSIVE, "IV Vasodilators", new ArrayList<EvaluationItem>() {
                     {
+                        add(new BooleanEvaluationItem(FOUR_NPS, getString(R.string.four_nps)));
+                        add(new BooleanEvaluationItem(FOUR_NTG, getString(R.string.four_ntg)));
+
                         add(new BooleanEvaluationItem(CONTINOUS_IVHT, getString(R.string.Continuous)));
                         add(new BooleanEvaluationItem(BOLUS_IVHT, getString(R.string.bolus)));
                         add(new BooleanEvaluationItem(TITRATION_IVHT, getString(R.string.titration)));
                         add(new NumericalEvaluationItem(MONITORING_FREQUENCY_Q_HR_IVHT, getString(R.string.monitoring_frequency_q_hr), getString(R.string.value), 1, 12, true));
                     }
                 }));
-                add(new SectionCheckboxEvaluationItem(FOUR_VASOACTIVE, getString(R.string.four_vasoactive), new ArrayList<EvaluationItem>() {
+                add(new SectionCheckboxEvaluationItem(FOUR_VASOACTIVE, "IV Inotropes", new ArrayList<EvaluationItem>() {
                     {
+                        add(new BooleanEvaluationItem(FOUR_MILRINONE, "Milrinone"));
+                        add(new BooleanEvaluationItem(FOUR_DOBUT, "Dobutamine"));
+
                         add(new BooleanEvaluationItem(CONTINOUS_IVVA, getString(R.string.Continuous)));
                         add(new BooleanEvaluationItem(BOLUS_IVVA, getString(R.string.bolus)));
                         add(new BooleanEvaluationItem(TITRATION_IVVA, getString(R.string.titration)));
                         add(new NumericalEvaluationItem(MONITORING_FREQUENCY_Q_HR_IVVA, getString(R.string.monitoring_frequency_q_hr), getString(R.string.value), 1, 12, true));
-                        add(new BooleanEvaluationItem(FOUR_NPS, getString(R.string.four_nps)));
-                        add(new BooleanEvaluationItem(FOUR_NTG, getString(R.string.four_ntg)));
-                        add(new BooleanEvaluationItem(FOUR_MILRINONE, getString(R.string.four_milrinone)));
+
+
                     }
                 }));
                 add(new SectionCheckboxEvaluationItem(FOUR_DIURETIC, getString(R.string.four_diuretic), new ArrayList<EvaluationItem>() {
@@ -58,6 +67,15 @@ class InHospitalTherapies extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(CONTINOUS_IVDI, getString(R.string.Continuous)));
                         add(new BooleanEvaluationItem(INTERMITTENT, getString(R.string.intermittent)));
                         add(new NumericalEvaluationItem(MONITORING_FREQUENCY_Q_HR_IVDI, getString(R.string.monitoring_frequency_q_hr), getString(R.string.value), 1, 12, true));
+                    }
+                }));
+                add(new SectionCheckboxEvaluationItem(FOUR_ANTIARRYTHMIC, "IV Antiarrhythmic", new ArrayList<EvaluationItem>() {
+                    {
+                        add(new BooleanEvaluationItem(CONTINOUS_IVAA, getString(R.string.Continuous)));
+                        add(new BooleanEvaluationItem(BOLUS_IVAA, getString(R.string.bolus)));
+                        add(new BooleanEvaluationItem(TITRATION_IVAA, getString(R.string.titration)));
+                        add(new NumericalEvaluationItem(MONITORING_FREQUENCY_Q_HR_IVAA, getString(R.string.monitoring_frequency_q_hr), getString(R.string.value), 1, 12, true));
+                        add(new BooleanEvaluationItem(TRANSITION_TO_PO_ANTIARRYTHMIC, getString(R.string.transition_to_po_antiarrythmic)));
                     }
                 }));
                 add(new SectionCheckboxEvaluationItem(MECHANICAL_VENTIALLATION_OR_NIPPV, getString(R.string.mechanical_ventiallation_or_nippv), new ArrayList<EvaluationItem>() {
@@ -70,6 +88,8 @@ class InHospitalTherapies extends SectionEvaluationItem {
                 }));
 
                 add(new BooleanEvaluationItem(FOUR_VASOPRESSORS, getString(R.string.four_vasopressors)));
+                add(new BooleanEvaluationItem(DEFIBRILLATION_ACLS, getString(R.string.defibrillation_acls)));
+                add(new BooleanEvaluationItem(URGENT_CV, getString(R.string.urgent_cv)));
                 add(new BooleanEvaluationItem(ULTRAFILTRATION, getString(R.string.ultrafiltration)));
                 add(new BooleanEvaluationItem(IABP, getString(R.string.iabp)));
                 add(new BooleanEvaluationItem(TEMPORARY_PM, getString(R.string.temporary_pm)));

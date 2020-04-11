@@ -373,14 +373,14 @@ public class ConfigurationParams {
     public static final String HJR = "chkHJR";
     public static final String ASCITES = "chkascites";
     public static final String ANY_CNS_SYMPTOMS = "chkAMS";
-
+    public static final String GLASGOW = "txtglasgow";
     // Evaluation -> Physical Exam -> Cyanosis:
     public static final String SYMCYANOSIS = "chkCyanosis";
     public static final String CENTRAL = "chkcentral";
     public static final String PERIPHERAL = "chkperipheral";
 
     public static final String COLD_CLAMMY_EXTERMITIES = "chkshock";
-    public static final String CLUBBING = "Chkskinwarm";
+    public static final String CLUBBING = "chkskinwarm";
     public static final String EDEMA = "chkedema";
     public static final String ABSENTR = "chkabsentright";
     public static final String ABSENTL = "chkabsentleft";
@@ -777,6 +777,7 @@ public class ConfigurationParams {
     public static final String TSAT = "txtTSAT";
     public static final String FERRITIN = "txtferritin";
     public static final String HEMOGLOBIN = "txthemoglobin";
+    public static final String LACTATE = "txtlactate";
     public static final String FASTING_PLASMA_GLUCOSE = "txtGlucose";
     public static final String GFR_ML_MIN = "txtGFR";
     public static final String WORSENING_RENAL_FX = "chkWG";
@@ -1024,7 +1025,10 @@ public class ConfigurationParams {
     public static final String FOUR_NPS = "chkIVNPS";
     public static final String FOUR_NTG = "chkIVNTG";
     public static final String FOUR_MILRINONE = "chkmilrinone";
-
+    public static final String FOUR_DOPA = "chkdopa";
+    public static final String FOUR_DOBUT = "chkdobut";
+    public static final String FOUR_EPINEPHRINE = "chkepinephrine";
+    public static final String FOUR_NOREPINEPHRINE = "chknorepinephrine";
     // Evaluation -> Current Therapies -> In Hospital/IV Therapies -> IV Diuretic:
     public static final String FOUR_DIURETIC = "chkIVDI";
     public static final String CONTINOUS_IVDI = "chkcon";

@@ -52,13 +52,23 @@ class Laboratories extends SectionEvaluationItem {
                  {
 
                 };
+                add(new BoldEvaluationItem(OTHERS, "Biomarkers"));
+                add(new SectionCheckboxEvaluationItem(POSITIVE_TROPONIN, "Positive troponin", new ArrayList<EvaluationItem>() {{
+                    add(new BooleanEvaluationItem(TROPONIN_X_MORE_3_ABOVE_NORMAL, "Troponin X3 normal"));
+                    add(new BooleanEvaluationItem(TROPONIN_1_3_ABOVE_NORMAL, "Troponin X1-3 normal"));
+                }
+                }));
+                add(new NumericalEvaluationItem(LACTATE, "Lactate mmol/l", "value", 0.001, 100, false));
+                add(new NumericalEvaluationItem(NT_PROBNP_PG_ML, getString(R.string.nt_probnp_pg_ml), getString(R.string.value), 50, 100000, true));
+                add(new NumericalEvaluationItem(BNP_PG_ML, getString(R.string.bnp_pg_ml), getString(R.string.value), 10, 100000, true));
                 add(new BoldEvaluationItem(HEM, "Hematology"));
                 add(new NumericalEvaluationItem(INR, "INR", "value", 0.5, 100, false));
                 add(new NumericalEvaluationItem(HEMOGLOBIN , "Hemoglobin mg/dl", "Value", 3, 25, true));
                 add(new NumericalEvaluationItem(PLATELET , "Platelet K / uL", "Value", 0.01, 100, true));
                 //add(new NumericalEvaluationItem(FERRITIN , "Ferritin ug/L", "Value", 3, 25, true));
                 add(new NumericalEvaluationItem(TSAT , "Transferrin saturation, %", "Value", 3, 25, true));
-                add(new BoldEvaluationItem(LIPID_PROFILE, "Lipid Profile"));
+                add(new BoldEvaluationItem(LIPID_PROFILE, "Lipid Profile and other risk markers"));
+                add(new NumericalEvaluationItem(ASCVD_RISK, "10 year ASCVD risk, %", "Value", 0.1, 30, false));
 
                 add(new BooleanEvaluationItem(ALREADY_ON_STATIN, getString(R.string.already_on_statin)));
                 add(new BooleanEvaluationItem(STATIN_INTOLERANCE, getString(R.string.statin_intolerance)));
@@ -67,22 +77,15 @@ class Laboratories extends SectionEvaluationItem {
                 add(new NumericalEvaluationItem(TRG, getString(R.string.trg), getString(R.string.value), 25, 25000, true));
                 add(new NumericalEvaluationItem(LDL_C, getString(R.string.ldl_c), getString(R.string.value), 0, 500, true));
                 add(new NumericalEvaluationItem(HDL_C, getString(R.string.hdl_c), getString(R.string.value), 1, 200, true));
+                add(new NumericalEvaluationItem(CRP_MG_L, "CRP mg/l", "Value", 0.1, 30, false));
                 add(new NumericalEvaluationItem(APO_B, getString(R.string.apo_b), getString(R.string.value), 0, 400, true));
                 add(new NumericalEvaluationItem(LDL_P, getString(R.string.ldl_p), getString(R.string.value), 100, 5000, true));
                 add(new NumericalEvaluationItem(LPA_MG_DL, getString(R.string.lpa_mg_dl), getString(R.string.value), 1, 500, true));
                 add(new BooleanEvaluationItem(MUTATION, "LDL-R/ APOB/ PCSK-9 Mutation"));
-                add(new NumericalEvaluationItem(ASCVD_RISK, getString(R.string.ascvd_risk), getString(R.string.value), 0.1, 30, false));
 
-                add(new BoldEvaluationItem(OTHERS, getString(R.string.others)));
-                add(new SectionCheckboxEvaluationItem(POSITIVE_TROPONIN, "Positive troponin", new ArrayList<EvaluationItem>() {{
-                    add(new BooleanEvaluationItem(TROPONIN_X_MORE_3_ABOVE_NORMAL, "Troponin X3 normal"));
-                    add(new BooleanEvaluationItem(TROPONIN_1_3_ABOVE_NORMAL, "Troponin X1-3 normal"));
-                }
-                }));
-                add(new NumericalEvaluationItem(CRP_MG_L, getString(R.string.crp_mg_l), getString(R.string.value), 0.1, 30, false));
-                add(new NumericalEvaluationItem(NT_PROBNP_PG_ML, getString(R.string.nt_probnp_pg_ml), getString(R.string.value), 50, 100000, true));
-                add(new NumericalEvaluationItem(BNP_PG_ML, getString(R.string.bnp_pg_ml), getString(R.string.value), 10, 100000, true));
-                add(new NumericalEvaluationItem(ALBUMINURIA_MG_GM_OR_MG_24HR, getString(R.string.albuminuria_mg_gm_or_mg_24hr), getString(R.string.value), 1, 10000, true));
+
+                add(new BoldEvaluationItem(URINE, "Urine"));
+                add(new NumericalEvaluationItem(ALBUMINURIA_MG_GM_OR_MG_24HR, "Albuminuria mg/24hr", getString(R.string.value), 0, 10000, true));
                 add(new SectionCheckboxEvaluationItem(URINE, "Abnormal urine sediment", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(RBC, "Isolated RBC"));

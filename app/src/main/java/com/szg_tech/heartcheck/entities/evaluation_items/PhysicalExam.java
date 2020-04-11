@@ -119,6 +119,15 @@ class PhysicalExam extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(COSTO_VERTEBRAL, "Costovertebral tenderness"));
                 add(new BooleanEvaluationItem(ASCITES, "Ascites"));
                 add(new BooleanEvaluationItem(ANY_CNS_SYMPTOMS, getString(R.string.any_cns_symptoms)));
+                add(new SectionCheckboxEvaluationItem(ANY_CNS_SYMPTOMS, "Any CNS symptoms / AMS ", new ArrayList<EvaluationItem>() {
+
+
+                    {
+                        add(new NumericalEvaluationItem(GLASGOW,"Glasgow Coma Scale","Value", 0, 100, true));
+
+
+                    }
+                }));
                 add(new SectionCheckboxEvaluationItem(SYMCYANOSIS, "Cyanosis", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(CENTRAL, "Central cyanosis"));
