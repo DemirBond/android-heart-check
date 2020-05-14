@@ -118,7 +118,7 @@ class PhysicalExam extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(HJR, "Hepato jugular reflux"));
                 add(new BooleanEvaluationItem(COSTO_VERTEBRAL, "Costovertebral tenderness"));
                 add(new BooleanEvaluationItem(ASCITES, "Ascites"));
-                
+
                 add(new SectionCheckboxEvaluationItem(ANY_CNS_SYMPTOMS, "Any CNS symptoms / AMS ", new ArrayList<EvaluationItem>() {
 
 
