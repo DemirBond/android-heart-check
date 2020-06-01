@@ -120,14 +120,14 @@ class Diagnostics extends SectionEvaluationItem {
 
                         });
 
-                        add(new SectionCheckboxEvaluationItem(FIXED_PERFUSION_DEFECTS_OR_AKINETIC_DYSKINETIC, "Akinetic, dyskinetic segments ", new ArrayList<EvaluationItem>() {
+                        add(new SectionCheckboxEvaluationItem(FIXED_PERFUSION_DEFECTS_OR_AKINETIC_DYSKINETIC, "Akinetic, dyskinetic WMA ", new ArrayList<EvaluationItem>() {
                             {
                                 add(new BooleanEvaluationItem(VIABILITY_PRESENT, getString(R.string.viability_present)));
                             }
                         }));
-                        add(new NumericalEvaluationItem(DSE_ISCHEMIC_THRESHOLD, "DSE,ischemic threshold", "Value", 0, 200, true));
-                        add(new NumericalEvaluationItem(DSE_OR_STRESS_MRI, "DSE or stress MRI, # of RWMA segments", "Value", 0, 24, true));
-                        add(new BooleanEvaluationItem(STRESS_INDUCED_IMAGES, "Stress induced LV dilatation"));
+                        add(new NumericalEvaluationItem(DSE_ISCHEMIC_THRESHOLD, "DSE Ischemic threshold, % MPHR", "Value", 0, 200, true));
+                        add(new NumericalEvaluationItem(DSE_OR_STRESS_MRI, "DSE or stress MRI, Number of segments with new WMA", "Value", 0, 24, true));
+                        add(new BooleanEvaluationItem(STRESS_INDUCED_IMAGES, "Significant stress induced LV dilatation"));
                     }
                 }));
                 add(new SectionCheckboxEvaluationItem(ECHOCARDIOGRAPHY, getString(R.string.echocardiography), new ArrayList<EvaluationItem>() {
@@ -200,7 +200,7 @@ class Diagnostics extends SectionEvaluationItem {
                 }));
                 add(new SectionCheckboxEvaluationItem(CCS, "Coronary Calcium Score", new ArrayList<EvaluationItem>() {
                     {
-                        add(new NumericalEvaluationItem(CORONARY_CALCIUM_SCORE, getString(R.string.coronary_calcium_score), getString(R.string.value), 0, 100, true));
+                        add(new NumericalEvaluationItem(CORONARY_CALCIUM_SCORE, "Coronary Calcium Score, %", getString(R.string.value), 0, 100, true));
                         add(new NumericalEvaluationItem(TOTAL_CCS, getString(R.string.total), getString(R.string.value), 0, 10000, true));
                     }
                 }));

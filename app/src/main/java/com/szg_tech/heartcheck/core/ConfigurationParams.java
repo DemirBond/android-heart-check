@@ -651,8 +651,9 @@ public class ConfigurationParams {
     public static final String ABDOMINAL_AORTIC_ANEURYSM = "secabdominal_aortic_aneurysm";
     public static final String AA_DIAMETER_MORE_5 = "chkAADiameter";
     public static final String THORACIC = "chkthoracic";
+    public static final String THORACIC_RUPTURED = "chkrupthoracic";
     public static final String THORACIC_ABDOMINAL = "chkthoracoabdominal";
-
+    public static final String THORACIC_EMBOLISM = "chkTAemb";
 
     //
     // Evaluation -> Pulmonary:

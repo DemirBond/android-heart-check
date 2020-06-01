@@ -56,7 +56,7 @@ class POMeds extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(BURNEX_2_PLUS, "Bumex 2+ qd"));
                         add(new BooleanEvaluationItem(TORSEMIDE_20, "Torsemide 20 qd"));
                         add(new BooleanEvaluationItem(TORSEMIDE_40, "Torsemide 40 qd "));
-                        add(new BooleanEvaluationItem(TORSEMIDE_50_PLUS, "Torsemide 40+ qd"));
+                        add(new BooleanEvaluationItem(TORSEMIDE_50_PLUS, "Torsemide 50+ qd"));
                         add(new BooleanEvaluationItem(HCTZ, getString(R.string.hctz)));
                         add(new BooleanEvaluationItem(INDAPAMIDE, getString(R.string.indapamide)));
                         add(new BooleanEvaluationItem(CHLORTHALIDONE_METOLAZONE, getString(R.string.chlorthalidone_metolazone)));

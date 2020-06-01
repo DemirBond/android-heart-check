@@ -85,8 +85,8 @@ class Laboratories extends SectionEvaluationItem {
 
 
                 add(new BoldEvaluationItem(URINE, "Urine"));
-                add(new NumericalEvaluationItem(ALBUMINURIA_MG_GM_OR_MG_24HR, "Albuminuria mg/24hr", getString(R.string.value), 0, 10000, true));
-                add(new SectionCheckboxEvaluationItem(URINE, "Abnormal urine sediment", new ArrayList<EvaluationItem>() {
+                add(new NumericalEvaluationItem(ALBUMINURIA_MG_GM_OR_MG_24HR, "Albumin/Creatinin mg/G", getString(R.string.value), 0, 10000, true));
+                add(new SectionCheckboxEvaluationItem(URINE, "Abnormal Urine Sediment", new ArrayList<EvaluationItem>() {
                     {
                         add(new BooleanEvaluationItem(RBC, "Isolated RBC"));
                         add(new BooleanEvaluationItem(RBCCAST, "RBC cast"));

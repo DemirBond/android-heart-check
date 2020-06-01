@@ -425,7 +425,9 @@ class CurrentCVProfile extends SectionEvaluationItem {
                             {
                                 add(new BooleanEvaluationItem(AA_DIAMETER_MORE_5, getString(R.string.aa_diameter_more_5)));
                                 add(new BooleanEvaluationItem(THORACIC, "Thoracic Aortic Aneurysm "));
+                                add(new BooleanEvaluationItem(THORACIC_RUPTURED, "Thoracic Aortic Aneurysm, ruptured "));
                                 add(new BooleanEvaluationItem(THORACIC_ABDOMINAL, "Thoracoabdominal Aortic Aneurysm"));
+                                add(new BooleanEvaluationItem(THORACIC_EMBOLISM, "Embolism and thrombosis of thoracic aorta"));
                             }
                         }, SectionElementState.OPENED));
                     }

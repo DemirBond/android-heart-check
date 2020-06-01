@@ -87,8 +87,8 @@ class InHospitalTherapies extends SectionEvaluationItem {
                     }
                 }));
 
-                add(new BooleanEvaluationItem(FOUR_VASOPRESSORS, getString(R.string.four_vasopressors)));
-                add(new BooleanEvaluationItem(DEFIBRILLATION_ACLS, getString(R.string.defibrillation_acls)));
+                
+                add(new BooleanEvaluationItem(DEFIBRILLATION_ACLS, "Defibrillation /ACLS "));
                 add(new BooleanEvaluationItem(URGENT_CV, getString(R.string.urgent_cv)));
                 add(new BooleanEvaluationItem(ULTRAFILTRATION, getString(R.string.ultrafiltration)));
                 add(new BooleanEvaluationItem(IABP, getString(R.string.iabp)));

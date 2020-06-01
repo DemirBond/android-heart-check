@@ -105,8 +105,8 @@ class PhysicalExam extends SectionEvaluationItem {
 
                     }
                 }));
-                add(new BooleanEvaluationItem(NEW_RALES, getString(R.string.new_rales)));
-                add(new BooleanEvaluationItem(PULMONARY_EDEMA, "Diffuse mixed ralles"));
+                add(new BooleanEvaluationItem(NEW_RALES, "New moist rales"));
+                add(new BooleanEvaluationItem(PULMONARY_EDEMA, "New diffuse mixed rales"));
                 add(new BooleanEvaluationItem(DIMINISHED_BREATH_SOUNDS, getString(R.string.diminished_breath_sounds)));
                 add(new BooleanEvaluationItem(DRY_RALES, "Dry rales, rhonchi "));
                 add(new BooleanEvaluationItem(PERCUSSION, "Abnormal resonance to percussion"));
@@ -116,9 +116,8 @@ class PhysicalExam extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(ABDOMINAL_DISTENTION, "Abdominal distention"));
                 add(new BooleanEvaluationItem(ABDOMINAL_BOWEL, "Abnormal bowel sounds"));
                 add(new BooleanEvaluationItem(HJR, "Hepato jugular reflux"));
-                add(new BooleanEvaluationItem(COSTO_VERTEBRAL, "Costovertebral tenderness"));
                 add(new BooleanEvaluationItem(ASCITES, "Ascites"));
-
+                add(new BooleanEvaluationItem(COSTO_VERTEBRAL, "Costovertebral tenderness"));
                 add(new SectionCheckboxEvaluationItem(ANY_CNS_SYMPTOMS, "Any CNS symptoms / AMS ", new ArrayList<EvaluationItem>() {
 
 
