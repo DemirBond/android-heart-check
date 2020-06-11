@@ -21,22 +21,20 @@ class PhysicalExam extends SectionEvaluationItem {
         sectionElementState = SectionElementState.LOCKED;
         this.dependsOn = BIO;
     }
-
     private ArrayList<EvaluationItem> createEvaluationItemElementsList() {
         return new ArrayList<EvaluationItem>() {
             {
                 add(new NumericalEvaluationItem(DIFFERENCE_IN_SBP, " SBP difference between arms, if available ", "Value", 0, 50, true));
+
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Neck"));
                 add(new BooleanEvaluationItem(NECK_VEINS, "Neck veins not assessable"));
                 add(new BooleanEvaluationItem(JUGULAR_VENOUS_DISTENTION, "Jugular venous distention"));
                 add(new BooleanEvaluationItem(CAROTID_BRUIT, "Carotid bruit"));
-                add(new BooleanEvaluationItem(DISPLACED_PMI, getString(R.string.displaced_pmi)));
-                add(new BooleanEvaluationItem(LEFT_SIDED_S3, "Left sided S3 gallop"));
-                add(new BooleanEvaluationItem(LEFT_SIDED_S4, "Left sided S4 gallop"));
-                add(new BooleanEvaluationItem(FRICTION_RUB, getString(R.string.friction_rub)));
-                add(new BooleanEvaluationItem(DISTANT, "Distant heart sounds"));
-                add(new SectionCheckboxEvaluationItem(HEART_MURMUR, "Murmur, pathological heart sounds", new ArrayList<EvaluationItem>() {
+
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Hearth"));
+                add(new SectionCheckboxEvaluationItem(HEART_MURMUR, "Hearth murmur", new ArrayList<EvaluationItem>() {
                     {
-                        add(new SectionEvaluationItem(tempContext, FOCUS_ON_THE_MOST_ABNORMAL_AUSCULTATION_FOCI, "Please enter the area murmur is most prominent "));
+                        add(new SectionEvaluationItem(tempContext, FOCUS_ON_THE_MOST_ABNORMAL_AUSCULTATION_FOCI, "Focus on the most abnormal auscultation foci"));
                         add(new SectionCheckboxEvaluationItem(SI_MITRAL, getString(R.string.si_mitral), new ArrayList<EvaluationItem>() {
                             {
                                 add(new RadioButtonGroupEvaluationItem(LOUD_S1_MITRAL, getString(R.string.loud), SI_MITRAL, false));
@@ -84,7 +82,6 @@ class PhysicalExam extends SectionEvaluationItem {
                                                 add(new BooleanEvaluationItem(MIDSYSTOLIC, getString(R.string.midsystolic)));
                                             }
                                         }));
-
                                         add(new BooleanEvaluationItem(EJECTION_SOUND, "Ejection sound"));
                                         add(new BooleanEvaluationItem(SYSTOLIC_CLICK, "Systolic click"));
                                     }
@@ -102,15 +99,21 @@ class PhysicalExam extends SectionEvaluationItem {
                                 setHasStateIcon(false);
                             }
                         });
-
                     }
                 }));
+                add(new BooleanEvaluationItem(DISTANT, "Distant heart sounds"));
+                add(new BooleanEvaluationItem(LEFT_SIDED_S3, "Left sided S3 gallop"));
+                add(new BooleanEvaluationItem(LEFT_SIDED_S4, "Left sided S4 gallop"));
+                add(new BooleanEvaluationItem(FRICTION_RUB, getString(R.string.friction_rub)));
+                add(new BooleanEvaluationItem(DISPLACED_PMI, getString(R.string.displaced_pmi)));
+
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Pulmonary and Thorax"));
+                add(new BooleanEvaluationItem(INCREASED_THORAX_DIAMETER, "Increased thorax AP diameter"));
+                add(new BooleanEvaluationItem(PERCUSSION, "Abnormal resonance to percussion"));
                 add(new BooleanEvaluationItem(NEW_RALES, "New moist rales"));
                 add(new BooleanEvaluationItem(PULMONARY_EDEMA, "New diffuse mixed rales"));
-                add(new BooleanEvaluationItem(DIMINISHED_BREATH_SOUNDS, getString(R.string.diminished_breath_sounds)));
                 add(new BooleanEvaluationItem(DRY_RALES, "Dry rales, rhonchi "));
-                add(new BooleanEvaluationItem(PERCUSSION, "Abnormal resonance to percussion"));
-                add(new BooleanEvaluationItem(INCREASED_THORAX_DIAMETER, "Increased thorax AP diameter"));
+                add(new BooleanEvaluationItem(DIMINISHED_BREATH_SOUNDS, getString(R.string.diminished_breath_sounds)));
 
                 add(new BooleanEvaluationItem(ABDOMINAL_TENDERNESS, "Abdominal tenderness"));
                 add(new BooleanEvaluationItem(ABDOMINAL_DISTENTION, "Abdominal distention"));

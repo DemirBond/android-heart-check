@@ -384,6 +384,7 @@ public class ConfigurationParams {
     public static final String EDEMA = "chkedema";
     public static final String ABSENTR = "chkabsentright";
     public static final String ABSENTL = "chkabsentleft";
+    public static final String ABSSO = "chkabsentother";
     public static final String ABBRUIT = "chkabbruit";
     public static final String DIFFERENCE_IN_SBP = "txtDiffInSBP";
 
