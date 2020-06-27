@@ -445,7 +445,7 @@ public class ConfigurationParams {
     public static final String LVEF_CHD = "TxtHF";
 
     // Evaluation -> Cardiovascular -> Heart Failure:
-    public static final String HEART_FAILURE = "chkHF";
+    public static final String HEART_FAILURE = "secheart_failure";
     public static final String HF_DIAGNOSIS_DURATION_WEEK = "txtdur";
     public static final String PREVIOUS_HF_HOSPITALIZATION = "chkfoutpt";
     public static final String S_P_ICD = "chkICD";

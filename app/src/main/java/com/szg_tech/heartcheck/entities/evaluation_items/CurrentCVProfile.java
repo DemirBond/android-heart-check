@@ -138,7 +138,7 @@ class CurrentCVProfile extends SectionEvaluationItem {
                         add(new BooleanEvaluationItem(PREVIOUS_HF_HOSPITALIZATION, getString(R.string.previous_hf_hospitalization)));
                         add(new BooleanEvaluationItem(S_P_ICD, "Status post AICD"));
                         add(new BooleanEvaluationItem(CRT_ICD, "Status post CRT"));
-                        add(new NumericalEvaluationItem(LVEF, getString(R.string.lvef), getString(R.string.value), 10, 80, true));
+                        add(new NumericalEvaluationItem(LVEF, "LVEF","Value", 10, 80, true));
                         add(new SectionEvaluationItem(tempContext, NYHA_CLASS, "Heart Failure Class / Stage", new ArrayList<EvaluationItem>() {
                             {
                                 add(new SectionCheckboxEvaluationItem(NYHA_CCVS_CLASS, "NYHA Class", new ArrayList<EvaluationItem>() {
