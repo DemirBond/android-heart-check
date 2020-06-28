@@ -5,6 +5,7 @@ import android.content.Context;
 import com.szg_tech.heartcheck.R;
 import static com.szg_tech.heartcheck.core.ConfigurationParams.*;
 import com.szg_tech.heartcheck.entities.EvaluationItem;
+import com.szg_tech.heartcheck.entities.evaluation_item_elements.BoldEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.BooleanEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.NumericalEvaluationItem;
 import com.szg_tech.heartcheck.entities.evaluation_item_elements.RadioButtonGroupEvaluationItem;
@@ -26,12 +27,12 @@ class PhysicalExam extends SectionEvaluationItem {
             {
                 add(new NumericalEvaluationItem(DIFFERENCE_IN_SBP, " SBP difference between arms, if available ", "Value", 0, 50, true));
 
-                //add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Neck"));
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Neck"));
                 add(new BooleanEvaluationItem(NECK_VEINS, "Neck veins not assessable"));
                 add(new BooleanEvaluationItem(JUGULAR_VENOUS_DISTENTION, "Jugular venous distention"));
                 add(new BooleanEvaluationItem(CAROTID_BRUIT, "Carotid bruit"));
 
-                //add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Hearth"));
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Hearth"));
                 add(new SectionCheckboxEvaluationItem(HEART_MURMUR, "Hearth murmur", new ArrayList<EvaluationItem>() {
                     {
                         add(new SectionEvaluationItem(tempContext, FOCUS_ON_THE_MOST_ABNORMAL_AUSCULTATION_FOCI, "Focus on the most abnormal auscultation foci"));
@@ -107,7 +108,7 @@ class PhysicalExam extends SectionEvaluationItem {
                 add(new BooleanEvaluationItem(FRICTION_RUB, getString(R.string.friction_rub)));
                 add(new BooleanEvaluationItem(DISPLACED_PMI, getString(R.string.displaced_pmi)));
 
-                //add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Pulmonary and Thorax"));
+                add(new BoldEvaluationItem(PLEASE_SELECT_ONE, "Pulmonary and Thorax"));
                 add(new BooleanEvaluationItem(INCREASED_THORAX_DIAMETER, "Increased thorax AP diameter"));
                 add(new BooleanEvaluationItem(PERCUSSION, "Abnormal resonance to percussion"));
                 add(new BooleanEvaluationItem(NEW_RALES, "New moist rales"));
