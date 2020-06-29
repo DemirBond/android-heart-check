@@ -103,7 +103,11 @@ public class EvaluationRequest {
                     //TODO What to do if value is not boolean but it is a chk?
                 }
             } else {
-                builder.append(entry.getKey()).append('=').append(entry.getValue());
+                if(isDoubleWithoutDecimal(entry.getValue())){
+                    builder.append(entry.getKey()).append('=').append(((Double)entry.getValue()).intValue());
+                }else {
+                    builder.append(entry.getKey()).append('=').append(entry.getValue());
+                }
                 builder.append('|');
             }
         }
@@ -146,5 +150,16 @@ public class EvaluationRequest {
         map.put("isPAH", isPAH);
         map.put("inputs", inputs);
         return map;
+    }
+
+    //Check if double has decimals
+    private boolean isDoubleWithoutDecimal(Object value) {
+        try {
+            if((Double) value % 1 == 0)
+                return true;
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 }
